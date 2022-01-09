@@ -19,6 +19,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    public const UNIVERSITY = 'university/dashboard';
+
+    public const COLLEGE = 'college/dashboard';
+
     /**
      * The controller namespace for the application.
      *
@@ -26,7 +30,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    // protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace_university = 'App\\Http\\Controllers\\University';
+    protected $namespace_college = 'App\\Http\\Controllers\\College';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -46,6 +52,18 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix('university')
+                ->middleware('web')
+                ->as('university.')
+                ->namespace($this->namespace_university)
+                ->group(base_path('routes/university.php'));
+
+            Route::prefix('college')
+                ->middleware('web')
+                ->as('college.')
+                ->namespace($this->namespace_college)
+                ->group(base_path('routes/college.php'));
         });
     }
 
