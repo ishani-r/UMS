@@ -191,7 +191,7 @@
 
     <div id="god-container">
         <div id="super-container1">
-            <h2 class="title-h2">Welcome Back!</h2>
+            <h2 class="title-h2">Welcome Back! (University)</h2>
             <div class="container-p">
                 <p class="subtitle-p"> To keep connected with us please login with your personal info.</p>
                 <div class="div-button1">
