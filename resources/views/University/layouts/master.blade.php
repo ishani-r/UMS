@@ -85,9 +85,9 @@
 
         <!-- main menu-->
         <!--.main-menu(class="#{menuColor} #{menuOpenType}", class=(menuShadow == true ? 'menu-shadow' : ''))-->
-        {{-- sidebar start --}}
+        
         @include('University.layouts.sidebar')
-        {{-- sidebar end --}}
+        
 
         <div class="main-panel">
             <!-- BEGIN : Main Content-->

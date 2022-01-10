@@ -193,10 +193,9 @@
         <div id="super-container1">
             <h2 class="title-h2">Welcome Back! (University)</h2>
             <div class="container-p">
-                <p class="subtitle-p"> To keep connected with us please login with your personal info.</p>
+                <!-- <p class="subtitle-p"> To keep connected with us please login with your personal info.</p> -->
                 <div class="div-button1">
-                    <a href="#" type="submit" class="btn btn-danger btn-md button1">Sign
-                        Up</a>
+                    <!-- <a href="#" type="submit" class="btn btn-danger btn-md button1">Sign Up</a> -->
                 </div>
             </div>
         </div>
@@ -249,7 +248,7 @@
                     <button type="submit" class="btn btn-danger btn-md button2">
                         {{ __('Sign In') }}
                     </button>
-                    <h4 class="text-center">Forgot password? <a href="#">Click here</a>.</h4>
+                    <!-- <h4 class="text-center">Forgot password? <a href="{{ route('university.forgot_password_show')}}">Click here</a>.</h4> -->
                 </form>
 
             </div>

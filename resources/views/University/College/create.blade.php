@@ -119,29 +119,29 @@
    <script>
       $('#college_form').validate({
          rules: {
-            name: {
-               required: true,
-            },
-            email: {
-               required: true,
-            },
-            contact_no: {
-               required: true,
-            },
-            address: {
-               required: true,
-            },
-            logo: {
-               required: true,
-            },
-            password: {
-               required: true,
-               minlength: 8
-            },
-            confirm_password: {
-               required: true,
-               equalTo: "#password"
-            },
+            // name: {
+            //    required: true,
+            // },
+            // email: {
+            //    required: true,
+            // },
+            // contact_no: {
+            //    required: true,
+            // },
+            // address: {
+            //    required: true,
+            // },
+            // logo: {
+            //    required: true,
+            // },
+            // password: {
+            //    required: true,
+            //    minlength: 8
+            // },
+            // confirm_password: {
+            //    required: true,
+            //    equalTo: "#password"
+            // },
          },
          messages: {
             name: 'Please Enter College Name!',

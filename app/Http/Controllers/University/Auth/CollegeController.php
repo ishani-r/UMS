@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DataTables\CollegeDatatable;
 use App\Models\College;
+use App\Http\Requests\University\CollegeRequest;
 
 class CollegeController extends Controller
 {
@@ -19,7 +20,7 @@ class CollegeController extends Controller
         return view('University.College.create');
     }
 
-    public function store(Request $request)
+    public function store(CollegeRequest $request)
     {
         $college = new College();
         $college->name = $request->name;

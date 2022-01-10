@@ -41,7 +41,7 @@
                                     <div class="timeline-badge"><span class="bg-primary bg-lighten-4"
                                             data-toggle="tooltip" data-placement="right"
                                             title="Portfolio project work"><img class="avatar"
-                                                src="{{ asset('saller-assets/app-assets/img/portrait/small/avatar-s-15.png') }}"
+                                                src="{{ asset('university-assets/app-assets/img/portrait/small/avatar-s-15.png') }}"
                                                 alt="avatar" width="40"></span></div>
                                     <div class="activity-list-text">
                                         <h6 class="mb-1"><span>Reminder!</span><span
@@ -59,7 +59,7 @@
                                     <div class="timeline-badge"><span class="bg-primary bg-lighten-4"
                                             data-toggle="tooltip" data-placement="right"
                                             title="Portfolio project work"><img class="avatar"
-                                                src="{{ asset('saller-assets/app-assets/img/portrait/small/avatar-s-16.png') }}"
+                                                src="{{ asset('university-assets/app-assets/img/portrait/small/avatar-s-16.png') }}"
                                                 alt="avatar" width="40"></span></div>
                                     <div class="activity-list-text">
                                         <h6 class="mb-1"><span>Recieved a File</span><span
@@ -69,7 +69,7 @@
                                             the next conference.</p>
                                         <div class="notification-note">
                                             <div class="p-1 pl-2"><img
-                                                    src="{{ asset('saller-assets/app-assets/img/icons/sketch-mac-icon.png') }}"
+                                                    src="{{ asset('university-assets/app-assets/img/icons/sketch-mac-icon.png') }}"
                                                     alt="icon" width="20"><span
                                                     class="text-bold-500 ml-2">Diamond.sketch</span></div>
                                         </div>
@@ -115,7 +115,7 @@
                                     <div class="timeline-badge"><span class="bg-primary bg-lighten-4"
                                             data-toggle="tooltip" data-placement="right"
                                             title="Portfolio project work"><img class="avatar"
-                                                src="{{ asset('saller-assets/app-assets/img/portrait/small/avatar-s-26.png') }}"
+                                                src="{{ asset('university-assets/app-assets/img/portrait/small/avatar-s-26.png') }}"
                                                 alt="avatar" width="40"></span></div>
                                     <div class="activity-list-text">
                                         <h6 class="mb-1"><span>Gmail</span><span
@@ -125,7 +125,7 @@
                                             has a file attachment with it.</p>
                                         <div class="notification-note">
                                             <div class="p-1 pl-2"><img
-                                                    src="{{ asset('saller-assets/app-assets/img/icons/pdf.png') }}"
+                                                    src="{{ asset('university-assets/app-assets/img/icons/pdf.png') }}"
                                                     alt="pdf icon" width="20"><span
                                                     class="text-bold-500 ml-2">Register.pdf</span></div>
                                         </div>
@@ -152,7 +152,7 @@
                                     <div class="timeline-badge"><span class="bg-primary bg-lighten-4"
                                             data-toggle="tooltip" data-placement="right"
                                             title="Portfolio project work"><img class="avatar"
-                                                src="{{ asset('saller-assets/app-assets/img/portrait/small/avatar-s-23.png') }}"
+                                                src="{{ asset('university-assets/app-assets/img/portrait/small/avatar-s-23.png') }}"
                                                 alt="avatar" width="40"></span></div>
                                     <div class="activity-list-text">
                                         <h6 class="mb-1"><span>CNN</span><span
