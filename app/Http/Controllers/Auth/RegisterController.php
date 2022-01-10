@@ -50,8 +50,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'contact_no' => ['required', 'max:10', 'min:10', 'unique:users'],
+            'gender' => ['required'],
+            'address' => ['required'],
+            'adhaar_card_no' => ['required'],
+            // 'image' => ['required', 'mimes:jpeg,jpg,png'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,9 +69,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $image = uploadFile($data['image'], 'student');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'contact_no' => $data['contact_no'],
+            'gender' => $data['gender'],
+            'address' => $data['address'],
+            'adhaar_card_no' => $data['adhaar_card_no'],
+            'image' => $image,
             'password' => Hash::make($data['password']),
         ]);
     }

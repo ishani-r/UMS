@@ -195,8 +195,7 @@
          <div class="container-p">
             <p class="subtitle-p"> To keep connected with us please register with your business info.</p>
             <div class="div-button1">
-               <a href="{{ route('seller.business_register') }}" type="submit" class="btn btn-danger btn-md button1">Business Register</a>
-               <!-- <input class="button1" type="submit" href="{{ route('seller.register') }}" value="Sign Up"> -->
+               <a href="#" type="submit" class="btn btn-danger btn-md button1">Business Register</a>
             </div>
          </div>
       </div>
@@ -204,11 +203,11 @@
       <br>
       <div id="super-container2">
          <div class="title-container">
-            <h1>Individual Register</h1>
+            <h1>College Register</h1>
          </div>
          <div class="buttons-login">
-         <a href="{{ route('seller.facebook')}}"><i class="fab fa-facebook fa-2x"></i></a>
-            <a href="{{ route('seller.google')}}"><i class="fab fa-google fa-2x"></i></a>
+         <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+            <a href="#"><i class="fab fa-google fa-2x"></i></a>
             <!-- <a href="#"><i class="fab fa-twitter-square fa-2x"></i></a> -->
          </div>
          <div class="container-p">
@@ -216,26 +215,15 @@
          </div>
          <div class="form">
             <!-- Individual -->
-            <form method="POST" action="{{ route('seller.individual_register') }}" id="individual_form">
+            <form method="POST" action="{{ route('college.college_register') }}" id="individual_form" enctype="multipart/form-data">
                @csrf
                <div class="form-group">
                   <div class="input-div">
-                     <label for="fname"></label>
-                     <input type="text" name="fname" class="form-control @error('fname') is-invalid @enderror" id="fname" value="{{ old('fname') }}" placeholder="First Name">
-
+                     <label for="name"></label>
+                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" placeholder="Enter Your Name">
+ 
                   </div>
-                  @error('fname')
-                  <span class="invalid-feedback" role="alert">
-                     <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-               </div>
-               <div class="form-group">
-                  <div class="input-div">
-                     <label for="lname"></label>
-                     <input type="text" name="lname" class="form-control @error('lname') is-invalid @enderror" id="lname" value="{{ old('lname') }}" placeholder="Last Name">
-                  </div>
-                  @error('lname')
+                  @error('name')
                   <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
                   </span>
@@ -255,11 +243,23 @@
                </div>
                <div class="form-group">
                   <div class="input-div">
-                     <label for="mobile"></label>
-                     <input type="text" name="mobile" class="form-control @error('mobile') is-invalid @enderror" id="mobile" value="{{ old('mobile') }}" placeholder="Mobile">
+                     <label for="contact_no"></label>
+                     <input type="text" name="contact_no" class="form-control @error('contact_no') is-invalid @enderror" id="contact_no" value="{{ old('contact_no') }}" placeholder="Enter Your Contact Number">
 
                   </div>
-                  @error('mobile')
+                  @error('contact_no')
+                  <span class="invalid-feedback" role="alert">
+                     <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+               </div>
+               <div class="form-group">
+                  <div class="input-div">
+                     <label for="address"></label>
+                     <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" value="{{ old('address') }}" placeholder="Enter Your Address">
+
+                  </div>
+                  @error('address')
                   <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
                   </span>
@@ -289,11 +289,23 @@
                   </span>
                   @enderror
                </div>
+               <div class="form-group">
+                  <div class="input-div">
+                     <label for="logo"></label>
+                     <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror" id="logo" value="{{ old('logo') }}" placeholder="Enter Your Contact Number">
+
+                  </div>
+                  @error('logo')
+                  <span class="invalid-feedback" role="alert">
+                     <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+               </div>
                <button type="submit" class="btn btn-danger btn-md button2">
                   {{ __('Sign Up') }}
                </button>
             </form>
-            <h3 class="text-center">You have an account? <a href="{{ route('seller.login') }}">Login</a>.</h3>
+            <h3 class="text-center">You have an account? <a href="{{ route('college.login') }}">Login</a>.</h3>
          </div>
       </div>
    </div>
@@ -306,16 +318,16 @@
    $(document).ready(function() {
       $('#individual_form').validate({
          rules: {
-            fname: {
-               required: true,
-            },
-            lname: {
+            name: {
                required: true,
             },
             email: {
                required: true,
             },
-            mobile: {
+            contact_no: {
+               required: true,
+            },
+            address: {
                required: true,
             },
             password: {
@@ -328,9 +340,10 @@
             },
          },
          messages: {
-            fname: 'Please Enter Your First Name.',
-            lname: 'Please Enter Your Last Name.',
+            name: 'Please Enter Your Name.',
             email: 'Please Enter Your Email Address.',
+            contact_no: 'Please Enter Your Contact Number.',
+            address: 'Please Enter Your Address.',
             password: {
                required: 'Please Enter Your Password.',
                minlength: 'Please Enter at least 8 characters.'

@@ -1,7 +1,7 @@
-<div class="app-sidebar menu-fixed" data-background-color="man-of-steel" data-image="{{ asset('saller-assets/app-assets/img/sidebar-bg/01.jpg') }}" data-scroll-to-active="true">
+<div class="app-sidebar menu-fixed" data-background-color="man-of-steel" data-image="{{ asset('university-assets/app-assets/img/sidebar-bg/01.jpg') }}" data-scroll-to-active="true">
    <div class="sidebar-header">
       <div class="logo clearfix"><a class="logo-text float-left" href="index-2.html">
-            <div class="logo-img"><img src="{{asset('saller-assets\app-assets\img\logo.png')}}" style="width: 40px;" class="rounded" /></div>MINE CART
+            <div class="logo-img"><img src="{{asset('university-assets\app-assets\img\university-logo.jpg')}}" style="width: 40px;" class="rounded" /></div>MINE CART
 
          </a><a class="nav-toggle d-none d-lg-none d-xl-block" id="sidebarToggle" href="javascript:;"><i class="toggle-icon ft-toggle-right" data-toggle="expanded"></i></a><a class="nav-close d-block d-lg-block d-xl-none" id="sidebarClose" href="javascript:;"><i class="ft-x"></i></a></div>
    </div>
@@ -26,18 +26,18 @@
                     </ul>
                 </li> -->
             <li>
-               <a href="#" class="text-decoration-none">
-                  <i class="fa fa-shopping-basket"></i>
-                  <span class="menu-title" data-i18n="Email">Store</span>
+               <a href="{{ route('university.college.index')}}" class="text-decoration-none">
+                  <i class='fas fa-school' style='font-size:17px'></i>
+                  <span class="menu-title" data-i18n="Email">College</span>
                </a>
             </li>
             <li>
-               <a href="#" class="text-decoration-none">
-                  <i class="fab fa-bandcamp"></i>
-                  <span class="menu-title" data-i18n="Email">Brand</span>
+               <a href="{{ route('university.common_setting')}}" class="text-decoration-none">
+                  <i class="fa fa-tasks" aria-hidden="true"></i>
+                  <span class="menu-title" data-i18n="Email">Common Setting</span>
                </a>
             </li>
-            <li>
+            <!-- <li>
                <a href="#" class="text-decoration-none"><i class="fa fa-window-restore"></i><span class="menu-title" data-i18n="Chat">Category</span>
                </a>
             </li>
@@ -46,7 +46,7 @@
                   <i class="fa fa-th-list"></i>
                   <span class="menu-title" data-i18n="Chat">Product</span>
                </a>
-            </li>
+            </li> -->
          </ul>
       </div>
    </div>

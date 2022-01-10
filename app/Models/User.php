@@ -20,6 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'contact_no',
+        'gender',
+        'address',
+        'adhaar_card_no',
+        'image',
         'password',
     ];
 

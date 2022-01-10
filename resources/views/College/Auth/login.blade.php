@@ -195,7 +195,7 @@
             <div class="container-p">
                 <p class="subtitle-p"> To keep connected with us please login with your personal info.</p>
                 <div class="div-button1">
-                    <a href="#" type="submit" class="btn btn-danger btn-md button1">Sign
+                    <a href="{{ route('college.register')}}" type="submit" class="btn btn-danger btn-md button1">Sign
                         Up</a>
                 </div>
             </div>
