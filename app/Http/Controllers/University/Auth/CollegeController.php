@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Mail;
 
 class CollegeController extends Controller
 {
+    public function __construct()
+    {
+
+    }
+    
     public function index(CollegeDatatable $CollegeDatatable)
     {
         return $CollegeDatatable->render('University.College.index');
