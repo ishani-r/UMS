@@ -1,91 +1,206 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <title>AJEX example</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <style>
-      body{
-            background-color: pink;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-        }
-      .form-control{
-            padding: 7px;
-            border: #bdbdbd 1px solid;
-            border-radius: 10px;
-            width: 700px;
-        }
-        .container {
-            border: 1px solid #7ddaff;
-            margin: 10px auto;
-            padding: 40px;
-            width: 768px;
-            border-radius: 4px;
-            background:black;
-            vertical-align: center;
-            margin-top:60px;
-            margin-left: 390px;
-            margin-right: 400px;
-            padding-top: 20px;
-            background: rgba(255,255,255,.5);
-            box-shadow: 0 20px 20px rgba(0,0,0,.5);
-    }
-   </style>
-</head>
-<body>
-   <div class="container">
-   <h1 class="text-center"><font color="008B8B"><b>Register</b></font></h1>
-      <div class="row">
-         <div class="col-md-6">
-            <form id="myfrom" method="POST" enctype="multipart/form-data">
-               <div class="form-group">
-                  <label>First Name</label>
-                  <input type="text" name="fname" id="fname" placeholder="Enter First Name" class="form-control">
-               </div>
-               <div class="form-group">
-                  <label>Last Name</label>
-                  <input type="text" name="lname" id="lname" placeholder="Enter Last Name" class="form-control">
-               </div>
-               <div>
-                  <input type="submit" name="submit" value="Submit" id="submit">
-               </div>
-            </form>
-         </div>   
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+   <div class="row justify-content-center">
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header">{{ __('Register') }}</div>
+
+            <div class="card-body">
+               <form method="POST" action="{{ route('register') }}" id="register" enctype="multipart/form-data">
+                  @csrf
+
+                  <div class="row mb-3">
+                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                     <div class="col-md-6">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
+
+                     <div class="col-md-6">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="contact_no" class="col-md-4 col-form-label text-md-end">{{ __('Contact No') }}</label>
+                     <div class="col-md-6">
+                        <input id="contact_no" type="contact_no" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" value="{{ old('contact_no') }}" autocomplete="contact_no">
+                        @error('contact_no')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
+                     <div class="col-md-6">
+                        <input type="radio" name="gender" value="M"> Male<br>
+                        <input type="radio" name="gender" value="F"> Female<br>
+                        <!-- <input id="gender" type="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" autocomplete="gender"> -->
+                        @error('gender')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
+                     <div class="col-md-6">
+                        <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address">
+                        @error('address')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="adhaar_card_no" class="col-md-4 col-form-label text-md-end">{{ __('Adhaar Card No') }}</label>
+                     <div class="col-md-6">
+                        <input id="adhaar_card_no" type="adhaar_card_no" class="form-control @error('adhaar_card_no') is-invalid @enderror" name="adhaar_card_no" value="{{ old('adhaar_card_no') }}" autocomplete="adhaar_card_no">
+                        @error('adhaar_card_no')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Profile') }}</label>
+                     <div class="col-md-6">
+                        <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autocomplete="image">
+                        @error('image')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                     <div class="col-md-6">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                     <div class="col-md-6">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                     </div>
+                  </div>
+
+                  <div class="row mb-0">
+                     <div class="col-md-6 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                           {{ __('Register') }}
+                        </button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
       </div>
    </div>
-</body>
+</div>
+@endsection
+@push('js')
 <script>
-      $(document).ready(function() {
-         $('#submit').click(function() {
-            
-            var firstname = $('#fname').val();
-            console.log(fname);
-            var lastname = $('#lname').val();
-            console.log(lname);
-            
-               $.ajax({
-                  url: "datainsert.php",
-                  type: "POST",
-                  data: {
-                     'firstname': firstname,
-                     'lastname': lastname          
-                  },
-                  // cache: false,
-                  success: function(data){
-                     console.log(data);
-                     if(result=true){
-                     alert("status is true");
-                     }                 
-                  }
-            });      
-         });
-      });
+   $('#register').validate({
+      rules: {
+         name: {
+            required: true,
+         },
+         email: {
+            required: true,
+         },
+         contact_no: {
+            required: true,
+            maxlength: 10,
+            minlength: 10
+         },
+         gender: {
+            required: true,
+         },
+         address: {
+            required: true,
+         },
+         adhaar_card_no: {
+            required: true,
+         },
+         image: {
+            required: true,
+         },
+         password: {
+            required: true,
+            minlength: 8
+         },
+         password_confirmation: {
+            required: true,
+            equalTo: "#password"
+         },
+      },
+      errorElement: 'span',
+      messages: {
+         name: 'Please Enter Your Name.',
+         email: 'Please Enter Your Email Address.',
+         contact_no: {
+            required: 'Please Enter Your Mobile Number.',
+            maxlength: 'Please enter only 10 digits.',
+            minlength: 'Please enter at least 10 digits.'
+         },
+         gender: 'Please Select Your Address.',
+         address: 'Please Enter Your Address.',
+         adhaar_card_no: 'Please Enter Your Adhaar Card Number.',
+         image: 'Please Select Your Profile Image.',
+         password: {
+            required: 'Please Enter Your Password.',
+            minlength: 'Please Enter at least 8 characters.'
+         },
+         password_confirmation: {
+            required: 'Please Enter Confirmation.',
+            equalTo: 'Please Enter Confirm Password Same as a Password.'
+         }
+      },
+      highlight: function(element, errorClass, validClass) {
+         $(element).addClass('is-invalid');
+         $(element).parents("div.form-control").addClass(errorClass).removeClass(validClass);
+      },
+      unhighlight: function(element, errorClass, validClass) {
+         $(element).removeClass('is-invalid');
+         $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+      },
+   });
 </script>
-</html>
+@endpush
