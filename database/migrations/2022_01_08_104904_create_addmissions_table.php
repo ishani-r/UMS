@@ -18,10 +18,10 @@ class CreateAddmissionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('college_id')->nullable();
-            $table->string('sequence')->nullable();
+            // $table->string('sequence')->nullable();
             $table->string('addmission_date')->nullable();
             $table->string('addmission_code')->nullable();
-            $table->boolean('status')->comment('false = inactive, true = active');
+            $table->boolean('status')->comment('0 = inactive, 1 = active');
             $table->softDeletes();
             $table->timestamps();
         });

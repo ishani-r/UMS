@@ -12,7 +12,7 @@
             <li class=" nav-item"><a href="{{ route('college.main') }}" class="text-decoration-none"><i class="ft-home"></i><span class="menu-title" data-i18n="Chat">Dashboard</span></a>
                <!-- <li class="has-sub nav-item"><a href="javascript:;"><i class="ft-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="tag badge badge-pill badge-danger float-right mr-1 mt-1">2</span></a>
                <ul class="menu-content">
-                  <li class="active"><a href="{{ route('university.main') }}"><i class="ft-arrow-right submenu-icon"></i><span class="menu-item" data-i18n="Dashboard 1">Dashboard 1</span></a>
+                  <li class="active"><a href="{{ route('college.main') }}"><i class="ft-arrow-right submenu-icon"></i><span class="menu-item" data-i18n="Dashboard 1">Dashboard 1</span></a>
                   </li>
                   <li><a href="dashboard2.html"><i class="ft-arrow-right submenu-icon"></i><span class="menu-item" data-i18n="Dashboard 2">Dashboard 2</span></a>
                   </li>
@@ -26,18 +26,18 @@
                     </ul>
                 </li> -->
             <li>
-               <a href="#" class="text-decoration-none">
-                  <i class="fa fa-shopping-basket"></i>
-                  <span class="menu-title" data-i18n="Email">Store</span>
+               <a href="{{ route('college.college-course.index')}}" class="text-decoration-none">
+                  <i class='fas fa-book-reader' style='font-size:24px'></i>
+                  <span class="menu-title" data-i18n="Email">Course</span>
                </a>
             </li>
             <li>
-               <a href="#" class="text-decoration-none">
+               <a href="{{ route('college.show_merit')}}" class="text-decoration-none">
                   <i class="fab fa-bandcamp"></i>
-                  <span class="menu-title" data-i18n="Email">Brand</span>
+                  <span class="menu-title" data-i18n="Email">Merit Round</span>
                </a>
             </li>
-            <li>
+            <!-- <li>
                <a href="#" class="text-decoration-none"><i class="fa fa-window-restore"></i><span class="menu-title" data-i18n="Chat">Category</span>
                </a>
             </li>
@@ -46,7 +46,7 @@
                   <i class="fa fa-th-list"></i>
                   <span class="menu-title" data-i18n="Chat">Product</span>
                </a>
-            </li>
+            </li> -->
          </ul>
       </div>
    </div>

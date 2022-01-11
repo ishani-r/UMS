@@ -26,8 +26,8 @@
                               <label for="name">{{ Form::label('name','name')}}</label>
                               {{Form::text('name','',['class'=>'form-control','placeholder'=>'Enter College Name'])}}
                               @error('name')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -37,8 +37,8 @@
                               <label for="email">{{ Form::label('email','Email')}}</label>
                               {{Form::text('email','',['class'=>'form-control','placeholder'=>'Enter College Email'])}}
                               @error('email')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -50,8 +50,8 @@
                               <label for="contact_no">{{ Form::label('contact_no','contact no')}}</label>
                               {{Form::text('contact_no','',['class'=>'form-control','placeholder'=>'Enter College Contact No'])}}
                               @error('contact_no')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -61,8 +61,8 @@
                               <label for="address">{{ Form::label('address','address')}}</label>
                               {{Form::text('address','',['class'=>'form-control','placeholder'=>'Enter College address'])}}
                               @error('address')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -72,10 +72,10 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="password">{{ Form::label('password','password')}}</label>
-                              {{Form::text('password','',['class'=>'form-control','placeholder'=>'Enter Password'])}}
+                              {{ Form::password('password',array('class' => 'form-control','placeholder'=>'Enter Password')); }}
                               @error('password')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -83,10 +83,10 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="confirm_password">{{ Form::label('confirm_password','confirm password')}}</label>
-                              {{Form::text('confirm_password','',['class'=>'form-control','placeholder'=>'Enter Confirm Password'])}}
+                              {{ Form::password('confirm_password',array('class' => 'form-control','placeholder'=>'Enter Confirm Password')); }}
                               @error('confirm_password')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -98,8 +98,8 @@
                               <label for="logo">{{ Form::label('logo','logo')}}</label>
                               {{Form::file('logo',['class'=>'form-control'])}}
                               @error('logo')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
                               </span>
                               @enderror
                            </div>
@@ -112,36 +112,35 @@
             </div>
          </div>
       </div>
-
    </section>
    @endsection
    @push('js')
    <script>
       $('#college_form').validate({
          rules: {
-            // name: {
-            //    required: true,
-            // },
-            // email: {
-            //    required: true,
-            // },
-            // contact_no: {
-            //    required: true,
-            // },
-            // address: {
-            //    required: true,
-            // },
-            // logo: {
-            //    required: true,
-            // },
-            // password: {
-            //    required: true,
-            //    minlength: 8
-            // },
-            // confirm_password: {
-            //    required: true,
-            //    equalTo: "#password"
-            // },
+            name: {
+               required: true,
+            },
+            email: {
+               required: true,
+            },
+            contact_no: {
+               required: true,
+            },
+            address: {
+               required: true,
+            },
+            logo: {
+               required: true,
+            },
+            password: {
+               required: true,
+               minlength: 8
+            },
+            confirm_password: {
+               required: true,
+               equalTo: "#password"
+            },
          },
          messages: {
             name: 'Please Enter College Name!',
@@ -168,7 +167,7 @@
          //    error.insertAfter(element.parent());
          // },
          submitHandler: function(form) {
-            register(form);
+            form.submit();
          }
       });
    </script>

@@ -12,42 +12,42 @@
     <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('university-assets/app-assets/img/ico/letter-s.jpg') }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('college-assets/app-assets/img/ico/college.jpg') }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
     <!-- font icons-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/fonts/feather/style.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/fonts/simple-line-icons/style.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/fonts/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/vendors/css/perfect-scrollbar.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/vendors/css/prism.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/vendors/css/switchery.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/vendors/css/chartist.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/fonts/feather/style.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/fonts/simple-line-icons/style.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/fonts/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/vendors/css/perfect-scrollbar.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/vendors/css/prism.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/vendors/css/switchery.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/vendors/css/chartist.min.css') }}">
     <!-- END VENDOR CSS-->
     <!-- BEGIN APEX CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/bootstrap-extended.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/colors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/components.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/themes/layout-dark.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('university-assets/app-assets/css/plugins/switchery.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/bootstrap-extended.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/colors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/components.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/themes/layout-dark.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('college-assets/app-assets/css/plugins/switchery.min.css') }}">
     <!-- END APEX CSS-->
     <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/pages/dashboard1.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/pages/dashboard1.min.css') }}">
     <!-- END Page Level CSS-->
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap4.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/css/custom.css') }}">
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('university-assets/app-assets/assets/css/style.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/css/custom.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('college-assets/app-assets/assets/css/style.css') }}"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @stack('css')
@@ -115,16 +115,16 @@
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
 
-    <script src="{{ asset('university-assets/app-assets/vendors/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- ---------------------------------------------datatable------------------------------ -->
-    <script src="{{ asset('university-assets/app-assets/vendors/js/switchery.min.js') }}"></script>
-    <script src="{{ asset('university-assets/app-assets/vendors/js/chartist.min.js') }}"></script>
-    <script src="{{ asset('university-assets/app-assets/js/core/app-menu.min.js') }}"></script>
-    <script src="{{ asset('university-assets/app-assets/js/core/app.min.js') }}"></script>
-    <script src="{{ asset('university-assets/app-assets/js/notification-sidebar.min.js') }}"></script>
-    <script src="{{ asset('university-assets/app-assets/js/customizer.min.js') }}"></script>
-    <script src="{{ asset('university-assets/app-assets/js/scroll-top.min.js') }}"></script>
-    <!-- <script src="{{ asset('university-assets/app-assets/js/scripts.js') }}"></script> -->
+    <script src="{{ asset('college-assets/app-assets/vendors/js/switchery.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/vendors/js/chartist.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/js/core/app-menu.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/js/core/app.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/js/notification-sidebar.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/js/customizer.min.js') }}"></script>
+    <script src="{{ asset('college-assets/app-assets/js/scroll-top.min.js') }}"></script>
+    <!-- <script src="{{ asset('college-assets/app-assets/js/scripts.js') }}"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script> -->
 
     <!-- ---------------------------------------------datatable------------------------------ -->

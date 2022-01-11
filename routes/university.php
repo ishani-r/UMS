@@ -16,10 +16,11 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['middleware' => 'auth:university'], function () {
 
-    // Route::get('/dashboard', function () {
-    //     return view('University.layouts.content');
-    // })->name('main');
-
+    // Dashboard
+    Route::get('dashboard',                 'Auth\DashboardController@index')->name('main');
+    Route::get('show-edit-profile',         'Auth\DashboardController@showEditProfile')->name('show_edit_profile');
+    Route::put('update-profile/{id}',      'Auth\DashboardController@editProfile')->name('update_profile');
+    
     // college
     Route::resource('college',              Auth\CollegeController::class);
     Route::get('college-status',           'Auth\CollegeController@status')->name('college_status');
@@ -27,7 +28,11 @@ Route::group(['middleware' => 'auth:university'], function () {
     // Common Setting
     Route::get('common-setting',         'Auth\CommonSettingController@index')->name('common_setting');
     Route::post('store-percentage',      'Auth\CommonSettingController@store')->name('store_percentage');
-
-    Route::get('dashboard', 'Auth\DashboardController@index')->name('main');
-
+    
+    // Course
+    Route::resource('course',              Auth\CourseController::class);
+    Route::get('list-subject',         'Auth\CourseController@indexSubject')->name('list_subject');
+    
+    // merit round
+    Route::resource('meritround',              Auth\MeritRoundController::class);
 });

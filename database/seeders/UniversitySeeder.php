@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\University;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 class UniversitySeeder extends Seeder
 {
@@ -18,15 +17,15 @@ class UniversitySeeder extends Seeder
     public function run()
     {
         DB::table('universities')->truncate();
-        University::create([
-            'name' => 'admin',
+
+        University::insert([
+            'name' => 'GTU',
             'email' => 'admin@admin.com',
-            'contact_no' => '1111111111',
-            'address' => 'surat',
-            'password' => Hash::make("admin@123"),
-            'deleted_at'  => Carbon::now(),
-            'created_at'  => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'address' => 'Gujarat Technological University
+            Nr.Vishwakarma Government Engineering College Nr.Visat Three Roads, Visat - Gandhinagar Highway
+            Chandkheda, Ahmedabad - 382424 - Gujarat',
+            'contact_no' => '079 2326 7521',
+            'password' => Hash::make('admin@123'),
         ]);
     }
 }

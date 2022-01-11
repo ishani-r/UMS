@@ -67,39 +67,5 @@
             </div> -->
         </div>
         <!--Statistics cards Ends-->
-
     </div>
-
-    <script>
-        //select store
-        $(document).ready(function() {
-            $('.store').on('change', function() {
-                $('.category').remove();
-                var val = $(this).val();
-                $('.brand').prop('checked', false);
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
-                            .attr('content')
-                    },
-                    type: 'POST',
-                    data: {
-                        val: val,
-                    },
-                    success: function(query) {
-                        $.each(query, function(index, value) {
-                            $('.brand' + value.id).prop('checked', true);
-                            $("#dis-category").append(
-                                "<div class='alert alert-secondary category' role='alert' id=" +
-                                value.id + ">" +
-                                value.en_name +
-                                "<small class='text-white ml-2'>commision</small>" +
-                                " " + value.commission + '%' + "</div>");
-                        });
-                    }
-                });
-            });
-            $(".store").trigger('change');
-        });
-    </script>
 @endsection

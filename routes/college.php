@@ -19,4 +19,11 @@ Route::group(['middleware' => 'auth:college'], function () {
     Route::get('/dashboard', function () {
         return view('College.layouts.content');
     })->name('main');
+
+    // Course
+    Route::resource('college-course',              Auth\CollegeCourseController::class);
+
+    // Merit Round
+    Route::get('show-merit',        'Auth\CollegeMeritRoundController@showMeritRound')->name('show_merit');
+
 });
