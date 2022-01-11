@@ -40,7 +40,7 @@
                      <li class="scrollable-container"><a class="d-flex justify-content-between" href="javascript:void(0)">
                            <div class="media d-flex align-items-center">
                               <!-- <div class="media-left">
-                                 <div class="mr-3"><img class="avatar" src="{{ asset('university-assets/app-assets/img/portrait/small/pic-8.png') }}" alt="avatar" height="45" width="45"></div>
+                                 <div class="mr-3"><img class="avatar" src="{{ asset('college-assets/app-assets/img/portrait/small/pic-8.png') }}" alt="avatar" height="45" width="45"></div>
                               </div> -->
                               <div class="media-body appends" id="appends">
                                  <!-- message -->
@@ -57,7 +57,7 @@
                </li>
                <li class="dropdown nav-item mr-1"><a class="nav-link dropdown-toggle user-dropdown d-flex align-items-end" id="dropdownBasic2" href="javascript:;" data-toggle="dropdown">
                      <div class="user d-md-flex d-none mr-2"><span class="text-right">8</span><span class="text-right text-muted font-small-3">Available</span></div>
-                     <img class="avatar" src="{{ asset('university-assets/app-assets/img/portrait/small/default.png') }}" alt="avatar" height="35" width="35">
+                     <img class="avatar" src="{{ asset('college-assets/app-assets/img/portrait/small/default.png') }}" alt="avatar" height="35" width="35">
                   </a>
                   <div class="dropdown-menu text-left dropdown-menu-right m-0 pb-0" aria-labelledby="dropdownBasic2"><a class="dropdown-item" href="app-chat.html">
                         <!-- <div class="d-flex align-items-center"><i -->

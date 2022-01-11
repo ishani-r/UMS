@@ -19,8 +19,8 @@
       <div class="collapse navbar-collapse d-block" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="i18n-dropdown dropdown nav-item mr-2">
-            <!-- <a class="nav-link d-flex align-items-center dropdown-toggle dropdown-language" id="dropdown-flag" href="javascript:;" data-toggle="dropdown"><img class="langimg selected-flag" src="../app-assets/img/flags/us.png" alt="flag"><span class="selected-language d-md-flex d-none">English</span></a> -->
-            <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="javascript:;" data-language="en"><img class="langimg mr-2" src="../app-assets/img/flags/us.png" alt="flag"><span class="font-small-3">English</span></a><a class="dropdown-item" href="javascript:;" data-language="es"><img class="langimg mr-2" src="../app-assets/img/flags/es.png" alt="flag"><span class="font-small-3">Spanish</span></a><a class="dropdown-item" href="javascript:;" data-language="pt"><img class="langimg mr-2" src="../app-assets/img/flags/pt.png" alt="flag"><span class="font-small-3">Portuguese</span></a><a class="dropdown-item" href="javascript:;" data-language="de"><img class="langimg mr-2" src="../app-assets/img/flags/de.png" alt="flag"><span class="font-small-3">German</span></a></div>
+            <!-- <a class="nav-link d-flex align-items-center dropdown-toggle dropdown-language" id="dropdown-flag" href="javascript:;" data-toggle="dropdown"><img class="langimg selected-flag" src="{{ asset('student-assets/app-assets/img/flags/us.png')}}" alt="flag"><span class="selected-language d-md-flex d-none">English</span></a> -->
+            <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="javascript:;" data-language="en"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/us.png')}}" alt="flag"><span class="font-small-3">English</span></a><a class="dropdown-item" href="javascript:;" data-language="es"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/es.png')}}" alt="flag"><span class="font-small-3">Spanish</span></a><a class="dropdown-item" href="javascript:;" data-language="pt"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/pt.png')}}" alt="flag"><span class="font-small-3">Portuguese</span></a><a class="dropdown-item" href="javascript:;" data-language="de"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/de.png')}}" alt="flag"><span class="font-small-3">German</span></a></div>
           </li>
           <li class="dropdown nav-item"><a class="nav-link dropdown-toggle dropdown-notification p-0 mt-2" id="dropdownBasic1" href="javascript:;" data-toggle="dropdown"><i class="ft-bell font-medium-3"></i><span class="notification badge badge-pill badge-danger">4</span></a>
             <ul class="notification-dropdown dropdown-menu dropdown-menu-media dropdown-menu-right m-0 overflow-hidden">
@@ -32,7 +32,7 @@
               <li class="scrollable-container"><a class="d-flex justify-content-between" href="javascript:void(0)">
                   <div class="media d-flex align-items-center">
                     <div class="media-left">
-                      <div class="mr-3"><img class="avatar" src="../app-assets/img/portrait/small/avatar-s-20.png" alt="avatar" height="45" width="45"></div>
+                      <div class="mr-3"><img class="avatar" src="{{ asset('student-assets/app-assets/img/portrait/small/avatar-s-20.png')}}" alt="avatar" height="45" width="45"></div>
                     </div>
                     <div class="media-body">
                       <h6 class="m-0"><span>Kate Young</span><small class="grey lighten-1 font-italic float-right">5 mins ago</small></h6><small class="noti-text">Commented on your photo</small>
@@ -42,7 +42,7 @@
                 </a><a class="d-flex justify-content-between" href="javascript:void(0)">
                   <div class="media d-flex align-items-center">
                     <div class="media-left">
-                      <div class="mr-3"><img class="avatar" src="../app-assets/img/portrait/small/avatar-s-11.png" alt="avatar" height="45" width="45"></div>
+                      <div class="mr-3"><img class="avatar" src="{{ asset('student-assets/app-assets/img/portrait/small/avatar-s-11.png')}}" alt="avatar" height="45" width="45"></div>
                     </div>
                     <div class="media-body">
                       <h6 class="m-0"><span>Andrew Watts</span><small class="grey lighten-1 font-italic float-right">49 mins ago</small></h6><small class="noti-text">Liked your album: UI/UX Inspo</small>
@@ -51,7 +51,7 @@
                 </a><a class="d-flex justify-content-between read-notification" href="javascript:void(0)">
                   <div class="media d-flex align-items-center py-0 pr-0">
                     <div class="media-left">
-                      <div class="mr-3"><img src="../app-assets/img/icons/sketch-mac-icon.png" alt="avatar" height="45" width="45"></div>
+                      <div class="mr-3"><img src="{{ asset('student-assets/app-assets/img/icons/sketch-mac-icon.png')}}" alt="avatar" height="45" width="45"></div>
                     </div>
                     <div class="media-body">
                       <h6 class="m-0">Update</h6><small class="noti-text">MyBook v2.0.7</small>
@@ -104,7 +104,7 @@
                 </div><a class="d-flex justify-content-between read-notification" href="javascript:void(0)">
                   <div class="media d-flex align-items-center">
                     <div class="media-left">
-                      <div class="mr-3"><img class="avatar" src="../app-assets/img/portrait/small/avatar-s-6.png" alt="avatar" height="45" width="45"></div>
+                      <div class="mr-3"><img class="avatar" src="{{ asset('student-assets/app-assets/img/portrait/small/avatar-s-6.png')}}" alt="avatar" height="45" width="45"></div>
                     </div>
                     <div class="media-body">
                       <h6 class="m-0"><span>Anna Lee</span><small class="grey lighten-1 font-italic float-right">27 hrs ago</small></h6><small class="noti-text">Commented on your photo</small>
@@ -126,7 +126,7 @@
                 </div><a class="d-flex justify-content-between read-notification" href="javascript:void(0)">
                   <div class="media d-flex align-items-center">
                     <div class="media-left">
-                      <div class="mr-3"><img class="avatar" src="../app-assets/img/portrait/small/avatar-s-7.png" alt="avatar" height="45" width="45"></div>
+                      <div class="mr-3"><img class="avatar" src="{{ asset('student-assets/app-assets/img/portrait/small/avatar-s-7.png')}}" alt="avatar" height="45" width="45"></div>
                     </div>
                     <div class="media-body">
                       <h6 class="m-0"><span>Oliver Wright</span><small class="grey lighten-1 font-italic float-right">2 days ago</small></h6><small class="noti-text">Liked your album: UI/UX Inspo</small>

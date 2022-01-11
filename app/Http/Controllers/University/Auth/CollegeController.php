@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\DataTables\CollegeDatatable;
 use App\Models\College;
 use App\Http\Requests\University\CollegeRequest;
+use Illuminate\Support\Facades\Hash;
+use App\Mail\CollegeRegisterMail;
+use Illuminate\Support\Facades\Mail;
 
 class CollegeController extends Controller
 {
@@ -27,10 +30,13 @@ class CollegeController extends Controller
         $college->email = $request->email;
         $college->contact_no = $request->contact_no;
         $college->address = $request->address;
-        $college->password = $request->password;
+        $college->password = Hash::make($request->password);
         $logo = uploadFile($request['logo'], 'college');
         $college->logo = $logo;
         $college->status = '0';
+        $email = $request->email;
+        $password = $request->password;
+        Mail::to($request->email)->send(new CollegeRegisterMail($email,$password));
         $college->save();
         return redirect()->route('university.college.index');
     }

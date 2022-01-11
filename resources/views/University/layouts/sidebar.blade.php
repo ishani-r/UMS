@@ -1,6 +1,6 @@
 <div class="app-sidebar menu-fixed" data-background-color="man-of-steel" data-image="{{ asset('university-assets/app-assets/img/sidebar-bg/01.jpg') }}" data-scroll-to-active="true">
    <div class="sidebar-header">
-      <div class="logo clearfix"><a class="logo-text float-left" href="index-2.html">
+      <div class="logo clearfix" class="text-decoration-none"><a class="logo-text float-left" href="{{ route('university.main') }}">
             <div class="logo-img"><img src="{{asset('university-assets\app-assets\img\university-logo.jpg')}}" style="width: 40px;" class="rounded" /></div>University
 
          </a><a class="nav-toggle d-none d-lg-none d-xl-block" id="sidebarToggle" href="javascript:;"><i class="toggle-icon ft-toggle-right" data-toggle="expanded"></i></a><a class="nav-close d-block d-lg-block d-xl-none" id="sidebarClose" href="javascript:;"><i class="ft-x"></i></a></div>
@@ -32,9 +32,27 @@
                </a>
             </li>
             <li>
+               <a href="{{ route('university.course.index')}}" class="text-decoration-none">
+                  <i class='fas fa-book-reader' style='font-size:24px'></i>
+                  <span class="menu-title" data-i18n="Email">Course</span>
+               </a>
+            </li>
+            <li>
+               <a href="{{ route('university.list_subject')}}" class="text-decoration-none">
+                  <i class="fa fa-list" aria-hidden="true"></i>
+                  <span class="menu-title" data-i18n="Email">Subject</span>
+               </a>
+            </li>
+            <li>
                <a href="{{ route('university.common_setting')}}" class="text-decoration-none">
                   <i class="fa fa-tasks" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Common Setting</span>
+               </a>
+            </li>
+            <li>
+               <a href="{{ route('university.meritround.index')}}" class="text-decoration-none">
+                  <i class="fa fa-tasks" aria-hidden="true"></i>
+                  <span class="menu-title" data-i18n="Email">Marite Round</span>
                </a>
             </li>
             <!-- <li>
