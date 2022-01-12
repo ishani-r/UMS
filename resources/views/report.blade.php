@@ -1,11 +1,15 @@
 Ishani Ranpariya
 MR :: 12/01/2022
+
+Ishani Ranpariya
+Work Report :: 12/01/2022
 - University
    merite round(edit,delete,status)
 - college
    merite round (show, add merit)
 - student 
-   - admission form (with validation)
+   - Working on add subject mark 
+
 Ishani Ranpariya
 Work Report 10/01/2022
 - university

@@ -25,9 +25,8 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="obtain_mark">{{ $subject->name}}</label>
-                              <input type="text" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
-
-                              {{Form::text('obtain_mark[$subject->id]','',['class'=>'form-control','placeholder'=>'Enter ' . $subject->name . ' Marks'])}}
+                              <input type="text" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter {{$subject->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
+                              <!-- {{Form::text('obtain_mark[$subject->id]','',['class'=>'form-control','placeholder'=>'Enter ' . $subject->name . ' Marks'])}} -->
                               @error('obtain_mark')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
