@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\DataTables\CollegeDatatable;
 use App\Models\College;
 use App\Http\Requests\University\CollegeRequest;
-
+use App\Http\Requests\University\EditCollegeRequest;
 use App\Repositories\University\CollegeRepository;
 
 class CollegeController extends Controller
@@ -35,27 +35,20 @@ class CollegeController extends Controller
 
     public function show($id)
     {
-        $college = College::find($id);
+        $college = $this->College->show($id);
         return view('University.College.show', compact('college'));
     }
 
     public function edit($id)
     {
-        $college = College::find($id);
+        $college = $this->College->edit($id);
         return view('University.College.edit', compact('college'));
     }
 
-    public function update(Request $request, $id)
+    public function update(EditCollegeRequest $request, $id)
     {
-        $college = College::find($id);
-        $college->name = $request->name;
-        $college->email = $request->email;
-        $college->contact_no = $request->contact_no;
-        $college->address = $request->address;
-        $logo = uploadFile($request['logo'], 'college');
-        $college->logo = $logo;
-        $college->save();
-        return redirect()->route('university.college.index');
+        $college = $this->College->update($request->all(),$id);
+        return redirect()->route('university.college.index',compact('college'));
     }
 
     public function destroy($id)

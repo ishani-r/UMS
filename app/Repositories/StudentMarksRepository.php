@@ -5,12 +5,14 @@ namespace App\Repositories;
 use App\Interfaces\StudentMarksInterface;
 use App\Models\StudentMark;
 use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class StudentMarksRepository implements StudentMarksInterface
 {
    public function store(array $array)
    {
-      dd($array['obtain_mark']);
       DB::beginTransaction();
       try {
          foreach ($array['obtain_mark'] as $key => $val) {
@@ -23,14 +25,17 @@ class StudentMarksRepository implements StudentMarksInterface
                $result->update($insertData);
             } else {
                $insertData = [
+                  'user_id' => Auth::user()->id,
                   'subject_id' => $key,
+                  'total_mark' => 100,
                   'obtain_mark' => $val,
                ];
-               $result = CommonSetting::insert($insertData);
+               $result = StudentMark::insert($insertData);
             }
          }
+         
          DB::commit();
-         return redirect()->route('university.common_setting');
+         return $result;
       } catch (Exception $e) {
          DB::rollBack();
          Log::info($e);

@@ -7,6 +7,12 @@ use Illuminate\Support\ServiceProvider;
 use App\Interfaces\University\CollegeInterface;
 use App\Repositories\University\CollegeRepository;
 
+use App\Interfaces\University\CommonSettingInterface;
+use App\Repositories\University\CommonSettingRepository;
+
+use App\Interfaces\University\CourseInterface;
+use App\Repositories\University\CourseRepository;
+
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +25,8 @@ class RepositoryServiceProvider extends ServiceProvider
 
         // ............................Admin.......................................
         $this->app->bind(CollegeInterface::class, CollegeRepository::class);
+        $this->app->bind(CommonSettingInterface::class, CommonSettingRepository::class);
+        $this->app->bind(CourseInterface::class, CourseRepository::class);
     }
 
     /**

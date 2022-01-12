@@ -18,8 +18,9 @@
                </div>
                <div class="card-content">
                   <div class="card-body">
-                     {!! Form::open(['route'=> array('admission_store'), 'id' => 'admission_form', 'enctype' => 'multipart/form-data']) !!}
+                     {!! Form::open(['route'=> array('store_mark'), 'id' => 'admission_form', 'enctype' => 'multipart/form-data']) !!}
                      @csrf
+                     @if(count($studentmarks)==0)
                      @foreach($subjects as $subject)
                      <div class="row">
                         <div class="col-md-6">
@@ -36,6 +37,23 @@
                         </div>
                      </div>
                      @endforeach
+                     @else
+                     @foreach($studentmarks as $studentmark)
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="obtain_mark">{{ $studentmark->subject_id}}</label>
+                              <input type="text" name="obtain_mark[{{$studentmark->id}}]" class="form-control" id="obtain_mark" value="{{$studentmark->obtain_mark}}" placeholder="Enter {{$studentmark->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
+                              @error('obtain_mark')
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
+                              @enderror
+                           </div>
+                        </div>
+                     </div>
+                     @endforeach
+                     @endif
                      {{Form::submit('Add Marks', ['class'=>'btn gradient-pomegranate big-shadow add'])}}
                      {!!Form::close()!!}
                   </div>

@@ -151,10 +151,10 @@
               <!-- <a class="dropdown-item" href="app-chat.html">
                 <div class="d-flex align-items-center"><i class="ft-message-square mr-2"></i><span>Chat</span></div>
               </a> -->
-              <a class="dropdown-item" href="page-user-profile.html">
+              <a class="dropdown-item" href="{{ route('show_edit_profile')}}">
                 <div class="d-flex align-items-center"><i class="ft-edit mr-2"></i><span>Edit Profile</span></div>
               </a>
-              <a class="dropdown-item" href="app-email.html">
+              <a class="dropdown-item" href="{{ route('show_change_password')}}">
                 <div class="d-flex align-items-center"><i class="ft-mail mr-2"></i><span>Change Password</span></div>
               </a>
               <div class="dropdown-divider"></div>

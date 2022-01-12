@@ -9,10 +9,16 @@ use App\Http\Requests\College\CollegeCourseRequest;
 use App\Http\Requests\College\EditCollegeCourseRequest;
 use App\Models\CollegeCourse;
 use App\Models\Course;
+use App\Repositories\College\CollegeCourseRepository;
 use Illuminate\Support\Facades\Auth;
 
 class CollegeCourseController extends Controller
 {
+
+    public function __construct(CollegeCourseRepository $Data)
+    {
+        $this->Data = $Data;
+    }
 
     public function index(CollegeCourseDatatable $CollegeCourseDatatable)
     {
@@ -27,14 +33,8 @@ class CollegeCourseController extends Controller
 
     public function store(CollegeCourseRequest $request)
     {
-        $data = new CollegeCourse();
-        $data->college_id = Auth::user()->id;
-        $data->course_id = $request->course_id;
-        $data->seat_no = $request->seat_no;
-        $data->reserved_seat = $request->reserved_seat;
-        $data->merit_seat = $request->merit_seat;
-        $data->save();
-        return redirect()->route('college.college-course.index');
+        $data = $this->Data->store($request->all());
+        return redirect()->route('college.college-course.index',compact('data'));
     }
 
     public function show($id)
@@ -51,13 +51,8 @@ class CollegeCourseController extends Controller
 
     public function update(EditCollegeCourseRequest $request, $id)
     {
-        $data = CollegeCourse::find($id);
-        $data->course_id = $request->course_id;
-        $data->seat_no = $request->seat_no;
-        $data->reserved_seat = $request->reserved_seat;
-        $data->merit_seat = $request->merit_seat;
-        $data->save();
-        return redirect()->route('college.college-course.index');
+        $data = $this->Data->store($request->all(),$id);
+        return redirect()->route('college.college-course.index',compact('data'));
     }
 
     public function destroy($id)

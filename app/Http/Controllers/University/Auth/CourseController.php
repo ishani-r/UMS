@@ -8,9 +8,14 @@ use App\DataTables\CourseDatatable;
 use App\DataTables\SubjectDatatable;
 use App\Http\Requests\College\CourseRequest;
 use App\Models\Course;
+use App\Repositories\University\CourseRepository;
 
 class CourseController extends Controller
 {
+    public function __construct(CourseRepository $Course)
+    {
+        $this->Course = $Course;
+    }
     public function index(CourseDatatable $CourseDatatable)
     {
         return $CourseDatatable->render('University.Course.index');
@@ -28,11 +33,8 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-        $course = new Course();
-        $course->name = $request->name;
-        $course->status = '1';
-        $course->save();
-        return redirect()->route('university.course.index');
+        $course = $this->Course->store($request->all());
+        return redirect()->route('university.course.index',compact('course'));
     }
 
     public function show($id)

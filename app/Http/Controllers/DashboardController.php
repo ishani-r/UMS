@@ -1,37 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\University\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\College\EditProfileRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\College;
-use App\Models\Subject;
-use App\Models\University;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\University\EditProfileRequest;
+
 class DashboardController extends Controller
 {
-    public function index()
-    {
-        $university = College::all()->count();
-        $subject = Subject::all()->count();
-        return view('University.layouts.content',compact('university','subject'));
-    }
-
     public function showEditProfile()
     {
-        $university = University::where('id', Auth::user()->id)->first();
-        return view('University.Auth.edit-profile', compact('university'));
+        $student = User::where('id', Auth::user()->id)->first();
+        return view('Student.edit-profile', compact('student'));
     }
 
     public function editProfile(EditProfileRequest $request,$id)
     {
-        $data = University::find($id);
+        $data = User::find($id);
         $data->name = $request->name;
         $data->email = $request->email;
         $data->contact_no = $request->contact_no;
         $data->address = $request->address;
+        $data->adhaar_card_no = $request->adhaar_card_no;
         $data->save();
         return redirect()->route('university.show_edit_profile');
     }

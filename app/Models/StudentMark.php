@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class StudentMark extends Model
 {
     use HasFactory;
+
+    protected $table = 'student_marks';
+    protected $fillable = [
+        'user_id',
+        'subject_id',
+        'total_mark',
+        'obtain_mark',
+    ];
+
+    public function subject()
+    {
+        return $this->hasOne(Subject::class,'id','subject_id');
+    }
 }

@@ -22,9 +22,9 @@
                                  <label for="name">{{ Form::label('name', 'Name')}}</label>
                                  {{Form::text('name',null,['class'=>'form-control'])}}
                                  @error('name')
-                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                 </span>
+                                 <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
                                  @enderror
                               </div>
                            </div>
@@ -35,9 +35,9 @@
                                  <label for="email">{{ Form::label('email', 'Email')}}</label>
                                  {{Form::text('email',null,['class'=>'form-control'])}}
                                  @error('email')
-                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                 </span>
+                                 <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
                                  @enderror
                               </div>
                            </div>
@@ -50,9 +50,9 @@
                                  <label for="contact_no">{{ Form::label('contact_no', 'Contact No')}}</label>
                                  {{Form::text('contact_no',null,['class'=>'form-control'])}}
                                  @error('contact_no')
-                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                 </span>
+                                 <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
                                  @enderror
                               </div>
                            </div>
@@ -63,9 +63,9 @@
                                  <label for="address">{{ Form::label('address', 'Address')}}</label>
                                  {{Form::text('address',null,['class'=>'form-control'])}}
                                  @error('address')
-                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                 </span>
+                                 <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
                                  @enderror
                               </div>
                            </div>
@@ -79,9 +79,9 @@
                                  {{Form::file('logo',['class'=>'form-control'])}}<br>
                                  <img class="img" src="{{asset('storage/college/'.$college->logo)}}" width="50px" />
                                  @error('logo')
-                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                 </span>
+                                 <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
                                  @enderror
                               </div>
                            </div>
