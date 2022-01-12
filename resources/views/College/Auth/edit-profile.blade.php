@@ -1,5 +1,5 @@
-@extends('University.layouts.master')
-@section('title', 'University-Dashbboard')
+@extends('College.layouts.master')
+@section('title', 'College-Dashbboard')
 @section('content')
 <div class="content-overlay"></div>
 <div class="content-wrapper">
@@ -12,7 +12,7 @@
                </div>
                <div class="card-content">
                   <div class="card-body">
-                     {!! Form::model($university,['route'=> array('university.update_profile',$university->id), 'enctype' => 'multipart/form-data', 'id' => 'university_form']) !!}
+                     {!! Form::model($college,['route'=> array('college.update_profile',$college->id), 'enctype' => 'multipart/form-data', 'id' => 'college_form']) !!}
                      @csrf
                      @method('put')
                      <div class="row">
@@ -61,8 +61,24 @@
                            <div class="form-group">
                               <div class="controls">
                                  <label for="address">{{ Form::label('address', 'Address')}}</label>
-                                 {{Form::textarea('address',null,['class'=>'form-control','row'=>2])}}
+                                 {{Form::text('address',null,['class'=>'form-control','row'=>2])}}
                                  @error('address')
+                                 <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
+                                 @enderror
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <div class="form-group">
+                              <div class="controls">
+                                 <label for="logo">{{ Form::label('logo', 'Logo')}}</label>
+                                 {{Form::file('logo',['class'=>'form-control'])}}<br>
+                                 <img class="img" src="{{asset('storage/college/'.$college->logo)}}" width="50px" />
+                                 @error('logo')
                                  <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
                               </span>
@@ -84,3 +100,31 @@
 </div>
 </div>
 @endsection
+@push('js')
+<script>
+   $(document).ready(function() {
+      $('#college_form').validate({
+         rules: {
+            // name: {
+            //    required: true,
+            // },
+            // email: {
+            //    required: true,
+            // },
+            // contact_no: {
+            //    required: true,
+            // },
+            // address: {
+            //    required: true,
+            // },
+         },
+         messages: {
+            name: 'Please Enter College Name!',
+            email: 'Please Enter Your Email Address!',
+            contact_no: 'Please Enter College Contact Number!',
+            address: 'Please Enter College Address!',
+         },
+      });
+   })
+</script>
+@endpush

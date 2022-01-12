@@ -154,7 +154,7 @@
               <a class="dropdown-item" href="{{ route('university.show_edit_profile')}}">
                 <div class="d-flex align-items-center"><i class="ft-edit mr-2"></i><span>Edit Profile</span></div>
               </a>
-              <a class="dropdown-item" href="app-email.html">
+              <a class="dropdown-item" href="{{ route('university.show_change_password')}}">
                 <div class="d-flex align-items-center"><i class="ft-mail mr-2"></i><span>Change Password</span></div>
               </a>
               <div class="dropdown-divider"></div>
