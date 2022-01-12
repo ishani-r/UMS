@@ -9,6 +9,16 @@ Work Report 10/01/2022
 - Student module
    - Register/login using auth
 
+   Ishani Ranpariya
+   Work Report :: 11/01/2022
+   - university
+      - course
+      - subject list
+      - merit round (add,edit,delete)
+      - edit profile with validation
+   - college 
+      - course (add,edit,delete)
+      - merit round
 
 
 @if($common_setting === ' ')
