@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CollegeCourse extends Model
+class CollegeMerit extends Model
 {
     use HasFactory;
 
-    protected $table = 'college_courses';
+    protected $table = 'college_merits';
     protected $fillable = [
         'college_id',
         'course_id',
-        'seat_no',
-        'reserved_seat',
-        'merit_seat',
+        'merit_round_id',
+        'merit',
     ];
 
     public function college()

@@ -16,9 +16,6 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['middleware' => 'auth:college'], function () {
 
-    // Route::get('/dashboard', function () {
-    //     return view('College.layouts.content');
-    // })->name('main');
     // Dashboard
     Route::get('dashboard',                 'Auth\DashboardController@index')->name('main');
     Route::get('show-edit-profile',         'Auth\DashboardController@showEditProfile')->name('show_edit_profile');
@@ -30,6 +27,7 @@ Route::group(['middleware' => 'auth:college'], function () {
     Route::resource('college-course',              Auth\CollegeCourseController::class);
 
     // Merit Round
-    Route::get('show-merit',        'Auth\CollegeMeritRoundController@showMeritRound')->name('show_merit');
-
+    Route::resource('meritround',              Auth\CollegeMeritController::class);
+    Route::post('sel-round',                'Auth\CollegeMeritController@selRound')->name('sel_round');
+    Route::post('edit-sel-round',                'Auth\CollegeMeritController@editSelRound')->name('edit_sel_round');
 });

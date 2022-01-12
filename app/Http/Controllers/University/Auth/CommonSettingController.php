@@ -40,7 +40,7 @@ class CommonSettingController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('university.common_setting', compact('result'));
+            return redirect()->route('university.common_setting');
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e);

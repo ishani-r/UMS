@@ -32,7 +32,7 @@
                </a>
             </li>
             <li>
-               <a href="{{ route('college.show_merit')}}" class="text-decoration-none">
+               <a href="{{ route('college.meritround.index')}}" class="text-decoration-none">
                   <i class="fab fa-bandcamp"></i>
                   <span class="menu-title" data-i18n="Email">Merit Round</span>
                </a>

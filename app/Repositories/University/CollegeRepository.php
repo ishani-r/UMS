@@ -2,21 +2,30 @@
 
 namespace App\Repositories\University;
 
-use App\Interfaces\University\BrandInterface;
+use App\Interfaces\University\CollegeInterface;
 use App\Models\BrandSelect;
+use App\Models\College;
 use App\Models\University;
 use Illuminate\Support\Facades\Auth;
-
-class CollegeRepository implements BrandInterface
+use Illuminate\Support\Facades\Hash;
+use App\Mail\CollegeRegisterMail;
+use Illuminate\Support\Facades\Mail;
+class CollegeRepository implements CollegeInterface
 {
-   public function selectedBrand(array $array)
+   public function store(array $array)
    {
-      $selected_brand_id = $array['select_id'];
-      $a = implode(',' , $selected_brand_id);
-      $id = Auth::user()->id;
-      $seller = University::find($id);
-      $seller->brand_id = $a;
-      $seller->save();
-      return $seller;
+      $college = new College();
+      $college->name = $array['name'];
+      $college->email = $array['email'];
+      $college->contact_no = $array['contact_no'];
+      $college->address = $array['address'];
+      $college->password = Hash::make($array['password']);
+      $logo = uploadFile($array['logo'], 'college');
+      $college->logo = $logo;
+      $college->status = '0';
+      $email = $array['email'];
+      $password = $array['password'];
+      Mail::to($array['email'])->send(new CollegeRegisterMail($email, $password));
+      $college->save();
    }
 }

@@ -7,17 +7,16 @@ use Illuminate\Http\Request;
 use App\DataTables\CollegeDatatable;
 use App\Models\College;
 use App\Http\Requests\University\CollegeRequest;
-use Illuminate\Support\Facades\Hash;
-use App\Mail\CollegeRegisterMail;
-use Illuminate\Support\Facades\Mail;
+
+use App\Repositories\University\CollegeRepository;
 
 class CollegeController extends Controller
 {
-    public function __construct()
+    public function __construct(CollegeRepository $College)
     {
-
+        $this->College = $College;
     }
-    
+
     public function index(CollegeDatatable $CollegeDatatable)
     {
         return $CollegeDatatable->render('University.College.index');
@@ -30,20 +29,8 @@ class CollegeController extends Controller
 
     public function store(CollegeRequest $request)
     {
-        $college = new College();
-        $college->name = $request->name;
-        $college->email = $request->email;
-        $college->contact_no = $request->contact_no;
-        $college->address = $request->address;
-        $college->password = Hash::make($request->password);
-        $logo = uploadFile($request['logo'], 'college');
-        $college->logo = $logo;
-        $college->status = '0';
-        $email = $request->email;
-        $password = $request->password;
-        Mail::to($request->email)->send(new CollegeRegisterMail($email,$password));
-        $college->save();
-        return redirect()->route('university.college.index');
+        $college = $this->College->store($request->all());
+        return redirect()->route('university.college.index', compact('college'));
     }
 
     public function show($id)

@@ -26,15 +26,15 @@
                     </ul>
                 </li> -->
             <li>
-               <a href="{{ route('university.college.index')}}" class="text-decoration-none">
-                  <i class='fas fa-school' style='font-size:17px'></i>
-                  <span class="menu-title" data-i18n="Email">College</span>
+               <a href="{{ route('show_marks')}}" class="text-decoration-none">
+                  <i class="fa fa-tasks" aria-hidden="true"></i>
+                  <span class="menu-title" data-i18n="Email">Subject Marks</span>
                </a>
             </li>
             <li>
-               <a href="{{ route('university.common_setting')}}" class="text-decoration-none">
-                  <i class="fa fa-tasks" aria-hidden="true"></i>
-                  <span class="menu-title" data-i18n="Email">Common Setting</span>
+               <a href="{{ route('admission_form')}}" class="text-decoration-none">
+                  <i class='fas fa-school' style='font-size:17px'></i>
+                  <span class="menu-title" data-i18n="Email">Admission Form</span>
                </a>
             </li>
             <!-- <li>

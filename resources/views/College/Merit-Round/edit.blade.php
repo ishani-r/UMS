@@ -6,109 +6,71 @@
    <section class="users-edit">
       <div class="row">
          <div class="col-12">
-
-            <div class="row match-height">
-               @foreach($meritround as $meritrounds)
-               <!-- ========================== -->
-               <div class="col-xl-6 col-md-6 col-12">
-                  <div class="card">
-                     <div class="card-header">
-                        <h4 class="card-title">{{$meritrounds->round_no}} Round</h4>
-                     </div>
-                     <div class="card-content">
-                        <div class="card-body">
-                           <fieldset>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <input type="text" value="{{ $meritrounds->id }}">
-                                    <div class="form-group">
-                                       <label for="course_id">{{ Form::label('course_id','Course Name')}}</label>
-                                       {{Form::number('course_id',$meritrounds->course_id,['class'=>'form-control','placeholder'=>'Enter Total Seat'])}}
-                                       @error('course_id')
-                                       <span role="alert">
-                                          <strong style="color:red;">{{$message}}</strong>
-                                       </span>
-                                       @enderror
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label for="start_date">{{ Form::label('start_date','Start Date')}}</label>
-                                       {{Form::text('start_date',$meritrounds->start_date,['class'=>'form-control','placeholder'=>'Enter Total Seat'])}}
-                                       @error('start_date')
-                                       <span role="alert">
-                                          <strong style="color:red;">{{$message}}</strong>
-                                       </span>
-                                       @enderror
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label for="end_date">{{ Form::label('end_date','End Date')}}</label>
-                                       {{Form::text('end_date',$meritrounds->end_date,['class'=>'form-control','placeholder'=>'Enter Total Seat'])}}
-                                       @error('end_date')
-                                       <span role="alert">
-                                          <strong style="color:red;">{{$message}}</strong>
-                                       </span>
-                                       @enderror
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label for="merit_result_declare_date">{{ Form::label('merit_result_declare_date','Merit Result Declare Date')}}</label>
-                                       {{Form::text('merit_result_declare_date',$meritrounds->merit_result_declare_date,['class'=>'form-control','placeholder'=>'Enter Total Seat'])}}
-                                       @error('merit_result_declare_date')
-                                       <span role="alert">
-                                          <strong style="color:red;">{{$message}}</strong>
-                                       </span>
-                                       @enderror
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                 {{Form::submit('Save Changes', ['class'=>'btn btn-primary mb-2 mb-sm-0 mr-sm-2'])}}
-                                 {!!Form::close()!!}
-                              </div>
-                           </fieldset>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               @endforeach
-            </div>
-            <!-- <div class="col-xl-4 col-md-6 col-12">
-               <div class="card">
-                  <div class="card-header">
-                     <h4 class="card-title">Input group with Right Addon</h4>
-                  </div>
-                  <div class="card-content">
-                     <div class="card-body">
-                        <p>Add <code>.input-group-append .input-group-text</code> class <b>after</b> <code>&lt;input&gt;</code></p>
-                        <fieldset>
-                           <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Addon To Right" aria-describedby="basic-addon2">
-                              <div class="input-group-append">
-                                 <span class="input-group-text" id="basic-addon2">@example.com</span>
-                              </div>
-                           </div>
-                        </fieldset>
-                     </div>
-                  </div>
-               </div>
-            </div> -->
-            <!-- =================== -->
-            <!-- <div class="card">
+            <div class="card">
                <div class="card-header">
-                  <h4 class="card-title">Edit Store</h4>
+                  <h4 class="card-title">Edit Merit</h4>
                </div>
                <div class="card-content">
                   <div class="card-body">
+                     {!! Form::model($merit,['route'=> array('college.meritround.update',$merit->id),'id' => 'course_edit','files'=>'true']) !!}
+                     @csrf
+                     @method('put')
+                     <div class="row">
+                        <div class="col-md-6 col-12">
+                           <label for="course_id">Course</label>
+                           <fieldset class="form-group">
+                              <select class="custom-select course @error('course_id') is-invalid @enderror" id="course_id" name="course_id" disabled>
+                                 <option value="0">Select One Course</option>
+                                 @foreach($course as $course)
+                                 <option class="dropdown-item" value="{{ $course->course_id }}" {{ $course->course_id == $merit->course_id ? 'selected' : '' }}>{{ $course->course->name }}</option>
+                                 @endforeach
+                              </select>
+                              @error('course_id')
+                              <span class="invalid-feedback" role="alert">
+                                 <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
+                           </fieldset>
+                        </div>
+                        <div class="col-md-6 col-12">
+                           <label for="round_no">Round</label>
+                           <fieldset class="form-group">
+                              <select class="custom-select round_no @error('round_no') is-invalid @enderror" id="round_no" name="round_no" value="{{ old('round_no') }}" disabled>
+                                 <option value="0">Select Round</option>
+                                 @foreach($round as $rounds)
+                                 <option class="dropdown-item" value="{{ $rounds->round_no }}" {{ $rounds->id == $merit->merit_round_id ? 'selected' : '' }}>{{ $rounds->round_no }}</option>
+                                 @endforeach
+                              </select>
+                              @error('round_no')
+                              <span class="invalid-feedback" role="alert">
+                                 <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
+                           </fieldset>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <div class="form-group">
+                              <div class="controls">
+                                 <label for="merit">{{ Form::label('merit', 'Merit')}}</label>
+                                 {{Form::number('merit',null,['class'=>'form-control'])}}
+                                 @error('merit')
+                                 <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                 </span>
+                                 @enderror
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
+                        {{Form::submit('Save Changes', ['class'=>'btn btn-primary mb-2 mb-sm-0 mr-sm-2'])}}
+                        {!!Form::close()!!}
+                     </div>
                   </div>
                </div>
-            </div> -->
+            </div>
          </div>
       </div>
 </div>
@@ -116,28 +78,46 @@
 @endsection
 @push('js')
 <script>
-   $(document).ready(function() {
-      $('#course_edit').validate({
-         rules: {
-            course_id: {
-               required: true,
-            },
-            seat_no: {
-               required: true,
-            },
-            reserved_seat: {
-               required: true,
-            },
-            merit_seat: {
-               required: true,
-            },
+   $('#course_edit').validate({
+      rules: {
+         course_id: {
+            required: true,
          },
-         messages: {
-            course_id: 'Please Enter College Name!',
-            seat_no: 'Please Enter Your Email Address!',
-            reserved_seat: 'Please Enter College Contact Number!',
-            merit_seat: 'Please Enter College Address!',
+         seat_no: {
+            required: true,
          },
+         reserved_seat: {
+            required: true,
+         },
+         merit_seat: {
+            required: true,
+         },
+      },
+      messages: {
+         course_id: 'Please Enter College Name!',
+         seat_no: 'Please Enter Your Email Address!',
+         reserved_seat: 'Please Enter College Contact Number!',
+         merit_seat: 'Please Enter College Address!',
+      },
+   });
+
+   $('.course').on('change', function() {
+      var course = $(this).val();
+      $.ajax({
+         url: "{{ route('college.edit_sel_round') }}",
+         type: "POST",
+         data: {
+            course: course,
+            _token: '{{ csrf_token() }}'
+         },
+         dataType: 'json',
+         success: function(result) {
+            console.log(result);
+            $('#round_no').html('<option class="dropdown-item" value="">Select One Round No</option>');
+            $.each(result, function(key, value) {
+               $("#round_no").append('<option class="dropdown-item" value="' + value.id + '">' + value.round_no + '</option>');
+            });
+         }
       });
    })
 </script>

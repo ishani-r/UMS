@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminssionController;
+use App\Http\Controllers\StudentMarksController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,3 +29,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dashboard', function () {
         return view('layouts.content');
     })->name('main');
+
+// Admission
+Route::get('form',      [AdminssionController::class, 'showAdmissionForm'])->name('admission_form');
+Route::post('store',      [AdminssionController::class, 'store'])->name('admission_store');
+
+// Marks
+Route::get('mark',      [StudentMarksController::class, 'index'])->name('show_marks');

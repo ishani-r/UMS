@@ -53,7 +53,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="start_date">{{ Form::label('start_date','Start Date')}}</label>
-                              {{Form::date('start_date','',['class'=>'form-control'])}}
+                              {{Form::date('start_date','',['class'=>'form-control txtDate'])}}
                               @error('start_date')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="end_date">{{ Form::label('end_date','End Date')}}</label>
-                              {{Form::date('end_date','',['class'=>'form-control'])}}
+                              {{Form::date('end_date','',['class'=>'form-control txtDate'])}}
                               @error('end_date')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -77,7 +77,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="merit_result_declare_date">{{ Form::label('merit_result_declare_date','Merit Result Declare Date')}}</label>
-                              {{Form::date('merit_result_declare_date','',['class'=>'form-control'])}}
+                              {{Form::date('merit_result_declare_date','',['class'=>'form-control txtDate'])}}
                               @error('merit_result_declare_date')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -98,35 +98,39 @@
    @push('js')
 
    <script>
-      // $(function() {
-      //    var dtToday = new Date();
-      //    var month = dtToday.getMonth() + 1;
-      //    var day = dtToday.getDate();
-      //    var year = dtToday.getFullYear();
-      //    if (month < 10)
-      //       month = '0' + month.toString();
-      //    if (day < 10)
-      //       day = '0' + day.toString();
-      //    var maxDate = year + '-' + month + '-' + day;
-      //    $('#start_date').attr('max', maxDate);
-      // });
+      $(function() {
+         var dtToday = new Date();
+
+         var month = dtToday.getMonth() + 1;
+         var day = dtToday.getDate();
+         var year = dtToday.getFullYear();
+         if (month < 10)
+            month = '0' + month.toString();
+         if (day < 10)
+            day = '0' + day.toString();
+
+         var minDate = year + '-' + month + '-' + day;
+
+         $('.txtDate').attr('min', minDate);
+      });
+
       $('#merit_form').validate({
          rules: {
-            // round_no: {
-            //    required: true,
-            // },
-            // course_id: {
-            //    required: true,
-            // },
-            // start_date: {
-            //    required: true,
-            // },
-            // end_date: {
-            //    required: true,
-            // },
-            // merit_result_declare_date: {
-            //    required: true,
-            // },
+            round_no: {
+               required: true,
+            },
+            course_id: {
+               required: true,
+            },
+            start_date: {
+               required: true,
+            },
+            end_date: {
+               required: true,
+            },
+            merit_result_declare_date: {
+               required: true,
+            },
          },
          messages: {
             round_no: 'Please Enter Round Number!',

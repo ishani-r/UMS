@@ -12,7 +12,7 @@
     <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('student-assets/app-assets/img/ico/u.jpg') }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('student-assets/app-assets/img/ico/s.jpg') }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -85,9 +85,7 @@
 
         <!-- main menu-->
         <!--.main-menu(class="#{menuColor} #{menuOpenType}", class=(menuShadow == true ? 'menu-shadow' : ''))-->
-        {{-- sidebar start --}}
         @include('layouts.sidebar')
-        {{-- sidebar end --}}
 
         <div class="main-panel">
             <!-- BEGIN : Main Content-->
