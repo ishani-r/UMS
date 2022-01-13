@@ -1,36 +1,96 @@
-Ishani Ranpariya
-MR :: 12/01/2022
+$studentmark = StudentMark::with('commonsetting')->where('user_id', Auth::guard('web')->user()->id)->get();
+      $merit = 0;
+      $com_total = 0;
+      foreach ($studentmark as $studentmarks) {
+         $total = ($studentmarks->obtain_mark * $studentmarks->commonsetting['marks'] ?? 0) / 100;
+         $merit = $merit + $total;
+         $com_total = $com_total + $studentmarks->commonsetting['marks'];
+      }
+      $f_merit = $merit / $com_total * 100;
+      dd($f_merit);
 
+@if(count($studentmarks)==0)
+                     @foreach($subjects as $subject)
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="obtain_mark">{{ $subject->name}}</label>
+                              <input type="text" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter {{$subject->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
+                              <!-- {{Form::text('obtain_mark[$subject->id]','',['class'=>'form-control','placeholder'=>'Enter ' . $subject->name . ' Marks'])}} -->
+                              @error('obtain_mark')
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
+                              @enderror
+                           </div>
+                        </div>
+                     </div>
+                     @endforeach
+                     @else
+                     @dd(1)
+                     @foreach($studentmarks as $studentmark)
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="obtain_mark">{{ $studentmark->subject_id}}</label>
+                              <input type="text" name="obtain_mark[{{$studentmark->id}}]" class="form-control" id="obtain_mark" value="{{$studentmark->obtain_mark}}" placeholder="Enter {{$studentmark->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
+                              @error('obtain_mark')
+                              <span role="alert">
+                                 <strong style="color:red;">{{$message}}</strong>
+                              </span>
+                              @enderror
+                           </div>
+                        </div>
+                     </div>
+                     @endforeach
+                     @endif
+
+Ishani Ranpariya
+MR :: 13/01/2022
+- student
+   - student fill addmission form with validation
+   - student show their merit
+- college 
+   -confirm student admission 
+
+Ishani Ranpariya
+Work Report :: 13/01/2022
+- Student
+  - create admission form with validation
+  - count student merit and store merit 
+  - edit student profile with validation
+  - change password with validation
+  - set validation student not insert mark then not filed admission form
 Ishani Ranpariya
 Work Report :: 12/01/2022
 - University
-   merite round(edit,delete,status)
+merite round(edit,delete,status)
 - college
-   merite round (show, add merit)
-- student 
-   - Working on add subject mark 
+merite round (show, add merit)
+- student
+- Working on add subject mark
 
 Ishani Ranpariya
 Work Report 10/01/2022
 - university
-   - college crud
-   - common setting
+- college crud
+- common setting
 - College module
-   - setup college panel
-   - login using auth
+- setup college panel
+- login using auth
 - Student module
-   - Register/login using auth
+- Register/login using auth
 
-   Ishani Ranpariya
-   Work Report :: 11/01/2022
-   - university
-      - course
-      - subject list
-      - merit round (add,edit,delete)
-      - edit profile with validation
-   - college 
-      - course (add,edit,delete)
-      - merit round
+Ishani Ranpariya
+Work Report :: 11/01/2022
+- university
+- course
+- subject list
+- merit round (add,edit,delete)
+- edit profile with validation
+- college
+- course (add,edit,delete)
+- merit round
 
 
 @if($common_setting === ' ')
@@ -57,23 +117,23 @@ Work Report 10/01/2022
 
 <!-- ====================== home page ========================== -->
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+   <div class="row justify-content-center">
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+            <div class="card-body">
+               @if (session('status'))
+               <div class="alert alert-success" role="alert">
+                  {{ session('status') }}
+               </div>
+               @endif
 
-                    {{ __('You are logged in!') }}
-                </div>
+               {{ __('You are logged in!') }}
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>
 <!-- ======================================================== -->
 
@@ -482,18 +542,18 @@ Work Report 10/01/2022
 </html>
 
 <div class="col-md-6 col-12">
-                           <label for="college_id">College</label>
-                           <fieldset class="form-group">
-                              <select class="custom-select course @error('college_id') is-invalid @enderror" id="college_id" name="college_id" value="college_id">
-                                 <option value="0">Select College</option>
-                                 @foreach($college as $college)
-                                 <option class="dropdown-item" value="{{ $college->id }}">{{ $college->name }}</option>
-                                 @endforeach
-                              </select>
-                              @error('college_id')
-                              <span class="invalid-feedback" role="alert">
-                                 <strong>{{ $message }}</strong>
-                              </span>
-                              @enderror
-                           </fieldset>
-                        </div>
+   <label for="college_id">College</label>
+   <fieldset class="form-group">
+      <select class="custom-select course @error('college_id') is-invalid @enderror" id="college_id" name="college_id" value="college_id">
+         <option value="0">Select College</option>
+         @foreach($college as $college)
+         <option class="dropdown-item" value="{{ $college->id }}">{{ $college->name }}</option>
+         @endforeach
+      </select>
+      @error('college_id')
+      <span class="invalid-feedback" role="alert">
+         <strong>{{ $message }}</strong>
+      </span>
+      @enderror
+   </fieldset>
+</div>

@@ -21,4 +21,9 @@ class StudentMark extends Model
     {
         return $this->hasOne(Subject::class,'id','subject_id');
     }
+
+    public function commonsetting()
+    {
+        return $this->hasOne(CommonSetting::class,'subject_id','subject_id');
+    }
 }

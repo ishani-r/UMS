@@ -18,7 +18,7 @@ class StudentMarksController extends Controller
     public function index()
     {
         $subjects = Subject::all();
-        $studentmarks = StudentMark::where('user_id', Auth::user()->id)->get();
+        $studentmarks = StudentMark::with('subject')->where('user_id', Auth::user()->id)->get();
         return view('Student.marks',compact('subjects','studentmarks'));
     }
 

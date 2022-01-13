@@ -5,7 +5,7 @@
     <div class="content-wrapper">
         <div class="row">
             <div class="col-12">
-                <div class="content-header">Inputs</div>
+                <div class="content-header">Change Password</div>
             </div>
         </div>
         <!-- Basic Inputs start -->
@@ -14,7 +14,7 @@
                 <div class="col-9">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Confirm Password</h4>
+                            <!-- <h4 class="card-title">Confirm Password</h4> -->
                         </div>
                         <div class="card-content">
                             <div class="card-body">

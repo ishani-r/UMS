@@ -13,6 +13,9 @@ use App\Repositories\University\CommonSettingRepository;
 use App\Interfaces\University\CourseInterface;
 use App\Repositories\University\CourseRepository;
 
+use App\Interfaces\AdmissionInterface;
+use App\Repositories\AdmissionRepository;
+
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
@@ -27,6 +30,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CollegeInterface::class, CollegeRepository::class);
         $this->app->bind(CommonSettingInterface::class, CommonSettingRepository::class);
         $this->app->bind(CourseInterface::class, CourseRepository::class);
+        $this->app->bind(AdmissionInterface::class, AdmissionRepository::class);
     }
 
     /**

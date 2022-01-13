@@ -26,8 +26,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="obtain_mark">{{ $subject->name}}</label>
-                              <input type="text" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter {{$subject->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
-                              <!-- {{Form::text('obtain_mark[$subject->id]','',['class'=>'form-control','placeholder'=>'Enter ' . $subject->name . ' Marks'])}} -->
+                              <input type="text" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter {{$subject->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
                               @error('obtain_mark')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -42,8 +41,8 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="form-group">
-                              <label for="obtain_mark">{{ $studentmark->subject_id}}</label>
-                              <input type="text" name="obtain_mark[{{$studentmark->id}}]" class="form-control" id="obtain_mark" value="{{$studentmark->obtain_mark}}" placeholder="Enter {{$studentmark->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required></br>
+                              <label for="obtain_mark">{{ $studentmark->subject->name}}</label>
+                              <input type="text" name="obtain_mark[{{$studentmark->subject->id}}]" class="form-control" id="obtain_mark" value="{{$studentmark->obtain_mark}}" placeholder="Enter {{$studentmark->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
                               @error('obtain_mark')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>

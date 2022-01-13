@@ -75,6 +75,18 @@
                   </div>
 
                   <div class="row mb-3">
+                     <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('dob') }}</label>
+                     <div class="col-md-6">
+                        {{Form::date('dob','',['class'=>'form-control txtDate'])}}
+                        @error('dob')
+                        <span role="alert">
+                           <strong style="color:red;">{{$message}}</strong>
+                        </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
                      <label for="adhaar_card_no" class="col-md-4 col-form-label text-md-end">{{ __('Adhaar Card No') }}</label>
                      <div class="col-md-6">
                         <input id="adhaar_card_no" type="adhaar_card_no" class="form-control @error('adhaar_card_no') is-invalid @enderror" name="adhaar_card_no" value="{{ old('adhaar_card_no') }}" autocomplete="adhaar_card_no">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'College-Dashbboard')
+@section('title', 'Student-Dashbboard')
 @section('content')
 <div class="content-overlay"></div>
 <div class="content-wrapper">
@@ -23,8 +23,8 @@
                                  {{Form::text('name',null,['class'=>'form-control'])}}
                                  @error('name')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -36,8 +36,8 @@
                                  {{Form::text('email',null,['class'=>'form-control'])}}
                                  @error('email')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -51,8 +51,8 @@
                                  {{Form::text('contact_no',null,['class'=>'form-control'])}}
                                  @error('contact_no')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -64,23 +64,23 @@
                                  {{Form::text('address',null,['class'=>'form-control','row'=>2])}}
                                  @error('address')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
                         </div>
                      </div>
                      <div class="row">
-                     <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6">
                            <div class="form-group">
                               <div class="controls">
                                  <label for="adhaar_card_no">{{ Form::label('adhaar_card_no', 'Adhaar Card No')}}</label>
                                  {{Form::text('adhaar_card_no',null,['class'=>'form-control','row'=>2])}}
                                  @error('adhaar_card_no')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -90,11 +90,11 @@
                               <div class="controls">
                                  <label for="image">{{ Form::label('image', 'Image')}}</label>
                                  {{Form::file('image',['class'=>'form-control'])}}<br>
-                                 <img class="img" src="{{asset('storage/college/'.$student->image)}}" width="50px" />
+                                 <img class="img" src="{{asset('storage/student/'.$student->image)}}" width="50px" />
                                  @error('image')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
