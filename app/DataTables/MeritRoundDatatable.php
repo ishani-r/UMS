@@ -30,11 +30,21 @@ class MeritRoundDatatable extends DataTable
                 $result .= '<button type="submit" data-id="' . $data->id . '" class="btn-sm btn-danger mr-sm-2 mb-1 delete" title="store delete" ><i class="fa fa-trash" aria-hidden="true"></i></button>';
                 return $result;
             })
+
+            ->editColumn('status', function ($data) {
+                if ($data['status'] == '0') {
+                    return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-danger status">Inactive</button>';
+                } else {
+                    return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-success status">Active</button>';
+                }
+            })
+
             ->editColumn('course_id', function ($data) {
                 $data = Course::where('id', $data->course_id)->first();
                 return $data->name;
             })
-            ->rawColumns(['action'])
+
+            ->rawColumns(['action','status','course_id'])
             ->addIndexColumn();
     }
 

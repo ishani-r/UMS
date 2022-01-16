@@ -39,6 +39,21 @@ class SubjectSeeder extends Seeder
                 'code' => '001',
                 'status' => '1',
             ],
+            [
+                'name' => 'Gujrati',
+                'code' => '002',
+                'status' => '1',
+            ],
+            [
+                'name' => 'Physics',
+                'code' => '003',
+                'status' => '1',
+            ],
+            [
+                'name' => 'Sanskrit',
+                'code' => '004',
+                'status' => '1',
+            ],
         ];
         Subject::insert($data);
     }

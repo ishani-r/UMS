@@ -5,9 +5,10 @@ namespace App\Http\Controllers\University\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DataTables\MeritRoundDatatable;
+use App\Http\Requests\University\EditMeritRound;
 use App\Models\Course;
 use App\Models\MeritRound;
-use App\Http\Requests\College\MeritRoundRequest;
+use App\Http\Requests\University\MeritRoundRequest;
 use App\Repositories\University\MeriteRoundRepository;
 
 class MeritRoundController extends Controller
@@ -22,71 +23,56 @@ class MeritRoundController extends Controller
         return $MeritRoundDatatable->render('University.Merit-Round.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $course = Course::all();
         return view('University.Merit-Round.create', compact('course'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(MeritRoundRequest $request)
     {
+        // $merits = MeritRound::where('round_no',$request->round_no)->where();
         $data = $this->Merit->store($request->all());
-        return redirect()->route('university.meritround.index',compact('data'));
+        return redirect()->route('university.meritround.index', compact('data'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $data = $this->Merit->edit($id);
+        $course = $data[0];
+        $merit = $data[1];
+        return view('university.Merit-Round.edit', compact('course', 'merit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(EditMeritRound $request, $id)
     {
-        //
+        $data = $this->Merit->update($request->all(), $id);
+        return redirect()->route('university.meritround.index', compact('data'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $meritround = MeritRound::find($id);
+        $meritround->delete();
+        return $meritround;
+    }
+
+    public function status(Request $request)
+    {
+        $id = $request['id'];
+        $meritround = MeritRound::find($id);
+
+        if ($meritround->status == "0") {
+            $meritround->status = "1";
+        } else {
+            $meritround->status = "0";
+        }
+        $meritround->save();
+        return $meritround;
     }
 }

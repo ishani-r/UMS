@@ -83,21 +83,17 @@
          course_id: {
             required: true,
          },
-         seat_no: {
+         round_no: {
             required: true,
          },
-         reserved_seat: {
-            required: true,
-         },
-         merit_seat: {
+         merit: {
             required: true,
          },
       },
       messages: {
          course_id: 'Please Enter College Name!',
-         seat_no: 'Please Enter Your Email Address!',
-         reserved_seat: 'Please Enter College Contact Number!',
-         merit_seat: 'Please Enter College Address!',
+         round_no: 'Please Enter Your Email Address!',
+         merit: 'Please Enter Merit!',
       },
    });
 

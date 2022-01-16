@@ -9,7 +9,7 @@
       <div class="nav-container">
          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <!-- Dashboard -->
-            <li class=" nav-item"><a href="{{ route('university.main') }}" class="text-decoration-none"><i class="ft-home"></i><span class="menu-title" data-i18n="Chat">Dashboard</span></a>
+            <li class="{{ request()->is('*dashboard*') ? 'active' : '' }}"><a href="{{ route('university.main') }}" class="text-decoration-none"><i class="ft-home"></i><span class="menu-title" data-i18n="Chat">Dashboard</span></a>
                <!-- <li class="has-sub nav-item"><a href="javascript:;"><i class="ft-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="tag badge badge-pill badge-danger float-right mr-1 mt-1">2</span></a>
                <ul class="menu-content">
                   <li class="active"><a href="{{ route('university.main') }}"><i class="ft-arrow-right submenu-icon"></i><span class="menu-item" data-i18n="Dashboard 1">Dashboard 1</span></a>
@@ -25,31 +25,31 @@
                         </li>
                     </ul>
                 </li> -->
-            <li>
+            <li class="{{ request()->is('*college*') ? 'active' : '' }}">
                <a href="{{ route('university.college.index')}}" class="text-decoration-none">
                   <i class='fas fa-school' style='font-size:17px'></i>
                   <span class="menu-title" data-i18n="Email">College</span>
                </a>
             </li>
-            <li>
+            <li class="{{ request()->is('*course*') ? 'active' : '' }}">
                <a href="{{ route('university.course.index')}}" class="text-decoration-none">
                   <i class='fas fa-book-reader' style='font-size:24px'></i>
                   <span class="menu-title" data-i18n="Email">Course</span>
                </a>
             </li>
-            <li>
+            <li class="{{ request()->is('*list-subject*') ? 'active' : '' }}">
                <a href="{{ route('university.list_subject')}}" class="text-decoration-none">
                   <i class="fa fa-list" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Subject</span>
                </a>
             </li>
-            <li>
+            <li class="{{ request()->is('*common-setting*') ? 'active' : '' }}">
                <a href="{{ route('university.common_setting')}}" class="text-decoration-none">
                   <i class="fa fa-tasks" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Common Setting</span>
                </a>
             </li>
-            <li>
+            <li class="{{ request()->is('*meritround*') ? 'active' : '' }}">
                <a href="{{ route('university.meritround.index')}}" class="text-decoration-none">
                   <i class="fa fa-tasks" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Marite Round</span>

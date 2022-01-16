@@ -37,7 +37,7 @@
                                  @else
                                     @foreach($common_setting as $common_settings)
                                        <label for="marks">{{ Form::label('marks', $common_settings->subject->name)}}</label>
-                                       <input type="text" name="marks[{{$common_settings->id}}]" class="form-control" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" id="marks" value="{{$common_settings->marks}}" required>
+                                       <input type="text" name="marks[{{$common_settings->id}}]" class="form-control" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" id="marks" value="{{$common_settings->marks}}" required></br>
                                     @endforeach
                                  @endif
                               </div>
@@ -45,8 +45,8 @@
                         </div>
                      </div>
 
-                     {{Form::submit('Save Changes', ['class'=>'btn btn-primary mb-2 mb-sm-0 mr-sm-2'])}}
-                     {{Form::reset('Cancel', ['class'=>'btn btn-secondary'])}}
+                     {{Form::submit('Submit', ['class'=>'btn btn-primary mb-2 mb-sm-0 mr-sm-2'])}}
+                     <!-- {{Form::reset('Cancel', ['class'=>'btn btn-secondary'])}} -->
                      {!!Form::close()!!}
                   </div>
                </div>

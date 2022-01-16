@@ -13,6 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // dd(1);
         return view('College.layouts.content');
     }
     
@@ -55,7 +56,7 @@ class DashboardController extends Controller
         ]);
 
         //Change Password
-        $college = Auth::user();
+        $college = Auth::user()->id;
         $college->password = Hash::make($request->get('new-password'));
         $college->save();
 

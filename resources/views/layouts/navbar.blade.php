@@ -142,10 +142,10 @@
           <li i class="dropdown nav-item mr-1">
             <a class="nav-link dropdown-toggle user-dropdown d-flex align-items-end" id="dropdownBasic2" href="javascript:;" data-toggle="dropdown">
               <div class="user d-md-flex d-none mr-2">
-                <span class="text-right">UMS</span>
+                <span class="text-right">{{Auth::guard('web')->user()->name}}</span>
                 <span class="text-right text-muted font-small-3">Available</span>
               </div>
-              <img class="avatar" src="{{asset('student-assets\app-assets\img\university-logo.jpg')}}" alt="avatar" height="35" width="35">
+              <img class="avatar" src="{{asset('storage\student'.Auth::user()->image)}}" alt="avatar" height="35" width="35">
             </a>
             <div class="dropdown-menu text-left dropdown-menu-right m-0 pb-0" aria-labelledby="dropdownBasic2">
               <!-- <a class="dropdown-item" href="app-chat.html">

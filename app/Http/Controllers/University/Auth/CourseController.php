@@ -34,7 +34,7 @@ class CourseController extends Controller
     public function store(CourseRequest $request)
     {
         $course = $this->Course->store($request->all());
-        return redirect()->route('university.course.index',compact('course'));
+        return redirect()->route('university.course.index', compact('course'));
     }
 
     public function show($id)
@@ -57,6 +57,20 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
         $course->delete();
+        return $course;
+    }
+
+    public function status(Request $request)
+    {
+        $id = $request['id'];
+        $course = Course::find($id);
+
+        if ($course->status == "0") {
+            $course->status = "1";
+        } else {
+            $course->status = "0";
+        }
+        $course->save();
         return $course;
     }
 }

@@ -2,14 +2,17 @@
 
 namespace App\DataTables;
 
+use App\Models\Addmission;
+use App\Models\User;
 use App\Models\Course;
+use App\Models\MeritRound;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CourseDatatable extends DataTable
+class StudentAdmissionDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,35 +24,48 @@ class CourseDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            // ->addColumn('action', 'coursedatatable.action');
+            // ->addColumn('action', 'studentadmissiondatatable.action');
             ->addColumn('action', function ($data) {
                 $result = '<div class="btn-group">';
-                // $result .= '<a href="' . route('college.course.show', $data->id) . '"><button class="btn-sm btn-warning mr-sm-2 mb-1" title="store view"><i class="fa fa-eye" aria-hidden="true"></i></button></a>';
-                // $result .= '<a href="' . route('university.course.edit', $data->id) . '"><button class="btn-sm btn-primary mr-sm-2 mb-1" title="store update"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>';
                 $result .= '<button type="submit" data-id="' . $data->id . '" class="btn-sm btn-danger mr-sm-2 mb-1 delete" title="store delete" ><i class="fa fa-trash" aria-hidden="true"></i></button>';
                 return $result;
             })
 
-            ->editColumn('status', function ($data) {
-                if ($data['status'] == '0') {
-                    return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-danger status">Inactive</button>';
-                } else {
-                    return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-success status">Active</button>';
-                }
+            ->editColumn('user_id', function ($data) {
+                $data = User::where('id', $data->user_id)->first();
+                return $data->name;
             })
-            ->rawColumns(['action', 'status'])
+
+            ->editColumn('course_id', function ($data) {
+                $data = Course::where('id', $data->course_id)->first();
+                return $data->name;
+            })
+
+            ->editColumn('merit_round_id', function ($data) {
+                $data = MeritRound::where('id', $data->merit_round_id)->first();
+                return $data->round_no;
+            })
+
+            ->editColumn('all', function ($data) {
+                $result = '<div class="form-group">';
+                $result .= '<input class="form-check-input checkbox" type="checkbox" id="checkbox" name="checkbox[]" data-id="' . $data->id . '" name="checkbox"></input>';
+                return $result;
+            })
+
+            ->rawColumns(['action', 'status', 'course_id','all'])
             ->addIndexColumn();
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\CourseDatatable $model
+     * @param \App\Models\StudentAdmissionDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Course $model)
+    public function query(Addmission $model)
     {
         return $model->newQuery();
+        // return $model->where('college_id',)->newQuery();
     }
 
     /**
@@ -60,10 +76,10 @@ class CourseDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('coursedatatable-table')
+            ->setTableId('studentadmissiondatatable-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bflrtip')
+            ->dom('Bfrtip')
             ->orderBy(1)
             ->buttons(
                 Button::make('create'),
@@ -82,9 +98,14 @@ class CourseDatatable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('all')->title('<button class="btn btn-danger" id="confirm">confirm</button>'),
             Column::make('id')->data('DT_RowIndex'),
-            Column::make('name'),
-            Column::make('status'),
+            Column::make('user_id'),
+            Column::make('addmission_date'),
+            Column::make('addmission_code'),
+            Column::make('course_id'),
+            Column::make('merit_round_id'),
+            Column::make('merit'),
             // Column::make('created_at'),
             // Column::make('updated_at'),
             Column::computed('action')
@@ -102,6 +123,6 @@ class CourseDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Course_' . date('YmdHis');
+        return 'StudentAdmission_' . date('YmdHis');
     }
 }

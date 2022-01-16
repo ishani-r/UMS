@@ -75,7 +75,7 @@
    $(document).on('click', '.delete', function() {
       swal({
             title: "Are you sure?",
-            text: "You Want To Delete The College!",
+            text: "You Want To Delete This Record!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -97,11 +97,11 @@
                      $('#collegecoursedatatable-table').DataTable().ajax.reload();
                   }
                });
-               swal("Your Store has been deleted!", {
+               swal("Your Record has been deleted!", {
                   icon: "success",
                });
             } else {
-               swal("Your College is safe!");
+               swal("Your Record is safe!");
             }
          });
    });

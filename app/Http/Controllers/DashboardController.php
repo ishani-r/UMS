@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProfileRequest;
+use App\Models\Addmission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,18 @@ use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
+    public function indexs()
+    {
+        $admission = Addmission::where('user_id',Auth::user()->id)->first();
+        $merit = $admission->merit;
+        if($admission){
+        return view('layouts.content',compact('merit'));
+        } else{
+            $merit = '0';
+        return view('layouts.content',compact('merit'));
+        }
+    }
+
     public function showEditProfile()
     {
         $student = User::where('id', Auth::user()->id)->first();

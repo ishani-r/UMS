@@ -8,6 +8,9 @@ use App\Models\CollegeMerit;
 use App\Models\Course;
 use App\Models\MeritRound;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class CollegeMeritRepository implements CollegeMeritInterface
 {
@@ -19,23 +22,37 @@ class CollegeMeritRepository implements CollegeMeritInterface
 
    public function store(array $array)
    {
-      $merit = new CollegeMerit();
-      $merit->college_id = Auth::user()->id;
-      $merit->course_id = $array['course_id'];
-      $merit->merit_round_id = $array['round_no'];
-      $merit->merit = $array['merit'];
-      $merit->save();
-      return $merit;
+      DB::beginTransaction();
+      try {
+         $merit = CollegeMerit::updateOrCreate(
+            [
+               'college_id' => Auth::user()->id,
+               'course_id' => $array['course_id'],
+               'merit_round_id' => $array['merit_round_id'],
+            ],
+            [
+               'college_id' => Auth::user()->id,
+               'course_id' => $array['course_id'],
+               'merit_round_id' => $array['merit_round_id'],
+               'merit' => $array['merit'],
+            ]
+         );
+         DB::commit();
+         return $merit;
+      } catch (Exception $e) {
+         DB::rollBack();
+         Log::info($e);
+      }
    }
 
    public function edit($id)
    {
       $merit = CollegeMerit::find($id);
       $course = CollegeCourse::with('course')->where('college_id', Auth::user()->id)->get();
-      foreach($course as $courses){
-         $round = MeritRound::where('course_id',$courses->course_id)->get();
+      foreach ($course as $courses) {
+         $round = MeritRound::where('course_id', $courses->course_id)->get();
       }
-      return [$merit,$course,$round];
+      return [$merit, $course, $round];
    }
 
    public function update(array $array, $id)

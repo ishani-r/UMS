@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\College;
+namespace App\Http\Requests\University;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class MeritRoundRequest extends FormRequest
     public function rules()
     {
         return [
-            'round_no' => 'required|unique:merit_rounds',
+            'round_no' => 'required',
             'course_id' => 'required|not-in:0',
             'start_date' => 'required',
             'end_date' => 'required',

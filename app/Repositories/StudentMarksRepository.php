@@ -15,7 +15,6 @@ class StudentMarksRepository implements StudentMarksInterface
 {
    public function store(array $array)
    {
-      // dd($array['obtain_mark']);
       DB::beginTransaction();
       try {
          foreach ($array['obtain_mark'] as $key => $val) {

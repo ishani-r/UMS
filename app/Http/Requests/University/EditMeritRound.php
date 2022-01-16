@@ -4,7 +4,7 @@ namespace App\Http\Requests\University;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditCollegeRequest extends FormRequest
+class EditMeritRound extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,12 @@ class EditCollegeRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->id;
         return [
-            'name' => 'required|regex:/(^([a-zA-z ]+)(\d+)?$)/u',
-            'email' => 'required|email|unique:colleges,email,'.$id,
-            'contact_no' => 'required|max:10|min:10|unique:colleges,'.$id,
-            'address' => 'required',
-            // 'logo' => 'required',
+            'round_no' => 'required|unique:merit_rounds',
+            'course_id' => 'required|not-in:0',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'merit_result_declare_date' => 'required',
         ];
     }
 }

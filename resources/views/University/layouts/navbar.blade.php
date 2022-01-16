@@ -142,7 +142,7 @@
           <li i class="dropdown nav-item mr-1">
             <a class="nav-link dropdown-toggle user-dropdown d-flex align-items-end" id="dropdownBasic2" href="javascript:;" data-toggle="dropdown">
               <div class="user d-md-flex d-none mr-2">
-                <span class="text-right">UMS</span>
+                <span class="text-right">{{Auth::guard('university')->user()->name}}</span>
                 <span class="text-right text-muted font-small-3">Available</span>
               </div>
               <img class="avatar" src="{{asset('university-assets\app-assets\img\university-logo.jpg')}}" alt="avatar" height="35" width="35">

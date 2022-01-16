@@ -18,8 +18,37 @@
                </div>
                <div class="card-content">
                   <div class="card-body">
-                     {!! Form::open(['route'=> array('admission_store'), 'id' => 'admission_form', 'enctype' => 'multipart/form-data']) !!}
+                     {!! Form::model($admission,['route'=> array('admission_store',$admission->id), 'id' => 'admission_form', 'enctype' => 'multipart/form-data']) !!}
                      @csrf
+                     @method('put')
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <div class="form-group">
+                              <div class="controls">
+                                 <label for="addmission_code">{{ Form::label('addmission_code', 'addmission code')}}</label>
+                                 {{Form::text('addmission_code',null,['class'=>'form-control'])}}
+                                 @error('addmission_code')
+                                 <span role="alert">
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
+                                 @enderror
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                           <div class="form-group">
+                              <div class="controls">
+                                 <label for="merit">{{ Form::label('merit', 'merit')}}</label>
+                                 {{Form::text('merit',null,['class'=>'form-control'])}}
+                                 @error('merit')
+                                 <span role="alert">
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
+                                 @enderror
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                      <!-- College -->
                      <div class="row">
                         <div class="col-md-6 col-12">
@@ -44,7 +73,7 @@
                               <select class="custom-select course @error('course_id') is-invalid @enderror" id="course_id" name="course_id" value="{{ old('course_id') }}">
                                  <option value="">Select One Course</option>
                                  @foreach($course as $course)
-                                 <option class="dropdown-item" value="{{ $course->id }}">{{ $course->name }}</option>
+                                 <option class="dropdown-item" value="{{ $course->id }}" {{$course->id == $admission->course_id ? 'selected' : ''}}>{{ $course->name }}</option>
                                  @endforeach
                               </select>
                               @error('course_id')
@@ -59,6 +88,9 @@
                            <fieldset class="form-group">
                               <select class="custom-select course @error('merit_round_id') is-invalid @enderror" id="merit_round_id" name="merit_round_id" value="{{ old('merit_round_id') }}">
                                  <option class="dropdown-item" value="">Select One Round</option>
+                                 @foreach($round as $round)
+                                 <option class="dropdown-item" value="{{ $round->id }}" {{$round->id == $admission->merit_round_id ? 'selected' : ''}}>{{ $round->round_no }}</option>
+                                 @endforeach
                               </select>
                               @error('merit_round_id')
                               <span class="invalid-feedback" role="alert">

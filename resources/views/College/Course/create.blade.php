@@ -86,7 +86,7 @@
    <script>
       $('#course_form').validate({
          rules: {
-            name: {
+            course_id: {
                required: true,
             },
             seat_no: {
@@ -100,7 +100,7 @@
             },
          },
          messages: {
-            name: 'Please Enter Course Name!',
+            course_id: 'Please Select Course!',
             seat_no: 'Please Enter Total Seat!',
             reserved_seat: 'Please Enter Reserved Seat!',
             merit_seat: 'Please Enter Merit Seat!',

@@ -27,4 +27,9 @@ class StudentMarksController extends Controller
         $result = $this->Data->store($request->all());
         return redirect()->route('show_marks',compact('result'));
     }
+
+    public function confirm(Request $request)
+    {
+        dd($request->all());
+    }
 }

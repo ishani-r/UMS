@@ -105,10 +105,10 @@
             },
          },
          messages: {
-            course_id: 'Please Enter College Name!',
-            seat_no: 'Please Enter Your Email Address!',
-            reserved_seat: 'Please Enter College Contact Number!',
-            merit_seat: 'Please Enter College Address!',
+            course_id: 'Please Select Course!',
+            seat_no: 'Please Enter Total Seat!',
+            reserved_seat: 'Please Enter Reserved Seat!',
+            merit_seat: 'Please Enter Merit Seat!',
          },
       });
    })

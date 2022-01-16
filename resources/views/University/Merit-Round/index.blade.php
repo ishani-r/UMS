@@ -54,14 +54,14 @@
                var id = $(this).data('id');
                var number = $(this).attr('id', 'asd');
                $.ajax({
-                  url: "{{route('university.college_status')}}",
+                  url: "{{route('university.meritround_status')}}",
                   type: 'get',
                   data: {
                      id: id,
                   },
                   dataType: "json",
                   success: function(data) {
-                     $('#collegedatatable-table').DataTable().ajax.reload();
+                     $('#meritrounddatatable-table').DataTable().ajax.reload();
                   }
                })
                swal("Your Status Has Ben Change Succesfully", {
@@ -77,7 +77,7 @@
    $(document).on('click', '.delete', function() {
       swal({
             title: "Are you sure?",
-            text: "You Want To Delete The College!",
+            text: "You Want To Delete The Merit Round!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -85,7 +85,7 @@
          .then((willDelete) => {
             if (willDelete) {
                var delet = $(this).data('id');
-               var url = '{{route("university.course.destroy", ":queryId")}}';
+               var url = '{{route("university.meritround.destroy", ":queryId")}}';
                url = url.replace(':queryId', delet);
                $.ajax({
                   url: url,
@@ -96,10 +96,10 @@
                   },
                   dataType: "json",
                   success: function(data) {
-                     $('#coursedatatable-table').DataTable().ajax.reload();
+                     $('#meritrounddatatable-table').DataTable().ajax.reload();
                   }
                });
-               swal("Your Store has been deleted!", {
+               swal("Your Merit Round has been deleted!", {
                   icon: "success",
                });
             } else {
