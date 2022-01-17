@@ -22,26 +22,29 @@ class CollegeMeritRepository implements CollegeMeritInterface
 
    public function store(array $array)
    {
+      // dd($array);
       DB::beginTransaction();
       try {
          $merit = CollegeMerit::updateOrCreate(
             [
                'college_id' => Auth::user()->id,
                'course_id' => $array['course_id'],
-               'merit_round_id' => $array['merit_round_id'],
+               'merit_round_id' => $array['round_no'],
             ],
             [
                'college_id' => Auth::user()->id,
                'course_id' => $array['course_id'],
-               'merit_round_id' => $array['merit_round_id'],
+               'merit_round_id' => $array['round_no'],
                'merit' => $array['merit'],
             ]
          );
+         // dd($merit);
          DB::commit();
          return $merit;
       } catch (Exception $e) {
          DB::rollBack();
          Log::info($e);
+         dd(1);
       }
    }
 
