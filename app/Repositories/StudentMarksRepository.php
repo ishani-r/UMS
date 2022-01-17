@@ -48,6 +48,7 @@ class StudentMarksRepository implements StudentMarksInterface
             [
                'user_id' => Auth::user()->id,
                'merit' => round($final_merit, 2),
+               'course_id' => 1,
                'status' => 1,
             ]
          );

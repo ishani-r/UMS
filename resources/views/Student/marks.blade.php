@@ -14,6 +14,15 @@
          <div class="col-12">
             <div class="card">
                <div class="card-header">
+                  <!-- @if(Session::has('message'))
+                  <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                  @endif -->
+                  @if (Session::has('error'))
+                  <div class="alert alert-danger text-center">
+                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                     <p>{{ Session::get('error') }}</p>
+                  </div>
+                  @endif
                   <!-- <h4 class="card-title">Store</h4> -->
                </div>
                <div class="card-content">

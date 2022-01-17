@@ -54,6 +54,14 @@ MR :: 13/01/2022
 -confirm student admission
 
 Ishani Ranpariya
+Work Report :: 17/01/2022
+-  solve previous error
+-  show addmission data university side
+-  admission data insert using type casting
+-  solve error on display admission on college side
+-  display admission data on college side(working)
+
+Ishani Ranpariya
 Work Report :: 13/01/2022
 - Student
 - create admission form with validation
@@ -530,3 +538,45 @@ $(document).on('click','#deletes',function(){
 		else{
 			echo false;
 		}
+
+
+      // return $model->whereRaw
+        $data = $model->newQuery();
+        $data1 = collect($data);
+        // $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
+        // dd($college_ids);
+        $data1->filter(function () use ($model) {
+            
+            foreach ($model->get() as $key => $d) {
+                $selected_college = explode(',', $d->college_id);
+                return $selected_college[0] == Auth::user()->id;
+            }
+            
+        });
+        // dd(collect($data));
+        return $data1;
+        // $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
+        
+        // $model->contains(function ($value, $key) {
+
+        //     dd($value);
+        //     // return $value > 5;
+        //     $selected_college = explode(',', $order->college_id);
+        //     return $selected_college[0] == Auth::user()->id;
+        // });
+        // dd(Auth::user()->id);
+        // // $admissions = Addmission::select('college_id','id')->get();
+        // foreach ($model as $admission) {
+        //     $selected_college = explode(',', $admission->college_id);
+        //     dd($selected_college[0]);
+        //     // $adadmission = Addmission::whereIn('college_id', $selected_college[0])->get();
+        //     if ($selected_college[0] == Auth::user()->id) {
+        //         // dd(1);
+        //         // $admission = Addmission::select('college_id')->get();
+    
+        //     }
+        //     $data = Addmission::where($selected_college[0], Auth::user()->id)->get();
+        // }
+        // dd($admission);
+        // return $data;
+        // return $model->where('college_id',)->newQuery();

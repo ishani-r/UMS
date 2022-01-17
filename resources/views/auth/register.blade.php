@@ -27,7 +27,7 @@
                      <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
 
                      <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                   <div class="row mb-3">
                      <label for="contact_no" class="col-md-4 col-form-label text-md-end">{{ __('Contact No') }}</label>
                      <div class="col-md-6">
-                        <input id="contact_no" type="contact_no" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" value="{{ old('contact_no') }}" autocomplete="contact_no">
+                        <input id="contact_no" type="number" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" value="{{ old('contact_no') }}" autocomplete="contact_no">
                         @error('contact_no')
                         <span class="invalid-feedback" role="alert">
                            <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
                   <div class="row mb-3">
                      <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
                      <div class="col-md-6">
-                        <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address">
+                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address">
                         @error('address')
                         <span class="invalid-feedback" role="alert">
                            <strong>{{ $message }}</strong>
@@ -89,7 +89,9 @@
                   <div class="row mb-3">
                      <label for="adhaar_card_no" class="col-md-4 col-form-label text-md-end">{{ __('Adhaar Card No') }}</label>
                      <div class="col-md-6">
-                        <input id="adhaar_card_no" type="adhaar_card_no" class="form-control @error('adhaar_card_no') is-invalid @enderror" name="adhaar_card_no" value="{{ old('adhaar_card_no') }}" autocomplete="adhaar_card_no">
+                        <input autocomplete='off' type='text' class="form-control card-number @error('adhaar_card_no') is-invalid @enderror" maxlength="19" id="adhaar_card_no" name="adhaar_card_no" size='20' value="{{ old('adhaar_card_no') }}">
+
+                        <!-- <input id="adhaar_card_no" type="adhaar_card_no" class="form-control @error('adhaar_card_no') is-invalid @enderror" name="adhaar_card_no" value="{{ old('adhaar_card_no') }}" autocomplete="adhaar_card_no"> -->
                         @error('adhaar_card_no')
                         <span class="invalid-feedback" role="alert">
                            <strong>{{ $message }}</strong>
@@ -148,6 +150,13 @@
 @endsection
 @push('js')
 <script>
+   $('input[name=adhaar_card_no]').keypress(function() {
+      var rawNumbers = $(this).val().replace(/ /g, '');
+      var cardLength = rawNumbers.length;
+      if (cardLength !== 0 && cardLength <= 12 && cardLength % 4 == 0) {
+         $(this).val($(this).val() + ' ');
+      }
+   });
    $('#register').validate({
       rules: {
          name: {

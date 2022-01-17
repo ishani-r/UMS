@@ -3,9 +3,12 @@
 namespace App\DataTables;
 
 use App\Models\Addmission;
+use App\Models\CollegeMerit;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\MeritRound;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -43,7 +46,7 @@ class StudentAdmissionDatatable extends DataTable
 
             ->editColumn('merit_round_id', function ($data) {
                 $data = MeritRound::where('id', $data->merit_round_id)->first();
-                return $data->round_no;
+                return $data->round_no ?? '-';
             })
 
             ->editColumn('all', function ($data) {
@@ -52,7 +55,7 @@ class StudentAdmissionDatatable extends DataTable
                 return $result;
             })
 
-            ->rawColumns(['action', 'status', 'course_id','all'])
+            ->rawColumns(['action', 'status', 'course_id', 'all'])
             ->addIndexColumn();
     }
 
@@ -62,10 +65,41 @@ class StudentAdmissionDatatable extends DataTable
      * @param \App\Models\StudentAdmissionDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Addmission $model)
+    public function query(Addmission $model, Request $request)
     {
+        // $data = $model->get()->filter(function ($order) use ($request) {
+        //     // dd($order);          
+        //     $selected_college = explode(',', $order->college_id);
+        //     return $selected_college[0] == Auth::user()->id;
+        // });
+        // dd($data);
+        // return $this->make(true);
+        // $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
+        
+        // $model->contains(function ($value, $key) {
+
+        //     dd($value);
+        //     // return $value > 5;
+        //     $selected_college = explode(',', $order->college_id);
+        //     return $selected_college[0] == Auth::user()->id;
+        // });
+        // dd(Auth::user()->id);
+        // // $admissions = Addmission::select('college_id','id')->get();
+        // foreach ($model as $admission) {
+        //     $selected_college = explode(',', $admission->college_id);
+        //     dd($selected_college[0]);
+        //     // $adadmission = Addmission::whereIn('college_id', $selected_college[0])->get();
+        //     if ($selected_college[0] == Auth::user()->id) {
+        //         // dd(1);
+        //         // $admission = Addmission::select('college_id')->get();
+    
+        //     }
+        //     $data = Addmission::where($selected_college[0], Auth::user()->id)->get();
+        // }
+        // dd($admission);
+        // return $data;
+        // $collgemerit = CollegeMerit::where('');
         return $model->newQuery();
-        // return $model->where('college_id',)->newQuery();
     }
 
     /**

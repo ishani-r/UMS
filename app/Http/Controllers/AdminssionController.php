@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AdmissionRequest;
 use App\Models\Addmission;
+use Illuminate\Support\Facades\Session;
 
 class AdminssionController extends Controller
 {
@@ -21,11 +22,19 @@ class AdminssionController extends Controller
 
     public function store(AdmissionRequest $request)
     {
+
         $data = $this->Data->store($request->all());
         return redirect()->route('admission_form', compact('data'));
     }
     public function showAdmissionForm()
     {
+
+        $count=StudentMark::where('user_id',Auth::user()->id)->count();
+        if($count==0)
+        {
+            Session::flash('error', 'First Insert Your Marks !!');
+            return redirect()->route('show_marks');
+        }
         $course = Course::all();
         $college = College::all();
         $studentmark = StudentMark::where('user_id', Auth::user()->id)->first();

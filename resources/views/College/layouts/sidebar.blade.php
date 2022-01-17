@@ -17,7 +17,7 @@
                   <li><a href="dashboard2.html"><i class="ft-arrow-right submenu-icon"></i><span class="menu-item" data-i18n="Dashboard 2">Dashboard 2</span></a>
                   </li>
                </ul>
-            </li> -->               
+            </li> -->
             <li class="{{ request()->is('*college-course*') ? 'active' : '' }}">
                <a href="{{ route('college.college-course.index')}}" class="text-decoration-none">
                   <i class='fas fa-book-reader' style='font-size:24px'></i>
@@ -30,9 +30,9 @@
                   <span class="menu-title" data-i18n="Email">Merit Round</span>
                </a>
             </li>
-            <li>
+            <li class="{{ request()->is('*index*') ? 'active' : '' }}">
                <a href="{{ route('college.show_s_admission')}}" class="text-decoration-none">
-                  <i class="fab fa-bandcamp"></i>
+                  <i class="fa fa-list-alt" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Student Admission Form</span>
                </a>
             </li>

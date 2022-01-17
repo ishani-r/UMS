@@ -55,7 +55,7 @@
                            <label for="exampleInputUsername2" class="d-block">Select College :</label>
                            <select class="selectpicker" name="college_id[]" id="college_id" multiple data-live-search="true">
                               @foreach($college as $college)
-                              <option class="dropdown-item" value="">{{ $college->name }}</option>
+                              <option class="dropdown-item" value="{{$college->id}}">{{ $college->name }}</option>
                               @endforeach
                            </select></br>
                            @error('college_id')

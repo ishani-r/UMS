@@ -36,22 +36,22 @@ class SubjectSeeder extends Seeder
             ],
             [
                 'name' => 'English',
-                'code' => '001',
+                'code' => '045',
                 'status' => '1',
             ],
             [
-                'name' => 'Gujrati',
-                'code' => '002',
+                'name' => 'Gujarati',
+                'code' => '046',
+                'status' => '1',
+            ],
+            [
+                'name' => 'Computer',
+                'code' => '047',
                 'status' => '1',
             ],
             [
                 'name' => 'Physics',
-                'code' => '003',
-                'status' => '1',
-            ],
-            [
-                'name' => 'Sanskrit',
-                'code' => '004',
+                'code' => '048',
                 'status' => '1',
             ],
         ];

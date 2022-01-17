@@ -16,7 +16,7 @@ class AdmissionRepository implements AdmissionInterface
    {
       DB::beginTransaction();
       try {
-         $selected_college = implode(',', $array['college_id']);
+         $selected_college = (array)$array['college_id'];
          $course = Course::where('id', $array['course_id'])->select('name')->first();
          $addmission_code = '#' . $course->name . mt_rand(100, 999);
          $data = Addmission::updateOrCreate(

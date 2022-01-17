@@ -20,4 +20,11 @@ class Addmission extends Model
         'course_id',
         'merit_round_id',
     ];
+    protected $casts = [
+        'college_id' => 'array'
+    ];
+    public function college()
+    {
+        return $this->hasOne(College::class,'id','college_id');
+    }
 }
