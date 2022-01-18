@@ -42,4 +42,5 @@ Route::group(['middleware' => 'auth:university'], function () {
     
     // student
     Route::resource('student',            Auth\StudentAdmissionController::class);
+    Route::get('student-status',          'Auth\StudentAdmissionController@studentStatus')->name('student_status');
 });

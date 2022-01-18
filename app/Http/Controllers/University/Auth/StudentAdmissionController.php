@@ -4,6 +4,7 @@ namespace App\Http\Controllers\University\Auth;
 
 use App\DataTables\AdmissionStudentDatatable;
 use App\Http\Controllers\Controller;
+use App\Models\Addmission;
 use Illuminate\Http\Request;
 
 class StudentAdmissionController extends Controller
@@ -18,6 +19,20 @@ class StudentAdmissionController extends Controller
         return $AdmissionStudentDatatable->render('University.Student.index');
     }
 
+    public function studentStatus(Request $request)
+    {
+        dd(1);
+        $id = $request['id'];
+        $college = Addmission::find($id);
+
+        if ($college->status == "0") {
+            $college->status = "1";
+        } else {
+            $college->status = "0";
+        }
+        $college->save();
+        return $college;
+    }
     /**
      * Show the form for creating a new resource.
      *

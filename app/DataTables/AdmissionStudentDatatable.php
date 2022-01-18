@@ -25,6 +25,15 @@ class AdmissionStudentDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             // ->addColumn('action', 'admissionstudentdatatable.action');
+            ->editColumn('status', function ($data) {
+                if ($data['status'] == '0') {
+                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-info round mr-1 mb-1">Next</button>';
+                } else if ($data['status'] == '1'){
+                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-success round mr-1 mb-1">Confirm</button>';
+                } else {
+                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-danger round mr-1 mb-1">Rejected</button>';
+                }
+            })
             ->editColumn('user_id', function ($data) {
                 $data = User::where('id', $data->user_id)->first();
                 return $data->name ?? '-';
@@ -39,7 +48,7 @@ class AdmissionStudentDatatable extends DataTable
                 $data = College::whereIn('id', $data->college_id)->pluck('name')->toArray();
                 return implode('<br>',$data);
             })
-            ->rawColumns(['action', 'college_id'])
+            ->rawColumns(['action','status', 'college_id'])
             ->addIndexColumn();
     }
 

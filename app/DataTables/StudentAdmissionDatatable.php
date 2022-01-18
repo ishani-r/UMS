@@ -41,6 +41,8 @@ class StudentAdmissionDatatable extends DataTable
             //     return $data->name;
             // })
 
+           
+
             ->addColumn('user_id', function ($data) {
                 $datas = Addmission::where('id', $data->addmission_id)->first();
                 $user = User::where('id',$datas->user_id)->first();

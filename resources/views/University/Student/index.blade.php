@@ -5,7 +5,7 @@
 <div class="content-wrapper">
    <div class="row">
       <div class="col-12">
-         <div class="content-header">Coursesss Table</div>
+         <div class="content-header">Syudent Table</div>
       </div>
       <div class="text-right">
          <div class="mb-2">
@@ -20,7 +20,7 @@
          <div class="col-12 gradient-man-of-steel d-block rounded">
             <div class="card">
                <div class="card-header">
-                  <h4 class="card-title">Course List</h4>
+                  <h4 class="card-title">Student List</h4>
                </div>
                <div class="card-content">
                   <div class="card-body">
@@ -42,6 +42,7 @@
 <script>
    // Status
    $(document).on('click', '.status', function() {
+      alert(1);
       swal({
             title: "Are you sure?",
             text: "You Want To Change The Status!",
@@ -52,9 +53,10 @@
          .then((willDelete) => {
             if (willDelete) {
                var id = $(this).data('id');
+               alert(id);
                var number = $(this).attr('id', 'asd');
                $.ajax({
-                  url: "{{route('university.meritround_status')}}",
+                  url: "{{route('university.student_status')}}",
                   type: 'get',
                   data: {
                      id: id,
