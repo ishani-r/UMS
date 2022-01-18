@@ -22,7 +22,9 @@
             <!-- <a class="nav-link d-flex align-items-center dropdown-toggle dropdown-language" id="dropdown-flag" href="javascript:;" data-toggle="dropdown"><img class="langimg selected-flag" src="{{ asset('student-assets/app-assets/img/flags/us.png')}}" alt="flag"><span class="selected-language d-md-flex d-none">English</span></a> -->
             <div class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="javascript:;" data-language="en"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/us.png')}}" alt="flag"><span class="font-small-3">English</span></a><a class="dropdown-item" href="javascript:;" data-language="es"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/es.png')}}" alt="flag"><span class="font-small-3">Spanish</span></a><a class="dropdown-item" href="javascript:;" data-language="pt"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/pt.png')}}" alt="flag"><span class="font-small-3">Portuguese</span></a><a class="dropdown-item" href="javascript:;" data-language="de"><img class="langimg mr-2" src="{{ asset('student-assets/app-assets/img/flags/de.png')}}" alt="flag"><span class="font-small-3">German</span></a></div>
           </li>
-          <li class="dropdown nav-item"><a class="nav-link dropdown-toggle dropdown-notification p-0 mt-2" id="dropdownBasic1" href="javascript:;" data-toggle="dropdown"><i class="ft-bell font-medium-3"></i><span class="notification badge badge-pill badge-danger">4</span></a>
+          <!-- <li class="dropdown nav-item">
+            <a class="nav-link dropdown-toggle dropdown-notification p-0 mt-2" id="dropdownBasic1" href="javascript:;" data-toggle="dropdown"><i class="ft-bell font-medium-3"></i>
+          <span class="notification badge badge-pill badge-danger">4</span></a>
             <ul class="notification-dropdown dropdown-menu dropdown-menu-media dropdown-menu-right m-0 overflow-hidden">
               <li class="dropdown-menu-header">
                 <div class="dropdown-header d-flex justify-content-between m-0 px-3 py-2 white bg-primary">
@@ -138,14 +140,14 @@
                 <div class="noti-footer text-center cursor-pointer primary border-top text-bold-400 py-1">Read All Notifications</div>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li i class="dropdown nav-item mr-1">
             <a class="nav-link dropdown-toggle user-dropdown d-flex align-items-end" id="dropdownBasic2" href="javascript:;" data-toggle="dropdown">
               <div class="user d-md-flex d-none mr-2">
                 <span class="text-right">{{Auth::guard('web')->user()->name}}</span>
                 <span class="text-right text-muted font-small-3">Available</span>
               </div>
-              <img class="avatar" src="{{asset('storage\student'.Auth::user()->image)}}" alt="avatar" height="35" width="35">
+              <img class="avatar" src="{{asset('/storage/student/'.Auth::guard('web')->user()->image)}}" alt="avatar" height="35" width="35">
             </a>
             <div class="dropdown-menu text-left dropdown-menu-right m-0 pb-0" aria-labelledby="dropdownBasic2">
               <!-- <a class="dropdown-item" href="app-chat.html">

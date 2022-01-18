@@ -23,13 +23,15 @@ class DashboardController extends Controller
         return view('College.Auth.edit-profile', compact('college'));
     }
 
-    public function editProfile(EditProfileRequest $request,$id)
+    public function editProfile(Request $request,$id)
     {
         $data = College::find($id);
         $data->name = $request->name;
         $data->email = $request->email;
         $data->contact_no = $request->contact_no;
         $data->address = $request->address;
+        $logo = uploadFile($request->logo, 'college');
+        $data->logo = $logo;
         $data->save();
         return redirect()->route('college.show_edit_profile');
     }

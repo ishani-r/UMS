@@ -23,8 +23,8 @@
                                  {{Form::text('name',null,['class'=>'form-control'])}}
                                  @error('name')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -36,8 +36,8 @@
                                  {{Form::text('email',null,['class'=>'form-control'])}}
                                  @error('email')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -51,8 +51,8 @@
                                  {{Form::text('contact_no',null,['class'=>'form-control'])}}
                                  @error('contact_no')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -64,8 +64,8 @@
                                  {{Form::text('address',null,['class'=>'form-control','row'=>2])}}
                                  @error('address')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>
@@ -80,8 +80,8 @@
                                  <img class="img" src="{{asset('storage/college/'.$college->logo)}}" width="50px" />
                                  @error('logo')
                                  <span role="alert">
-                                 <strong style="color:red;">{{$message}}</strong>
-                              </span>
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
                                  @enderror
                               </div>
                            </div>

@@ -33,7 +33,7 @@
             <li class="{{ request()->is('*index*') ? 'active' : '' }}">
                <a href="{{ route('college.show_s_admission')}}" class="text-decoration-none">
                   <i class="fa fa-list-alt" aria-hidden="true"></i>
-                  <span class="menu-title" data-i18n="Email">Student Admission Form</span>
+                  <span class="menu-title" data-i18n="Email">Student</span>
                </a>
             </li>
          </ul>
