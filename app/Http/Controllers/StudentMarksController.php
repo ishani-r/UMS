@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Repositories\StudentMarksRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class StudentMarksController extends Controller
 {
@@ -25,6 +26,7 @@ class StudentMarksController extends Controller
     public function store(Request $request)
     {
         $result = $this->Data->store($request->all());
+        Session::flash('success', 'Admission Form Submit Successfully !!');
         return redirect()->route('show_marks',compact('result'));
     }
 

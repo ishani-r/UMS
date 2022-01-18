@@ -23,6 +23,12 @@
                      <p>{{ Session::get('error') }}</p>
                   </div>
                   @endif
+                  @if (Session::has('success'))
+                  <div class="alert alert-success text-center">
+                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                     <p>{{ Session::get('success') }}</p>
+                  </div>
+                  @endif
                   <!-- <h4 class="card-title">Store</h4> -->
                </div>
                <div class="card-content">

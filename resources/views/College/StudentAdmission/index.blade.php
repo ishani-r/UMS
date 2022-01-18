@@ -38,29 +38,7 @@
 @push('js')
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 {!! $dataTable->scripts() !!}
-<script>
-   $(document).on('click', '.checkbox', function() {
-      // alert(1);
-      var id = $(this).data('id');
-      // alert(id);
-      $(":checkbox:checked").each(function(key) {
-         id[key] = $(this).val();
-      });
-      $.ajax({
-         url: "{{ route('college.confirm')}}",
-         type: "POST",
-         dataType: 'JSON',
-         data: {
-            'id': id,
-            _token: '{{ csrf_token() }}'
-         },
-         success: function(res) {
-            console.log(res.id);
-            return false;
-         }
-      });
-   });
-   
+<script>   
     // Delete
     $(document).on('click', '.delete', function() {
       swal({

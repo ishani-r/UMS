@@ -23,10 +23,17 @@ class AdminssionController extends Controller
     public function store(AdmissionRequest $request)
     {
         $data = $this->Data->store($request->all());
+        Session::flash('success', 'Marks Add Successfully !!');
         return redirect()->route('admission_form', compact('data'));
     }
     public function showAdmissionForm()
     {
+        // $meritround = MeritRound::where('status', '1')->first();
+        // $date_now = date("Y-m-d");
+        // if ($date_now > $meritround->end_date) {
+        //     Session::flash('error', 'You can not show addmission form beasuce Admission date is Expired.... !!');
+        //     return redirect()->route('home');
+        // }
         $count=StudentMark::where('user_id',Auth::user()->id)->count();
         if($count==0)
         {
