@@ -83,7 +83,7 @@
                               @enderror
                            </fieldset>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <!-- <div class="col-md-6 col-12">
                            <label for="merit_round_id">Round No</label>
                            <fieldset class="form-group">
                               <select class="custom-select course @error('merit_round_id') is-invalid @enderror" id="merit_round_id" name="merit_round_id" value="{{ old('merit_round_id') }}">
@@ -98,7 +98,7 @@
                               </span>
                               @enderror
                            </fieldset>
-                        </div>
+                        </div> -->
                      </div>
 
                      {{Form::submit('Submit', ['class'=>'btn gradient-pomegranate big-shadow addBtn','data-id' => $studentmark])}}

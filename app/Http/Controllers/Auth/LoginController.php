@@ -47,32 +47,38 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        $meritround = MeritRound::first();
+        $meritround = MeritRound::where('status','1')->first();
         $date_now = date("Y-m-d"); // this format is string comparable
 
         if ($date_now == $meritround->merit_result_declare_date) {
-            $user = User::where('email',$request->email)->first();
-            // dd($user->id);
+            // dd(1);
+            $user = User::where('email', $request->email)->first();
             $admission = Addmission::where('user_id', $user->id)->first();
-            dd($admission->merit);
-            // $college_merit = CollegeMerit::where('college_id', Auth::user()->id)->first();
-            // dd($college_merit);
-            if (
-                method_exists($this, 'hasTooManyLoginAttempts') &&
-                $this->hasTooManyLoginAttempts($request)
-            ) {
-                $this->fireLockoutEvent($request);
-                return $this->sendLockoutResponse($request);
-            }
-
-            if ($this->attemptLogin($request)) {
-                if ($request->hasSession()) {
-                    $request->session()->put('auth.password_confirmed_at', time());
+            $merit = $admission->merit;
+            $first_sel_college = $admission->college_id[0];
+            $college_merit = CollegeMerit::where('college_id', $first_sel_college)->first();
+            if ($merit >= $college_merit->merit) {
+                if (
+                    method_exists($this, 'hasTooManyLoginAttempts') &&
+                    $this->hasTooManyLoginAttempts($request)
+                ) {
+                    // dd(1);
+                    $this->fireLockoutEvent($request);
+                    return $this->sendLockoutResponse($request);
                 }
-                return $this->sendLoginResponse($request);
+
+                if ($this->attemptLogin($request)) {
+                    // dd($request);
+                    if ($request->hasSession()) {
+                        $request->session()->put('auth.password_confirmed_at', time());
+                    }
+                    return $this->sendLoginResponse($request);
+                }
+                $this->incrementLoginAttempts($request);
+                return $this->sendFailedLoginResponse($request);
+            } else {
+                dd(3);
             }
-            $this->incrementLoginAttempts($request);
-            return $this->sendFailedLoginResponse($request);
         } else if ($date_now > $meritround->end_date) {
             return redirect()->back()->with('error', 'You Can not Login Beacuse Admission Date is Expired....');
         } else {

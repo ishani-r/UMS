@@ -3,6 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Addmission;
+use App\Models\AddmissionConfiram;
+use App\Models\College;
 use App\Models\CollegeMerit;
 use App\Models\User;
 use App\Models\Course;
@@ -34,28 +36,34 @@ class StudentAdmissionDatatable extends DataTable
                 return $result;
             })
 
-            ->editColumn('user_id', function ($data) {
-                $data = User::where('id', $data->user_id)->first();
-                return $data->name;
+            // ->editColumn('confirm_college_id', function ($data) {
+            //     $data = College::where('id', $data->confirm_college_id)->first();
+            //     return $data->name;
+            // })
+
+            ->addColumn('user_id', function ($data) {
+                $datas = Addmission::where('id', $data->addmission_id)->first();
+                $user = User::where('id',$datas->user_id)->first();
+                return $user->name;
             })
 
-            ->editColumn('course_id', function ($data) {
-                $data = Course::where('id', $data->course_id)->first();
-                return $data->name;
+            ->addColumn('course_id', function ($data) {
+                $datas = Addmission::where('id', $data->addmission_id)->first();
+                $Course = Course::where('id',$datas->course_id)->first();
+                return $Course->name;
+            })
+            
+            ->addColumn('addmission_date', function ($data) {
+                $datas = Addmission::where('id', $data->addmission_id)->select('addmission_date')->first();
+                return $datas->addmission_date;
             })
 
-            ->editColumn('merit_round_id', function ($data) {
-                $data = MeritRound::where('id', $data->merit_round_id)->first();
-                return $data->round_no ?? '-';
+            ->addColumn('addmission_code', function ($data) {
+                $datas = Addmission::where('id', $data->addmission_id)->select('addmission_code')->first();
+                return $datas->addmission_code;
             })
 
-            ->editColumn('all', function ($data) {
-                $result = '<div class="form-group">';
-                $result .= '<input class="form-check-input checkbox" type="checkbox" id="checkbox" name="checkbox[]" data-id="' . $data->id . '" name="checkbox"></input>';
-                return $result;
-            })
-
-            ->rawColumns(['action', 'status', 'course_id', 'all'])
+            ->rawColumns(['action', 'user_id'])
             ->addIndexColumn();
     }
 
@@ -65,41 +73,9 @@ class StudentAdmissionDatatable extends DataTable
      * @param \App\Models\StudentAdmissionDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Addmission $model, Request $request)
+    public function query(AddmissionConfiram $model)
     {
-        // $data = $model->get()->filter(function ($order) use ($request) {
-        //     // dd($order);          
-        //     $selected_college = explode(',', $order->college_id);
-        //     return $selected_college[0] == Auth::user()->id;
-        // });
-        // dd($data);
-        // return $this->make(true);
-        // $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
-        
-        // $model->contains(function ($value, $key) {
-
-        //     dd($value);
-        //     // return $value > 5;
-        //     $selected_college = explode(',', $order->college_id);
-        //     return $selected_college[0] == Auth::user()->id;
-        // });
-        // dd(Auth::user()->id);
-        // // $admissions = Addmission::select('college_id','id')->get();
-        // foreach ($model as $admission) {
-        //     $selected_college = explode(',', $admission->college_id);
-        //     dd($selected_college[0]);
-        //     // $adadmission = Addmission::whereIn('college_id', $selected_college[0])->get();
-        //     if ($selected_college[0] == Auth::user()->id) {
-        //         // dd(1);
-        //         // $admission = Addmission::select('college_id')->get();
-    
-        //     }
-        //     $data = Addmission::where($selected_college[0], Auth::user()->id)->get();
-        // }
-        // dd($admission);
-        // return $data;
-        // $collgemerit = CollegeMerit::where('');
-        return $model->newQuery();
+        return $model->where('confirm_college_id',Auth::guard('college')->user()->id)->newQuery();
     }
 
     /**
@@ -132,16 +108,15 @@ class StudentAdmissionDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('all')->title('<button class="btn btn-danger" id="confirm">confirm</button>'),
             Column::make('id')->data('DT_RowIndex'),
             Column::make('user_id'),
-            Column::make('addmission_date'),
-            Column::make('addmission_code'),
             Column::make('course_id'),
-            Column::make('merit_round_id'),
-            Column::make('merit'),
-            // Column::make('created_at'),
-            // Column::make('updated_at'),
+            // Column::make('addmission_id'),
+            // Column::make('confirm_college_id'),
+            Column::make('confirm_merit'),
+            Column::make('addmission_code'),
+            Column::make('addmission_date'),
+            Column::make('confirmation_type'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

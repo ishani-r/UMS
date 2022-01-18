@@ -22,13 +22,11 @@ class AdminssionController extends Controller
 
     public function store(AdmissionRequest $request)
     {
-
         $data = $this->Data->store($request->all());
         return redirect()->route('admission_form', compact('data'));
     }
     public function showAdmissionForm()
     {
-
         $count=StudentMark::where('user_id',Auth::user()->id)->count();
         if($count==0)
         {

@@ -27,4 +27,13 @@ class Addmission extends Model
     {
         return $this->hasOne(College::class,'id','college_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
+    public function course()
+    {
+        return $this->hasOne(Course::class,'id','course_id');
+    }
 }

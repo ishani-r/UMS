@@ -36,10 +36,10 @@ class AdmissionStudentDatatable extends DataTable
             })
 
             ->editColumn('college_id', function ($data) {
-                $data = College::where('id', $data->college_id)->first();
-                return $data->name ?? '-';
+                $data = College::whereIn('id', $data->college_id)->pluck('name')->toArray();
+                return implode('<br>',$data);
             })
-
+            ->rawColumns(['action', 'college_id'])
             ->addIndexColumn();
     }
 
@@ -86,10 +86,10 @@ class AdmissionStudentDatatable extends DataTable
         return [
             Column::make('id')->data('DT_RowIndex'),
             Column::make('user_id'),
+            Column::make('college_id'),
             Column::make('merit'),
             Column::make('course_id'),
             Column::make('merit_round_id'),
-            Column::make('college_id'),
             Column::make('addmission_date'),
             Column::make('addmission_code'),
             Column::make('status'),

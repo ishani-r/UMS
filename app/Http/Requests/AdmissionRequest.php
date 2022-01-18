@@ -26,7 +26,6 @@ class AdmissionRequest extends FormRequest
         return [
             'college_id' => 'required|not-in:0',
             'course_id' => 'required|not-in:0',
-            'merit_round_id' => 'required|not-in:0',
         ];
     }
 }

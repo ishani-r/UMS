@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProfileRequest;
 use App\Models\Addmission;
+use App\Models\AddmissionConfiram;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +14,13 @@ class DashboardController extends Controller
 {
     public function indexs()
     {
-        $admission = Addmission::where('user_id',Auth::user()->id)->first();
+        $admission = Addmission::where('user_id', Auth::user()->id)->first();
         $merit = $admission->merit;
-        if($admission){
-        return view('layouts.content',compact('merit'));
-        } else{
+        if ($admission) {
+            return view('layouts.content', compact('merit'));
+        } else {
             $merit = '0';
-        return view('layouts.content',compact('merit'));
+            return view('layouts.content', compact('merit'));
         }
     }
 
@@ -72,5 +73,32 @@ class DashboardController extends Controller
         $student->save();
 
         return redirect()->back()->with("success", "Password successfully changed!");
+    }
+
+    public function status(Request $request)
+    {
+        $admission = Addmission::where('user_id', Auth::user()->id)->first();
+        $id = $admission->id;
+        $data = Addmission::find($id);
+
+        if ($request->id == "0") {
+            $data->status = "0";
+        } elseif ($request->id == "1") {
+            $data->status = "1";
+            AddmissionConfiram::updateOrCreate(
+                [
+                    'addmission_id' => $id,
+                ],
+                [
+                    'confirm_college_id' => $admission->college_id[0],
+                    'confirm_merit' => $admission->merit,
+                    'confirmation_type ' => 'M',
+                ]
+            );
+        } else {
+            $data->status = "2";
+        }
+        $data->save();
+        return $data;
     }
 }
