@@ -26,7 +26,8 @@
                            <div class="form-group">
                               <div class="controls">
                                  <label for="addmission_code">{{ Form::label('addmission_code', 'addmission code')}}</label>
-                                 {{Form::text('addmission_code',null,['class'=>'form-control'])}}
+                                 <input name="addmission_code" id="addmission_code" value="{{$admission->addmission_code}}" class="form-control" disabled>
+                                 <!-- {{Form::text('addmission_code',null,['class'=>'form-control'])}} -->
                                  @error('addmission_code')
                                  <span role="alert">
                                     <strong style="color:red;">{{$message}}</strong>
@@ -39,7 +40,8 @@
                            <div class="form-group">
                               <div class="controls">
                                  <label for="merit">{{ Form::label('merit', 'merit')}}</label>
-                                 {{Form::text('merit',null,['class'=>'form-control'])}}
+                                 <input name="merit" id="merit" value="{{$admission->merit}}" class="form-control" disabled>
+                                 <!-- {{Form::text('merit',null,['class'=>'form-control'])}} -->
                                  @error('merit')
                                  <span role="alert">
                                     <strong style="color:red;">{{$message}}</strong>
@@ -55,7 +57,7 @@
                            <label for="exampleInputUsername2" class="d-block">Select College :</label>
                            <select class="selectpicker" name="college_id[]" id="college_id" multiple data-live-search="true">
                               @foreach($college as $college)
-                              <option class="dropdown-item" value="{{$college->id}}">{{ $college->name }}</option>
+                              <option class="dropdown-item" value="{{$college->id}}" {{ (isset($addmission->college_id) ? (in_array($college->id, $addmission->college_id) ? 'selected' : '') : '') }}>{{ $college->name }}</option>
                               @endforeach
                            </select></br>
                            @error('college_id')

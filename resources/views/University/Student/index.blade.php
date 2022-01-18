@@ -5,12 +5,7 @@
 <div class="content-wrapper">
    <div class="row">
       <div class="col-12">
-         <div class="content-header">Syudent Table</div>
-      </div>
-      <div class="text-right">
-         <div class="mb-2">
-            <a href="{{ route('university.meritround.create')}}" class="btn gradient-pomegranate big-shadow">Add Merit Round</a>
-         </div>
+         <div class="content-header">Student Table</div>
       </div>
    </div>
    
