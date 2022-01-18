@@ -35,16 +35,16 @@ class CollegeMeritDatatable extends DataTable
             })
             ->editColumn('college_id', function ($data) {
                 $data = College::where('id', $data->college_id)->first();
-                return $data->name;
+                return $data->name ?? '-';
             })
 
             ->editColumn('course_id', function ($data) {
                 $data = Course::where('id', $data->course_id)->first();
-                return $data->name;
+                return $data->name ?? '-';
             })
             ->editColumn('merit_round_id', function ($data) {
                 $data = MeritRound::where('id', $data->merit_round_id)->first();
-                return $data->round_no;
+                return $data->round_no ?? '-';
             })
             ->rawColumns(['action', 'college_id'])
             ->addIndexColumn();

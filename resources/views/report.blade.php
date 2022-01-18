@@ -580,3 +580,49 @@ $(document).on('click','#deletes',function(){
         // dd($admission);
         // return $data;
         // return $model->where('college_id',)->newQuery();
+
+
+
+        <table class="table">
+                              <tr>
+                                 <th>Label</th>
+                                 <th>Details</th>
+                              </tr>
+                              <tr>
+                                 <td>Name</td>
+                                 <td>{{$admission->user->name}}</td>
+                              </tr>
+                              <tr>
+                                 <td>Merit</td>
+                                 <td>{{$admission->merit}}</td>
+                              </tr>
+                              <tr>
+                                 <td>Course</td>
+                                 <td>{{$admission->course->name}}</td>
+                              </tr>
+                              <tr>
+                                 <td>College</td>
+                                 <td>{{$college->name}}</td>
+                              </tr>
+                              <tr>
+                                 <td>Admission Date</td>
+                                 <td>{{$admission->addmission_date}}</td>
+                              </tr>
+                              <tr>
+                                 <td>Admission Code</td>
+                                 <td>{{$admission->addmission_code}}</td>
+                              </tr>
+                           </table>
+                           <h6>- Your Merit Not Match You Selected first college. <b>If You want to Reserved Seat Press Confirm Button</b> .</h6>
+                           <h6>- If You Want To go for Next Round Press Next Button.</h6>
+                           <h6>- Tf You do not want admission Press Reject Button.</h6>
+
+                           <a type="button" id="confiem" data-id="1-r" class="btn btn-success round mr-1 mb-1 confirm">Confirms</a>
+                           <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
+                           <!-- <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
+                           <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a> -->
+                           <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
+
+                           @elseif($admission->merit <= $college_merit->merit)
+                           
+                           @else

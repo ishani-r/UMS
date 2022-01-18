@@ -34,5 +34,4 @@ Route::group(['middleware' => 'auth:college'], function () {
     // Student Admission
     Route::get('index',                         'Auth\StudentAdmissionController@index')->name('show_s_admission');
     Route::post('delete/{id}',                  'Auth\StudentAdmissionController@delete')->name('delete');
-    Route::post('confirm',                      'Auth\StudentAdmissionController@confirm')->name('confirm');
 });

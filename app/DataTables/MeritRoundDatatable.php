@@ -26,8 +26,8 @@ class MeritRoundDatatable extends DataTable
             ->addColumn('action', function ($data) {
                 $result = '<div class="btn-group">';
                 // $result .= '<a href="' . route('university.meritround.show', $data->id) . '"><button class="btn-sm btn-warning mr-sm-2 mb-1" title="store view"><i class="fa fa-eye" aria-hidden="true"></i></button></a>';
-                $result .= '<a href="' . route('university.meritround.edit', $data->id) . '"><button class="btn-sm btn-primary mr-sm-2 mb-1" title="store update"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>';
-                $result .= '<button type="submit" data-id="' . $data->id . '" class="btn-sm btn-danger mr-sm-2 mb-1 delete" title="store delete" ><i class="fa fa-trash" aria-hidden="true"></i></button>';
+                $result .= '<a href="' . route('university.meritround.edit', $data->id) . '"><button class="btn-sm btn-primary mr-sm-2 mb-1" title="merit round update"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>';
+                $result .= '<button type="submit" data-id="' . $data->id . '" class="btn-sm btn-danger mr-sm-2 mb-1 delete" title="merit round delete" ><i class="fa fa-trash" aria-hidden="true"></i></button>';
                 return $result;
             })
 

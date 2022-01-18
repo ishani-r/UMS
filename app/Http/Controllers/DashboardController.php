@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EditProfileRequest;
 use App\Models\Addmission;
 use App\Models\AddmissionConfiram;
+use App\Models\College;
+use App\Models\CollegeMerit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -77,13 +80,21 @@ class DashboardController extends Controller
 
     public function status(Request $request)
     {
+        session()->forget('xyz');
+        Session::put('xyz', $request->id);
         $admission = Addmission::where('user_id', Auth::user()->id)->first();
+        $college_merit = CollegeMerit::where('college_id', $admission->college_id[0])->first();
+        // dd($admission->merit);
+        // if($admission->merit <= $college_merit->merit){
+        //     dd(1);
+        // } else {
         $id = $admission->id;
         $data = Addmission::find($id);
 
-        if ($request->id == "0") {
+        if ($request->id == "4") {
             $data->status = "0";
-        } elseif ($request->id == "1") {
+            $data->merit_round_id = $admission->merit_round_id + 1;
+        } elseif ($admission->merit <= $college_merit->merit) {
             $data->status = "1";
             AddmissionConfiram::updateOrCreate(
                 [
@@ -92,7 +103,21 @@ class DashboardController extends Controller
                 [
                     'confirm_college_id' => $admission->college_id[0],
                     'confirm_merit' => $admission->merit,
-                    'confirmation_type ' => 'M',
+                    'confirm_round_id' => '1',
+                    'confirmation_type' => 'R',
+                ]
+            );
+        } elseif ($request->id == "1") {
+            $data->status = "1";
+            $a = AddmissionConfiram::updateOrCreate(
+                [
+                    'addmission_id' => $id,
+                ],
+                [
+                    'confirm_college_id' => $admission->college_id[0],
+                    'confirm_merit' => $admission->merit,
+                    'confirm_round_id' => '1',
+                    'confirmation_type' => 'M',
                 ]
             );
         } else {
@@ -101,4 +126,5 @@ class DashboardController extends Controller
         $data->save();
         return $data;
     }
+    // }
 }

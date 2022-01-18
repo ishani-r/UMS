@@ -14,7 +14,6 @@ class AdmissionRepository implements AdmissionInterface
 {
    public function store(array $array)
    {
-      // dd($array);
       DB::beginTransaction();
       try {
          $selected_college = (array)$array['college_id'];
@@ -23,6 +22,7 @@ class AdmissionRepository implements AdmissionInterface
          $data = Addmission::updateOrCreate(
             [
                'user_id' => Auth::user()->id,
+               // 'status' => '0',
             ],
             [
                'user_id' => Auth::user()->id,
@@ -30,7 +30,7 @@ class AdmissionRepository implements AdmissionInterface
                'college_id' => $selected_college,
                'addmission_date' => date("Y-m-d"),
                'addmission_code' => $addmission_code,
-               'status' => 2,
+               // 'status' => 3,
             ]
          );
          DB::commit();

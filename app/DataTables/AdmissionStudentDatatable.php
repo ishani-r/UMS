@@ -25,15 +25,15 @@ class AdmissionStudentDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             // ->addColumn('action', 'admissionstudentdatatable.action');
-            ->editColumn('status', function ($data) {
-                if ($data['status'] == '0') {
-                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-info round mr-1 mb-1">Next</button>';
-                } else if ($data['status'] == '1'){
-                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-success round mr-1 mb-1">Confirm</button>';
-                } else {
-                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-danger round mr-1 mb-1">Rejected</button>';
-                }
-            })
+            // ->editColumn('status', function ($data) {
+            //     if ($data['status'] == '0') {
+            //         return '<button type="button" data-id="' . $data->id . '" class="btn btn-info round mr-1 mb-1">Next</button>';
+            //     } else if ($data['status'] == '1'){
+            //         return '<button type="button" data-id="' . $data->id . '" class="btn btn-success round mr-1 mb-1">Confirm</button>';
+            //     } else {
+            //         return '<button type="button" data-id="' . $data->id . '" class="btn btn-danger round mr-1 mb-1">Rejected</button>';
+            //     }
+            // })
             ->editColumn('user_id', function ($data) {
                 $data = User::where('id', $data->user_id)->first();
                 return $data->name ?? '-';
@@ -101,7 +101,7 @@ class AdmissionStudentDatatable extends DataTable
             Column::make('merit_round_id'),
             Column::make('addmission_date'),
             Column::make('addmission_code'),
-            Column::make('status'),
+            // Column::make('status'),
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)

@@ -35,7 +35,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="obtain_mark">{{ $subject->name}}</label>
-                              <input type="text" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter {{$subject->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
+                              <input type="number" name="obtain_mark[{{$subject->id}}]" class="form-control" id="obtain_mark" placeholder="Enter {{$subject->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
                               @error('obtain_mark')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="obtain_mark">{{ $studentmark->subject->name}}</label>
-                              <input type="text" name="obtain_mark[{{$studentmark->subject->id}}]" class="form-control" id="obtain_mark" value="{{$studentmark->obtain_mark}}" placeholder="Enter {{$studentmark->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
+                              <input type="number" name="obtain_mark[{{$studentmark->subject->id}}]" class="form-control" id="obtain_mark" value="{{$studentmark->obtain_mark}}" placeholder="Enter {{$studentmark->name}} Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
                               @error('obtain_mark')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -77,40 +77,6 @@
    <script>
       $(document).ready(function() {
          $('select').selectpicker();
-      });
-      $('#admission_form').validate({
-         rules: {
-            name: {
-               required: true,
-            },
-            seat_no: {
-               required: true,
-            },
-            reserved_seat: {
-               required: true,
-            },
-            merit_seat: {
-               required: true,
-            },
-         },
-         messages: {
-            name: 'Please Enter Course Name!',
-            seat_no: 'Please Enter Total Seat!',
-            reserved_seat: 'Please Enter Reserved Seat!',
-            merit_seat: 'Please Enter Merit Seat!',
-         },
-         highlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-invalid").removeClass("is-valid");
-         },
-         unhighlight: function(element, errorClass, validClass) {
-            $(element).addClass("is-valid").removeClass("is-invalid");
-         },
-         // errorPlacement: function(error, element) {
-         //    error.insertAfter(element.parent());
-         // },
-         submitHandler: function(form) {
-            form.submit();
-         }
       });
    </script>
    @endpush

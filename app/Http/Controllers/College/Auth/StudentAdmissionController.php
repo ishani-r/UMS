@@ -4,7 +4,7 @@ namespace App\Http\Controllers\College\Auth;
 
 use App\DataTables\StudentAdmissionDatatable;
 use App\Http\Controllers\Controller;
-use App\Models\Addmission;
+use App\Models\AddmissionConfiram;
 use Illuminate\Http\Request;
 
 class StudentAdmissionController extends Controller
@@ -16,11 +16,8 @@ class StudentAdmissionController extends Controller
 
     public function delete($id)
     {
-        $admission = Addmission::find($id);
+        $admission = AddmissionConfiram::find($id);
         $admission->delete();
-    }
-    public function confirm(Request $request)
-    {
-        dd($request->toArray());
+        return $admission;
     }
 }

@@ -26,7 +26,7 @@ class CreateAddmissionsTable extends Migration
             $table->string('college_id')->nullable();
             $table->string('addmission_date')->nullable();
             $table->string('addmission_code')->nullable();
-            $table->boolean('status')->default(2)->comment('0 = next, 1 = confirm, 2 = reject');
+            $table->boolean('status')->default(3)->comment('0 = next, 1 = confirm, 2 = reject, 3 = pending')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

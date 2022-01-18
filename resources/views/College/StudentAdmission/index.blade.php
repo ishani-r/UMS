@@ -61,11 +61,11 @@
       });
    });
    
-   // Delete
-   $(document).on('click', '.delete', function() {
+    // Delete
+    $(document).on('click', '.delete', function() {
       swal({
             title: "Are you sure?",
-            text: "You Want To Delete This Record!",
+            text: "You Want To Delete The College!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -73,11 +73,11 @@
          .then((willDelete) => {
             if (willDelete) {
                var delet = $(this).data('id');
-               url = url.replace(':queryId', delet);
                var url = '{{route("college.delete", ":queryId")}}';
+               url = url.replace(':queryId', delet);
                $.ajax({
                   url: url,
-                  type: "DELETE",
+                  type: "post",
                   data: {
                      id: delet,
                      _token: '{{ csrf_token() }}'
@@ -87,11 +87,11 @@
                      $('#studentadmissiondatatable-table').DataTable().ajax.reload();
                   }
                });
-               swal("Your Record has been deleted!", {
+               swal("Your Store has been deleted!", {
                   icon: "success",
                });
             } else {
-               swal("Your Record is safe!");
+               swal("Your College is safe!");
             }
          });
    });
