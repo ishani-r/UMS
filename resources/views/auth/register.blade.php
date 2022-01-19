@@ -150,6 +150,18 @@
 @endsection
 @push('js')
 <script>
+    $(function() {
+            var dtToday = new Date();
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+            var maxDate = year + '-' + month + '-' + day;
+            $('.txtDate').attr('max', maxDate);
+        });
    $('input[name=adhaar_card_no]').keypress(function() {
       var rawNumbers = $(this).val().replace(/ /g, '');
       var cardLength = rawNumbers.length;

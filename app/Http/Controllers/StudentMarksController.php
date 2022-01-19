@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Addmission;
 use App\Models\StudentMark;
 use App\Models\Subject;
 use App\Repositories\StudentMarksRepository;
@@ -18,6 +19,11 @@ class StudentMarksController extends Controller
 
     public function index()
     {
+        $admission = Addmission::where('user_id',Auth::user()->id)->first();
+        if($admission->status == '2'){
+        Session::flash('error', 'Your Admission Is Rejected By You. You Can Not Add Your Mark !!');
+        return redirect()->route('home');
+        }
         $subjects = Subject::all();
         $studentmarks = StudentMark::with('subject')->where('user_id', Auth::user()->id)->get();
         return view('Student.marks',compact('subjects','studentmarks'));

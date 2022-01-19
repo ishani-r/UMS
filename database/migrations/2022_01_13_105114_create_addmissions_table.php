@@ -21,8 +21,8 @@ class CreateAddmissionsTable extends Migration
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
 
-            // $table->unsignedBigInteger('merit_round_id');
-            // $table->foreign('merit_round_id')->references('id')->on('merit_rounds');
+            $table->unsignedBigInteger('merit_round_id');
+            $table->foreign('merit_round_id')->references('id')->on('merit_rounds');
             $table->string('college_id')->nullable();
             $table->string('addmission_date')->nullable();
             $table->string('addmission_code')->nullable();

@@ -34,7 +34,7 @@ Route::get('show-edit-profile',                 [DashboardController::class, 'sh
 Route::put('update-profile/{id}',               [DashboardController::class, 'editProfile'])->name('update_profile');
 Route::get('change-password-show',              [DashboardController::class, 'showChangePassword'])->name('show_change_password');
 Route::post('change-password',                  [DashboardController::class, 'changePassword'])->name('change_password');
-Route::get('admis-status',              [DashboardController::class, 'status'])->name('admis_status');
+Route::get('admis-status',                      [DashboardController::class, 'status'])->name('admis_status');
 
 // Admission
 Route::get('form',                              [AdminssionController::class, 'showAdmissionForm'])->name('admission_form');

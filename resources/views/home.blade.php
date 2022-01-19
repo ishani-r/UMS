@@ -65,7 +65,7 @@
                                  <td style="color: red;">Sorry, You have not been selected in any of the collages. <b>Please wait will Your First Eligible College Send Mail.</b></td>
                                  @else
                                  @foreach($colleges as $college)
-                                 
+
                                  <td>{{$college->name}} <input type="checkbox" class="asd" id="{{$college->id}}" value="{{$college->id}}" {{$college->id == ($admission_c->confirm_college_id ?? '') ? 'checked' : ''}}></td>
                                  @endforeach
                                  @endif
@@ -94,6 +94,8 @@
                            <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
                            @elseif(Session::get('xyz')==4)
                            <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
+                           @elseif(Session::get('xyz')==2)
+                           <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
                            @else
                            <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
                            <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
@@ -150,6 +152,16 @@
    });
 
    $(document).on('click', '.confirm', function() {
+      var id = $(this).data('id');
+      if(id == 1){
+      if ($('.asd').is(":checked")) {
+         var checked_college = $('.asd').val();
+      } else {
+         toastr.error("Please Select One College....");
+         return false;
+      }
+   }
+
       swal({
             title: "Are you sure?",
             text: "You Want To Confirm Your Addmission!",
@@ -159,11 +171,6 @@
          })
          .then((willDelete) => {
             if (willDelete) {
-
-               if ($('.asd').is(":checked")) {
-                  var checked_college = $('.asd').val();
-               }
-               var id = $(this).data('id');
                var number = $(this).attr('id', 'asd');
                $.ajax({
                   url: "{{route('admis_status')}}",
