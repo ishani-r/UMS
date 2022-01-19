@@ -61,9 +61,9 @@
                      <div class="row">
                         <div class="col-md-6 col-12">
                            <label for="exampleInputUsername2" class="d-block">Select College :</label>
-                           <select class="selectpicker" name="college_id[]" id="college_id" multiple data-live-search="true">
+                           <select class="js-example-basic-multiple form-control single" name="college_id[]" id="college_id" multiple data-live-search="true">
                               @foreach($college as $college)
-                              <option class="dropdown-item" value="{{$college->id}}" {{ (isset($addmission->college_id) ? (in_array($college->id, $addmission->college_id) ? 'selected' : '') : '') }}>{{ $college->name }}</option>
+                              <option class="dropdown-item single" value="{{$college->id}}" {{ (isset($admission->college_id) ? (in_array($college->id, $admission->college_id) ? 'selected' : '') : '') }}>{{ $college->name }}</option>
                               @endforeach
                            </select></br>
                            @error('college_id')
@@ -120,8 +120,26 @@
    @endsection
    @push('js')
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    <script>
+      $(".js-example-basic-multiple").select2();
+      $('.single').select2({
+         tags: true
+      });
+
+      $(".single").on("select2:select", function(evt) {
+         var element = evt.params.data.element;
+         var $element = $(element);
+
+         $element.detach();
+         $(this).append($element);
+         $(this).trigger("change");
+      });
+      var thing = $(".single").select2({
+         closeOnSelect: false
+      }).on("change", function(e) {});
       $(document).ready(function() {
          var id = $('.addBtn').attr("data-id");
          if (id == 0) {

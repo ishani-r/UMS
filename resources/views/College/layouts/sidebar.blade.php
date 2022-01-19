@@ -33,7 +33,13 @@
             <li class="{{ request()->is('*index*') ? 'active' : '' }}">
                <a href="{{ route('college.show_s_admission')}}" class="text-decoration-none">
                   <i class="fa fa-list-alt" aria-hidden="true"></i>
-                  <span class="menu-title" data-i18n="Email">Student</span>
+                  <span class="menu-title" data-i18n="Email">Students</span>
+               </a>
+            </li>
+            <li class="{{ request()->is('*reserved*') ? 'active' : '' }}">
+               <a href="{{ route('college.index_reserved')}}" class="text-decoration-none">
+                  <i class="fa fa-list-alt" aria-hidden="true"></i>
+                  <span class="menu-title" data-i18n="Email">Reserved Students</span>
                </a>
             </li>
          </ul>

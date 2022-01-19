@@ -33,5 +33,7 @@ Route::group(['middleware' => 'auth:college'], function () {
 
     // Student Admission
     Route::get('index',                         'Auth\StudentAdmissionController@index')->name('show_s_admission');
+    Route::get('reserved',                      'Auth\StudentAdmissionController@indexReserved')->name('index_reserved');
     Route::post('delete/{id}',                  'Auth\StudentAdmissionController@delete')->name('delete');
+    Route::post('reserved-status',                'Auth\StudentAdmissionController@reservedStatus')->name('reserved_status');
 });

@@ -14,6 +14,7 @@ class AddmissionConfiram extends Model
         'addmission_id',
         'confirm_college_id',
         'confirm_merit',
+        'confirm_round_id',
         'confirmation_type',
     ];
     public function college()

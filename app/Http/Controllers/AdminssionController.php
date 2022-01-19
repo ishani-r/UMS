@@ -23,7 +23,8 @@ class AdminssionController extends Controller
     public function store(AdmissionRequest $request)
     {
         $data = $this->Data->store($request->all());
-        Session::flash('success', 'Marks Add Successfully !!');
+        Session::flash('success', 'Admission Form Submit Successfully !!');
+        // Session::flash('success', 'Marks Add Successfully !!');
         return redirect()->route('admission_form', compact('data'));
     }
     public function showAdmissionForm()

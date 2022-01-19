@@ -8,13 +8,16 @@ use App\Models\College;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\College\EditProfileRequest;
+use App\Models\AddmissionConfiram;
+use App\Models\CollegeMerit;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // dd(1);
-        return view('College.layouts.content');
+        $admission_c = AddmissionConfiram::where('confirm_college_id',Auth::user()->id)->count();
+        $college_merit = CollegeMerit::where('college_id',Auth::user()->id)->select('merit')->first();
+        return view('College.layouts.content', compact('admission_c','college_merit'));
     }
     
     public function showEditProfile()

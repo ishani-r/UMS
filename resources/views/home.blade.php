@@ -37,9 +37,10 @@
                      <div class="media-body white text-left">
                         <h3 class="font-large-1 white mb-0">Your Admission Detail</h3></br>
                         <span>
-
                            @if($admission == NULL)
                            <h4>No data, First add Your Mark and then fill admission form</h4>
+                           @elseif(!isset($colleges))
+                           <h4>Merit result declate at {{$meritround->merit_result_declare_date}}</h4>
                            @else
                            <table class="table">
                               <tr>
@@ -60,9 +61,14 @@
                               </tr>
                               <tr>
                                  <td>College</td>
+                                 @if(count($colleges)==0)
+                                 <td style="color: red;">Sorry, You have not been selected in any of the collages. <b>Please wait will Your First Eligible College Send Mail.</b></td>
+                                 @else
                                  @foreach($colleges as $college)
-                                 <td>{{$college->name}} <input type="checkbox" id="{{$college->id}}"></td>
+                                 
+                                 <td>{{$college->name}} <input type="checkbox" class="asd" id="{{$college->id}}" value="{{$college->id}}" {{$college->id == ($admission_c->confirm_college_id ?? '') ? 'checked' : ''}}></td>
                                  @endforeach
+                                 @endif
                               </tr><br>
                               <tr>
                                  <td>Admission Date</td>
@@ -74,10 +80,16 @@
                               </tr>
                            </table>
 
-                           <h6>- You have shortlisted on merit you are eligible for ({{$college->name}}) Please Press Confiem button.</h6>
+                           @if(count($colleges)==0)
+                           @else
+                           <h6>- Congratulations, You have shortlist on <b style="color: green;">upper college Please select one college And Press Confirm Button.</b></h6>
+                           @endif
                            <h6>- If You Want To go for Next Round Press Next Button.</h6>
                            <h6>- Tf You do not want admission Press Reject Button.</h6>
 
+                           @if(count($colleges)==0)
+                           <!-- Empty -->
+                           @else
                            @if(Session::get('xyz')==1)
                            <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
                            @elseif(Session::get('xyz')==4)
@@ -86,6 +98,7 @@
                            <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
                            <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
                            <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
+                           @endif
                            @endif
                            @endif
                         </span>
@@ -146,7 +159,10 @@
          })
          .then((willDelete) => {
             if (willDelete) {
-               
+
+               if ($('.asd').is(":checked")) {
+                  var checked_college = $('.asd').val();
+               }
                var id = $(this).data('id');
                var number = $(this).attr('id', 'asd');
                $.ajax({
@@ -154,6 +170,7 @@
                   type: 'get',
                   data: {
                      id: id,
+                     checked_college: checked_college,
                   },
                   dataType: "json",
                   success: function(data) {
@@ -165,6 +182,7 @@
                      } else {
                         location.href = "{{route('admission_form')}}";
                      }
+                     location.reload();
                   }
                })
                // swal("Your Status Has Ben Change Succesfully", {

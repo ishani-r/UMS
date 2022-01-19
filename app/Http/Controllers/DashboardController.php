@@ -84,17 +84,27 @@ class DashboardController extends Controller
         Session::put('xyz', $request->id);
         $admission = Addmission::where('user_id', Auth::user()->id)->first();
         $college_merit = CollegeMerit::where('college_id', $admission->college_id[0])->first();
-        // dd($admission->merit);
-        // if($admission->merit <= $college_merit->merit){
-        //     dd(1);
-        // } else {
+       
         $id = $admission->id;
         $data = Addmission::find($id);
 
         if ($request->id == "4") {
             $data->status = "0";
             $data->merit_round_id = $admission->merit_round_id + 1;
-        } elseif ($admission->merit <= $college_merit->merit) {
+        }  elseif ($request->id == "1") {
+            $data->status = "1";
+            AddmissionConfiram::updateOrCreate(
+                [
+                    'addmission_id' => $id,
+                ],
+                [
+                    'confirm_college_id' => $request->checked_college,
+                    'confirm_merit' => $admission->merit,
+                    'confirm_round_id' => '1',
+                    'confirmation_type' => 'M',
+                ]
+            );
+        } elseif ($request->id == "6") {
             $data->status = "1";
             AddmissionConfiram::updateOrCreate(
                 [
@@ -105,19 +115,6 @@ class DashboardController extends Controller
                     'confirm_merit' => $admission->merit,
                     'confirm_round_id' => '1',
                     'confirmation_type' => 'R',
-                ]
-            );
-        } elseif ($request->id == "1") {
-            $data->status = "1";
-            $a = AddmissionConfiram::updateOrCreate(
-                [
-                    'addmission_id' => $id,
-                ],
-                [
-                    'confirm_college_id' => $admission->college_id[0],
-                    'confirm_merit' => $admission->merit,
-                    'confirm_round_id' => '1',
-                    'confirmation_type' => 'M',
                 ]
             );
         } else {

@@ -19,7 +19,7 @@
          <div class="col-12 gradient-man-of-steel d-block rounded">
             <div class="card">
                <div class="card-header">
-                  <!-- <h4 class="card-title">Course List</h4> -->
+                  <h4 class="card-title">Course List</h4>
                </div>
                <div class="card-content">
                   <div class="card-body">
@@ -38,9 +38,54 @@
 @push('js')
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 {!! $dataTable->scripts() !!}
-<script>   
-    // Delete
-    $(document).on('click', '.delete', function() {
+<script>
+   $(document).on('click', '.approve', function() {
+      var id = $(this).data('id');
+      var is_approve = $(this).attr('is_approve');
+      var msg = "";
+      // 0 - pending, 1 - approve, 2 - rejected
+      // if (is_approve == 0) {
+      //    msg = "Pending";
+      // } else if (is_approve == 1) {
+      //    msg = "Approve";
+      // } else {
+      //    msg = "Rejected";
+      // }
+      swal({
+            title: "Are you sure?",
+            text: "Are you sure want to Change Status!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+         })
+         .then((willDelete) => {
+            if (willDelete) {
+               $.ajax({
+                  headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: "{{route('college.reserved_status')}}",
+                  type: 'post',
+                  data: {
+                     'is_approve': is_approve,
+                     'id': id
+                  },
+                  success: function(res) {
+                     console.log(res);
+                     $('#reservedstudentdatatable-table').DataTable().ajax.reload();
+                  }
+               });
+               swal("Status has been Change!", {
+                  icon: "success",
+               });
+            } else {
+               swal("Status is safe!");
+            }
+         });
+   });
+
+   // Delete
+   $(document).on('click', '.delete', function() {
       swal({
             title: "Are you sure?",
             text: "You Want To Delete The College!",

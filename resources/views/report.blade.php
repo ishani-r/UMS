@@ -1,3 +1,11 @@
+Ishani Ranpariya
+Work Report :: 19/01/2022
+- user merit not match selected college show message wait will send mail college
+- college
+   - show student if merit not match 
+   - manage status (admission confirm, rejected)
+   - if admission confirm/rejected send mail
+   
 $studentmark = StudentMark::with('commonsetting')->where('user_id', Auth::guard('web')->user()->id)->get();
 $merit = 0;
 $com_total = 0;
@@ -629,8 +637,77 @@ $(document).on('click','#deletes',function(){
 
 
 
+                           // dd(2);
+        // $college = College::where('id', $admission->college_id[0] ?? '')->first();
+        // $college_merit = CollegeMerit::where('college_id', $admission->college_id[0])->first();
+        // $meritround = MeritRound::where('status', '1')->first();
+        // $date_now = date("Y-m-d");
+        // if ($admission) {
+        //     $merit = $admission->merit;
+        //     return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+        // } else {
+        //     $merit = '0';
+        //     return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+        // }
+        // return view('home');
+
+        // dd($admission);
+        // foreach ($admission['college_id'] as $result) {
+        //     $college_merit = CollegeMerit::where('college_id', $result)->select('merit')->first();
+        //     // dd($college_merit);
+        //     if ($admission) {
+        //         if ($admission->merit >= $college_merit->merit) {
+        //             // dd(1);
+        //             $merit = $admission->merit;
+        //             $college = College::where('id', $result)->first();
+        //             // dd($college);
+        //             return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+        //         }
+        //     } else {
+        //         $merit = '0';
+        //         return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+        //     }
+        // }
 
 
+        // foreach ($admission['college_id'] as $result) {
+                //     $college_merit = CollegeMerit::where('college_id', $result)->select('merit')->get();
+                //     if ($admission->merit >= $college_merit->merit) {
+                //         $college = College::where('id', $result)->get();
+                //         return view('home', compact('college', 'admission'));
+                //     }
+                // }
+
+                elseif ($admission->merit <= $college_merit->merit) {
+            dd(1);
+            $data->status = "1";
+            AddmissionConfiram::updateOrCreate(
+                [
+                    'addmission_id' => $id,
+                ],
+                [
+                    'confirm_college_id' => $admission->college_id[0],
+                    'confirm_merit' => $admission->merit,
+                    'confirm_round_id' => '1',
+                    'confirmation_type' => 'R',
+                ]
+            );
+        }
+
+        // select replace(replace(SUBSTRING_INDEX(college_id,',',1),'["',''),'"','') AS first_college_id FROM `addmissions` HAVING first_college_id = 18;
+    // select replace(SUBSTRING_INDEX(college_id,',',1),'["','') AS FIRST_ELEMENT FROM `addmissions`;
+    // select preg_replace('/(["|")/','',(SUBSTRING_INDEX(college_id,',',1))) AS FIRST_ELEMENT FROM `addmissions`;
+
+    return $model->select(
+            'replace(replace(SUBSTRING_INDEX(college_id,',',1),'["',''),'"','')' AS 'first_college_id' 
+        )
+        ->newQuery();
+        // foreach ($admissions as $admission) {
+        //     // dd($admission);
+        //     $a = $admission->college_id[0];
+        //     if ($a == Auth::user()->id) {
+        //     }
+        // }
 
 
 
