@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -11,7 +10,7 @@
                     <p style="color: red;">{{ Session::get('error') }}</p>
                 </div>
                 @endif
-                <div class="card-header">{{ __('Student Login') }}</div>
+                <div class="card-header"><h1>Student Login</h1></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

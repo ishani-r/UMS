@@ -191,7 +191,7 @@
 
     <div id="god-container">
         <div id="super-container1">
-            <h2 class="title-h2">Welcome Back! (University)</h2>
+            <h2 class="title-h2">Welcome Back!</h2>
             <div class="container-p">
                 <!-- <p class="subtitle-p"> To keep connected with us please login with your personal info.</p> -->
                 <div class="div-button1">
@@ -209,17 +209,17 @@
                     <p style="color: red;">{{ Session::get('error') }}</p>
                 </div>
                 @endif
+                <h1>University</h1>
                 <h1>Login account</h1>
             </div>
 
-            <div class="buttons-login">
+            <!-- <div class="buttons-login">
                 <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
                 <a href="#"><i class="fab fa-google fa-2x"></i></a>
-                <!-- <a href="#"><i class="fab fa-twitter-square fa-2x"></i></a> -->
             </div>
             <div class="container-p">
                 <p class="request-data"> or us an e-mail for registration</p>
-            </div>
+            </div> -->
             <div class="form">
                 <form method="POST" action="{{ route('university.login') }}" id="login_form">
                     @csrf

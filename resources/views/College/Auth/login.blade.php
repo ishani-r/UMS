@@ -191,14 +191,14 @@
 
     <div id="god-container">
         <div id="super-container1">
-            <h2 class="title-h2">Welcome Back! (College) </h2>
-            <div class="container-p">
+            <h2 class="title-h2">Welcome Back!</h2>
+            <!-- <div class="container-p">
                 <p class="subtitle-p"> To keep connected with us please login with your personal info.</p>
                 <div class="div-button1">
                     <a href="{{ route('college.register')}}" type="submit" class="btn btn-danger btn-md button1">Sign
                         Up</a>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <br>
@@ -210,17 +210,17 @@
                     <p style="color: red;">{{ Session::get('error') }}</p>
                 </div>
                 @endif
+                <h1>College</h1>
                 <h1>Login account</h1>
             </div>
 
-            <div class="buttons-login">
+            <!-- <div class="buttons-login">
                 <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
                 <a href="#"><i class="fab fa-google fa-2x"></i></a>
-                <!-- <a href="#"><i class="fab fa-twitter-square fa-2x"></i></a> -->
             </div>
             <div class="container-p">
                 <p class="request-data"> or us an e-mail for registration</p>
-            </div>
+            </div> -->
             <div class="form">
                 <form method="POST" action="{{ route('college.login') }}" id="login_form">
                     @csrf
@@ -249,7 +249,7 @@
                     <button type="submit" class="btn btn-danger btn-md button2">
                         {{ __('Sign In') }}
                     </button>
-                    <h4 class="text-center">Forgot password? <a href="#">Click here</a>.</h4>
+                    <!-- <h4 class="text-center">Forgot password? <a href="#">Click here</a>.</h4> -->
                 </form>
 
             </div>

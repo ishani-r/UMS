@@ -5,7 +5,7 @@
    <div class="row justify-content-center">
       <div class="col-md-8">
          <div class="card">
-            <div class="card-header">{{ __('Student Register') }}</div>
+            <div class="card-header"><h1>Student Register</h1></div>
 
             <div class="card-body">
                <form method="POST" action="{{ route('register') }}" id="register" enctype="multipart/form-data">
@@ -188,6 +188,9 @@
          address: {
             required: true,
          },
+         dob: {
+            required: true,
+         },
          adhaar_card_no: {
             required: true,
          },
@@ -214,6 +217,7 @@
          },
          gender: 'Please Select Your Address.',
          address: 'Please Enter Your Address.',
+         dob: 'Please Select Your Birth Date.',
          adhaar_card_no: 'Please Enter Your Adhaar Card Number.',
          image: 'Please Select Your Profile Image.',
          password: {
