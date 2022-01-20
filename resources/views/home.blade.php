@@ -71,7 +71,6 @@
                                  <td style="color: red;">Sorry, You have not been selected in any of the collages. <b>Please wait will Your First Eligible College Send Mail.</b></td>
                                  @else
                                  @foreach($colleges as $college)
-
                                  <td>{{$college->name}} <input type="checkbox" class="asd" id="{{$college->id}}" value="{{$college->id}}" {{$college->id == ($admission_c->confirm_college_id ?? '') ? 'checked' : ''}}></td>
                                  @endforeach
                                  @endif

@@ -907,3 +907,7 @@ $(document).on('click','#deletes',function(){
                            <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
                            <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
                            @endif
+
+
+Hello sir,
+i have completed my project can you please check my project
