@@ -6,6 +6,7 @@ use App\Http\Requests\EditProfileRequest;
 use App\Models\Addmission;
 use App\Models\AddmissionConfiram;
 use App\Models\College;
+use App\Models\CollegeCourse;
 use App\Models\CollegeMerit;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -84,14 +85,13 @@ class DashboardController extends Controller
         Session::put('xyz', $request->id);
         $admission = Addmission::where('user_id', Auth::user()->id)->first();
         $college_merit = CollegeMerit::where('college_id', $admission->college_id[0])->first();
-       
+
         $id = $admission->id;
         $data = Addmission::find($id);
-
         if ($request->id == "4") {
             $data->status = "0";
-            $data->merit_round_id = $admission->merit_round_id + 1;
-        }  elseif ($request->id == "1") {
+            // $data->merit_round_id = $admission->merit_round_id + 1;
+        } elseif ($request->id == "1") {
             $data->status = "1";
             AddmissionConfiram::updateOrCreate(
                 [

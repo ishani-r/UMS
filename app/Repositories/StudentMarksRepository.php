@@ -15,6 +15,7 @@ class StudentMarksRepository implements StudentMarksInterface
 {
    public function store(array $array)
    {
+      // dd(8);
       DB::beginTransaction();
       try {
          foreach ($array['obtain_mark'] as $key => $val) {
@@ -49,7 +50,7 @@ class StudentMarksRepository implements StudentMarksInterface
                'user_id' => Auth::user()->id,
                'merit' => round($final_merit, 2),
                'course_id' => 1,
-               'status' => 1,
+               'status' => 3,
             ]
          );
          DB::commit();

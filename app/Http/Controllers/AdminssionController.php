@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AdmissionRequest;
 use App\Models\Addmission;
+use App\Models\CollegeMerit;
 use Illuminate\Support\Facades\Session;
 
 class AdminssionController extends Controller
@@ -28,27 +29,30 @@ class AdminssionController extends Controller
     }
     public function showAdmissionForm()
     {
-        $admission = Addmission::where('user_id', Auth::user()->id)->first();
-        if ($admission->status == '2') {
-            Session::flash('error', 'Your Admission Is Rejected By You. You Can Fill Admission Form !!');
-            return redirect()->route('home');
-        }
         $count = StudentMark::where('user_id', Auth::user()->id)->count();
         if ($count == 0) {
             Session::flash('error', 'First Insert Your Marks !!');
             return redirect()->route('show_marks');
         }
+        $admission = Addmission::where('user_id', Auth::user()->id)->first();
+        if ($admission->status == '2') {
+            Session::flash('error', 'Your Admission Is Rejected By You. You Can Fill Admission Form !!');
+            return redirect()->route('home');
+        }elseif($admission->status == '1'){
+            Session::flash('success', 'Your Admission Is Confirm By You. You Can Not Fill Again !!');
+            return redirect()->route('home');
+        }
         $course = Course::all();
-        $college = College::all();
+        $college_merit = CollegeMerit::with('college')->get();
         $studentmark = StudentMark::where('user_id', Auth::user()->id)->first();
         $admission = Addmission::where('user_id', Auth::user()->id)->first();
         $round = MeritRound::where('course_id', $admission->course_id)->get();
 
         if ($studentmark == NULL) {
             $studentmark = '0';
-            return view('Student.admissionform', compact('course', 'college', 'studentmark', 'admission', 'round'));
+            return view('Student.admissionform', compact('course', 'college_merit', 'studentmark', 'admission', 'round'));
         } else {
-            return view('Student.admissionform', compact('course', 'college', 'studentmark', 'admission', 'round'));
+            return view('Student.admissionform', compact('course', 'college_merit', 'studentmark', 'admission', 'round'));
         }
     }
 

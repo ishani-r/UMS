@@ -27,13 +27,28 @@
                      {!! Form::model($admission,['route'=> array('admission_store',$admission->id), 'id' => 'admission_form', 'enctype' => 'multipart/form-data']) !!}
                      @csrf
                      @method('put')
+                     <!-- College -->
                      <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-md-6 col-12">
+                           <label for="exampleInputUsername2" class="d-block">Select College :</label>
+                           <select class="js-example-basic-multiple form-control single" name="college_id[]" id="college_id" multiple data-live-search="true">
+                              @foreach($college_merit as $college_merit)
+                              <option class="dropdown-item single" value="{{$college_merit->college->id}}" {{ (isset($admission->college_id) ? (in_array($college_merit->college->id, $admission->college_id) ? 'selected' : '') : '') }}>{{ $college_merit->college->name }}</option>
+                              @endforeach
+                           </select></br>
+                           @error('college_id')
+                           <span role="alert">
+                              <strong style="color:red;">{{$message}}</strong>
+                           </span>
+                           @enderror
+                        </div>
+                     </div>
+                     <div class="row">
+                        <!-- <div class="col-12 col-md-6">
                            <div class="form-group">
                               <div class="controls">
                                  <label for="addmission_code">{{ Form::label('addmission_code', 'addmission code')}}</label>
                                  <input name="addmission_code" id="addmission_code" value="{{$admission->addmission_code}}" class="form-control" disabled>
-                                 <!-- {{Form::text('addmission_code',null,['class'=>'form-control'])}} -->
                                  @error('addmission_code')
                                  <span role="alert">
                                     <strong style="color:red;">{{$message}}</strong>
@@ -41,7 +56,7 @@
                                  @enderror
                               </div>
                            </div>
-                        </div>
+                        </div> -->
                         <div class="col-12 col-md-6">
                            <div class="form-group">
                               <div class="controls">
@@ -57,22 +72,7 @@
                            </div>
                         </div>
                      </div>
-                     <!-- College -->
-                     <div class="row">
-                        <div class="col-md-6 col-12">
-                           <label for="exampleInputUsername2" class="d-block">Select College :</label>
-                           <select class="js-example-basic-multiple form-control single" name="college_id[]" id="college_id" multiple data-live-search="true">
-                              @foreach($college as $college)
-                              <option class="dropdown-item single" value="{{$college->id}}" {{ (isset($admission->college_id) ? (in_array($college->id, $admission->college_id) ? 'selected' : '') : '') }}>{{ $college->name }}</option>
-                              @endforeach
-                           </select></br>
-                           @error('college_id')
-                           <span role="alert">
-                              <strong style="color:red;">{{$message}}</strong>
-                           </span>
-                           @enderror
-                        </div>
-                     </div>
+
                      <!-- course -->
                      <div class="row">
                         <div class="col-md-6 col-12">

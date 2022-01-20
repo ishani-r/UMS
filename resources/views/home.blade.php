@@ -9,6 +9,12 @@
       <p>{{ Session::get('error') }}</p>
    </div>
    @endif
+   @if (Session::has('success'))
+   <div class="alert alert-success text-center">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+      <p>{{ Session::get('success') }}</p>
+   </div>
+   @endif
    <div class="row">
       <div class="col-xl-3 col-lg-6 col-md-6 col-12">
          <div class="card gradient-purple-love">
@@ -80,6 +86,7 @@
                               </tr>
                            </table>
 
+
                            @if(count($colleges)==0)
                            @else
                            <h6>- Congratulations, You have shortlist on <b style="color: green;">upper college Please select one college And Press Confirm Button.</b></h6>
@@ -90,16 +97,16 @@
                            @if(count($colleges)==0)
                            <!-- Empty -->
                            @else
-                           @if(Session::get('xyz')==1)
-                           <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
-                           @elseif(Session::get('xyz')==4)
-                           <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
-                           @elseif(Session::get('xyz')==2)
-                           <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
+                           @if($admission->status == 2)
+                           <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1">Your Admission is Rejected Succesfully</button>
+                           @elseif($admission->status == 1)
+                           <button type="button" id="confiem" class="btn btn-success round mr-1 mb-1">Your Admission is Confirm Succesfully</button>
+                           @elseif($admission->status == 0)
+                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
                            @else
-                           <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
-                           <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
-                           <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
+                           <button type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</button>
+                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+                           <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
                            @endif
                            @endif
                            @endif
@@ -153,18 +160,25 @@
 
    $(document).on('click', '.confirm', function() {
       var id = $(this).data('id');
-      if(id == 1){
-      if ($('.asd').is(":checked")) {
-         var checked_college = $('.asd').val();
-      } else {
-         toastr.error("Please Select One College....");
-         return false;
+      if (id == 1) {
+         if ($('.asd').is(":checked")) {
+            var checked_college = $('.asd').val();
+         } else {
+            toastr.error("Please Select One College....");
+            return false;
+         }
       }
-   }
 
+      if (id == 1) {
+         msg = "Confirm Your Addmission";
+      } else if (id == 4) {
+         msg = "Go For Next Round";
+      } else {
+         msg = "Reject Your Admission";
+      }
       swal({
             title: "Are you sure?",
-            text: "You Want To Confirm Your Addmission!",
+            text: "You Want To " + msg + "!",
             icon: "warning",
             buttons: true,
             dangerMode: true,

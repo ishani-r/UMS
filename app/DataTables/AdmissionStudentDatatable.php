@@ -25,15 +25,15 @@ class AdmissionStudentDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             // ->addColumn('action', 'admissionstudentdatatable.action');
-            // ->editColumn('status', function ($data) {
-            //     if ($data['status'] == '0') {
-            //         return '<button type="button" data-id="' . $data->id . '" class="btn btn-info round mr-1 mb-1">Next</button>';
-            //     } else if ($data['status'] == '1'){
-            //         return '<button type="button" data-id="' . $data->id . '" class="btn btn-success round mr-1 mb-1">Confirm</button>';
-            //     } else {
-            //         return '<button type="button" data-id="' . $data->id . '" class="btn btn-danger round mr-1 mb-1">Rejected</button>';
-            //     }
-            // })
+            ->editColumn('status', function ($data) {
+                if ($data['status'] == '0') {
+                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-info round mr-1 mb-1">Next</button>';
+                } else if ($data['status'] == '1') {
+                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-success round mr-1 mb-1">Confirm</button>';
+                } else {
+                    return '<button type="button" data-id="' . $data->id . '" class="btn btn-danger round mr-1 mb-1">Rejected</button>';
+                }
+            })
             ->editColumn('user_id', function ($data) {
                 $data = User::where('id', $data->user_id)->first();
                 return $data->name ?? '-';
@@ -46,9 +46,9 @@ class AdmissionStudentDatatable extends DataTable
 
             ->editColumn('college_id', function ($data) {
                 $data = College::whereIn('id', $data->college_id)->pluck('name')->toArray();
-                return implode('<br>',$data);
+                return implode('<br>', $data);
             })
-            ->rawColumns(['action','status', 'college_id'])
+            ->rawColumns(['action', 'status', 'college_id'])
             ->addIndexColumn();
     }
 
@@ -60,7 +60,7 @@ class AdmissionStudentDatatable extends DataTable
      */
     public function query(Addmission $model)
     {
-        return $model->newQuery();
+        return $model->where('college_id', '!=', NULL)->newQuery();
     }
 
     /**
@@ -71,18 +71,17 @@ class AdmissionStudentDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('admissionstudentdatatable-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('admissionstudentdatatable-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)
+            ->buttons(
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+            );
     }
 
     /**
@@ -101,7 +100,7 @@ class AdmissionStudentDatatable extends DataTable
             Column::make('merit_round_id'),
             Column::make('addmission_date'),
             Column::make('addmission_code'),
-            // Column::make('status'),
+            Column::make('status'),
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)

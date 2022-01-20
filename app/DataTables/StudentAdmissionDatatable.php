@@ -41,20 +41,20 @@ class StudentAdmissionDatatable extends DataTable
             //     return $data->name;
             // })
 
-           
+
 
             ->addColumn('user_id', function ($data) {
                 $datas = Addmission::where('id', $data->addmission_id)->first();
-                $user = User::where('id',$datas->user_id)->first();
+                $user = User::where('id', $datas->user_id)->first();
                 return $user->name;
             })
 
             ->addColumn('course_id', function ($data) {
                 $datas = Addmission::where('id', $data->addmission_id)->first();
-                $Course = Course::where('id',$datas->course_id)->first();
+                $Course = Course::where('id', $datas->course_id)->first();
                 return $Course->name;
             })
-            
+
             ->addColumn('addmission_date', function ($data) {
                 $datas = Addmission::where('id', $data->addmission_id)->select('addmission_date')->first();
                 return $datas->addmission_date;
@@ -77,7 +77,7 @@ class StudentAdmissionDatatable extends DataTable
      */
     public function query(AddmissionConfiram $model)
     {
-        return $model->where('confirm_college_id',Auth::guard('college')->user()->id)->newQuery();
+        return $model->where('confirm_college_id', Auth::guard('college')->user()->id)->newQuery();
     }
 
     /**
@@ -94,11 +94,10 @@ class StudentAdmissionDatatable extends DataTable
             ->dom('Bfrtip')
             ->orderBy(1)
             ->buttons(
-                Button::make('create'),
-                Button::make('export'),
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
                 Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload')
             );
     }
 

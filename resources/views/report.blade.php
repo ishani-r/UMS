@@ -894,3 +894,16 @@ $(document).on('click','#deletes',function(){
 </script>
 @endpush
 <!-- ============================================================================================== -->
+
+@if(Session::get('xyz')==1)
+                           <button type="button" id="confiem" class="btn btn-success round mr-1 mb-1" >Your Admission is Confirm Succesfully</button>
+                           <!-- <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm" >Confirm</a> -->
+                           @elseif(Session::get('xyz')==4)
+                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+                           @elseif(Session::get('xyz')==2)
+                           <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1">Your Admission is Rejected Succesfully</button>
+                           @else
+                           <button type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</button>
+                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+                           <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
+                           @endif

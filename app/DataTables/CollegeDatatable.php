@@ -38,9 +38,9 @@ class CollegeDatatable extends DataTable
 
             ->editColumn('status', function ($data) {
                 if ($data['status'] == '0') {
-                    return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-success status">Active</button>';
-                } else {
                     return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-danger status">Inactive</button>';
+                } else {
+                    return '<button type="button" data-id="' . $data->id . '" class="badge badge-pill-lg badge-success status">Active</button>';
                 }
             })
 
@@ -73,11 +73,10 @@ class CollegeDatatable extends DataTable
             ->dom('Blfrtip')
             ->orderBy(1)
             ->buttons(
-                Button::make('create'),
-                Button::make('export'),
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
                 Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload')
             );
     }
 

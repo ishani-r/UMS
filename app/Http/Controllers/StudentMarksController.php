@@ -17,24 +17,31 @@ class StudentMarksController extends Controller
         $this->Data = $Data;
     }
 
-    public function index()
-    {
-        $admission = Addmission::where('user_id',Auth::user()->id)->first();
-        if($admission->status == '2'){
-        Session::flash('error', 'Your Admission Is Rejected By You. You Can Not Add Your Mark !!');
-        return redirect()->route('home');
-        }
-        $subjects = Subject::all();
-        $studentmarks = StudentMark::with('subject')->where('user_id', Auth::user()->id)->get();
-        return view('Student.marks',compact('subjects','studentmarks'));
-    }
-
     public function store(Request $request)
     {
         $result = $this->Data->store($request->all());
         Session::flash('success', 'Marks Add Successfully !!');
-        // Session::flash('success', 'Admission Form Submit Successfully !!');
-        return redirect()->route('show_marks',compact('result'));
+        return redirect()->route('show_marks', compact('result'));
+    }
+
+    public function index()
+    {
+        $admission = Addmission::where('user_id', Auth::user()->id)->first();
+        if ($admission == Null) {
+            $subjects = Subject::all();
+            $studentmarks = StudentMark::with('subject')->where('user_id', Auth::user()->id)->get();
+            return view('Student.marks', compact('subjects', 'studentmarks'));
+        } elseif ($admission->status == '2') {
+            Session::flash('error', 'Your Admission Is Rejected By You. You Can Not Add Your Mark !!');
+            return redirect()->route('home');
+        } elseif ($admission->status == '1') {
+            Session::flash('success', 'Your Admission Is Confirm By You. You Can Not Fill Again Marks!!');
+            return redirect()->route('home');
+        } else {
+            $subjects = Subject::all();
+            $studentmarks = StudentMark::with('subject')->where('user_id', Auth::user()->id)->get();
+            return view('Student.marks', compact('subjects', 'studentmarks'));
+        }
     }
 
     public function confirm(Request $request)
