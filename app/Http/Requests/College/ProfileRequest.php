@@ -4,7 +4,7 @@ namespace App\Http\Requests\College;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditProfileRequest extends FormRequest
+class ProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,12 @@ class EditProfileRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->id;
         return [
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:colleges,email,'.$id,
             'contact_no' => 'required',
             'address' => 'required',
-            'password' => 'required|min:3|max:30',
-            'confirm_password' => 'required|min:3|max:30|same:password',
-            'logo' => 'required'
         ];
     }
 }

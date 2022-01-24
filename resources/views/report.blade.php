@@ -2,10 +2,10 @@ Ishani Ranpariya
 Work Report :: 19/01/2022
 - user merit not match selected college show message wait will send mail college
 - college
-   - show student if merit not match 
-   - manage status (admission confirm, rejected)
-   - if admission confirm/rejected send mail
-   
+- show student if merit not match
+- manage status (admission confirm, rejected)
+- if admission confirm/rejected send mail
+
 $studentmark = StudentMark::with('commonsetting')->where('user_id', Auth::guard('web')->user()->id)->get();
 $merit = 0;
 $com_total = 0;
@@ -63,11 +63,11 @@ MR :: 13/01/2022
 
 Ishani Ranpariya
 Work Report :: 17/01/2022
--  solve previous error
--  show addmission data university side
--  admission data insert using type casting
--  solve error on display admission on college side
--  display admission data on college side(working)
+- solve previous error
+- show addmission data university side
+- admission data insert using type casting
+- solve error on display admission on college side
+- display admission data on college side(working)
 
 Ishani Ranpariya
 Work Report :: 13/01/2022
@@ -454,262 +454,260 @@ Work Report :: 11/01/2022
 
 <!-- multi delete -->
 $(document).on('click','#deletes',function(){
-		var id = [];
-		$(":checkbox:checked").each(function(key){
-			id[key]=$(this).val();
-		});
-			if(id.length === 0){
-				alert("Please Selected atleast One Id");
-			}else if(confirm("Are you Sure You Want To Deleted this row....")){
-				$.ajax({
-					url: "singleFileServer.php",
-					type: "POST",
-					dataType :'JSON',
-					data: {
-							'id': id,
-							'action': 'delet'
-						},
-					success: function(res){
-						// console.log(res.id);return false;
-						if(res){
-							$.each(res.id, function(key,value){
-							// 	console.log(kay);
-								$('#studentdata').find('tr[id=' + value + ']').remove();
-							});
-							alert("successfully deleted");
-							// getdata();
-						}else{
-							alert("no deleted");
-						}
-					}
-				});
-			}
-	});
+var id = [];
+$(":checkbox:checked").each(function(key){
+id[key]=$(this).val();
+});
+if(id.length === 0){
+alert("Please Selected atleast One Id");
+}else if(confirm("Are you Sure You Want To Deleted this row....")){
+$.ajax({
+url: "singleFileServer.php",
+type: "POST",
+dataType :'JSON',
+data: {
+'id': id,
+'action': 'delet'
+},
+success: function(res){
+// console.log(res.id);return false;
+if(res){
+$.each(res.id, function(key,value){
+// console.log(kay);
+$('#studentdata').find('tr[id=' + value + ']').remove();
+});
+alert("successfully deleted");
+// getdata();
+}else{
+alert("no deleted");
+}
+}
+});
+}
+});
 
 }else if(isset($_POST['action']) && !empty($_POST['action']) && $_POST['action'] =='delet'){
 
 $id = $_POST['id'];
 $str = implode($id,",");
 foreach ($id as $value) {
-   $query = "SELECT * FROM `singleajex` WHERE id = $value";
-     $query_run = mysqli_query($conn, $query);
-   $row = mysqli_fetch_assoc($query_run);
-   $q = "DELETE FROM `singleajex` WHERE id = $value";
-   $result = mysqli_query($conn,$q);
-   if (file_exists(getcwd() . '.\images/' . $row['image']))
-   {
-      // $q = "DELETE FROM `singleajex` WHERE id = $value";
-      // $result = mysqli_query($conn,$q);
-          unlink('.\images/' . $row['image']);
-      }
-      $data['id'] = $_POST['id'];
-   
+$query = "SELECT * FROM `singleajex` WHERE id = $value";
+$query_run = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($query_run);
+$q = "DELETE FROM `singleajex` WHERE id = $value";
+$result = mysqli_query($conn,$q);
+if (file_exists(getcwd() . '.\images/' . $row['image']))
+{
+// $q = "DELETE FROM `singleajex` WHERE id = $value";
+// $result = mysqli_query($conn,$q);
+unlink('.\images/' . $row['image']);
+}
+$data['id'] = $_POST['id'];
+
 }
 echo json_encode($data);
 exit();
 
 $(document).on('click','#deletes',function(){
-	var id = [];
-	$(":checkbox:checked").each(function(key){
-		id[key]=$(this).val();
-	});
-		if(id.length === 0){
-			alert("Please Selected atleast One Id");
-		}else if(confirm("Are you Sure You Want To Deleted this row....")){
-			$.ajax({
-				url: "backupserverajax.php",
-				type: "POST",
-				data: {
-						'id': id,
-						'action': 'delet'
-					},
-				success: function(data){
-					if(data){
-						alert("successfully deleted");
-						getdata();
-					}else{
-						alert("no deleted");
-					}
-				}
-			});
-		}
+var id = [];
+$(":checkbox:checked").each(function(key){
+id[key]=$(this).val();
+});
+if(id.length === 0){
+alert("Please Selected atleast One Id");
+}else if(confirm("Are you Sure You Want To Deleted this row....")){
+$.ajax({
+url: "backupserverajax.php",
+type: "POST",
+data: {
+'id': id,
+'action': 'delet'
+},
+success: function(data){
+if(data){
+alert("successfully deleted");
+getdata();
+}else{
+alert("no deleted");
+}
+}
+});
+}
 });
 
 }else if(isset($_POST['action']) && !empty($_POST['action']) && $_POST['action'] =='delet'){
-		$id = $_POST['id'];
-		$str = implode($id,",");
-		$q = "DELETE FROM `singleajex` WHERE id IN ($str)";
-		$query = mysqli_query($conn,$q);
-		if($query){
-			echo true;
-		}
-		else{
-			echo false;
-		}
+$id = $_POST['id'];
+$str = implode($id,",");
+$q = "DELETE FROM `singleajex` WHERE id IN ($str)";
+$query = mysqli_query($conn,$q);
+if($query){
+echo true;
+}
+else{
+echo false;
+}
 
 
-      // return $model->whereRaw
-        $data = $model->newQuery();
-        $data1 = collect($data);
-        // $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
-        // dd($college_ids);
-        $data1->filter(function () use ($model) {
-            
-            foreach ($model->get() as $key => $d) {
-                $selected_college = explode(',', $d->college_id);
-                return $selected_college[0] == Auth::user()->id;
-            }
-            
-        });
-        // dd(collect($data));
-        return $data1;
-        // $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
-        
-        // $model->contains(function ($value, $key) {
+// return $model->whereRaw
+$data = $model->newQuery();
+$data1 = collect($data);
+// $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
+// dd($college_ids);
+$data1->filter(function () use ($model) {
 
-        //     dd($value);
-        //     // return $value > 5;
-        //     $selected_college = explode(',', $order->college_id);
-        //     return $selected_college[0] == Auth::user()->id;
-        // });
-        // dd(Auth::user()->id);
-        // // $admissions = Addmission::select('college_id','id')->get();
-        // foreach ($model as $admission) {
-        //     $selected_college = explode(',', $admission->college_id);
-        //     dd($selected_college[0]);
-        //     // $adadmission = Addmission::whereIn('college_id', $selected_college[0])->get();
-        //     if ($selected_college[0] == Auth::user()->id) {
-        //         // dd(1);
-        //         // $admission = Addmission::select('college_id')->get();
-    
-        //     }
-        //     $data = Addmission::where($selected_college[0], Auth::user()->id)->get();
-        // }
-        // dd($admission);
-        // return $data;
-        // return $model->where('college_id',)->newQuery();
+foreach ($model->get() as $key => $d) {
+$selected_college = explode(',', $d->college_id);
+return $selected_college[0] == Auth::user()->id;
+}
+
+});
+// dd(collect($data));
+return $data1;
+// $college_ids = Addmission::get(['id'])->pluck('id')->toArray();
+
+// $model->contains(function ($value, $key) {
+
+// dd($value);
+// // return $value > 5;
+// $selected_college = explode(',', $order->college_id);
+// return $selected_college[0] == Auth::user()->id;
+// });
+// dd(Auth::user()->id);
+// // $admissions = Addmission::select('college_id','id')->get();
+// foreach ($model as $admission) {
+// $selected_college = explode(',', $admission->college_id);
+// dd($selected_college[0]);
+// // $adadmission = Addmission::whereIn('college_id', $selected_college[0])->get();
+// if ($selected_college[0] == Auth::user()->id) {
+// // dd(1);
+// // $admission = Addmission::select('college_id')->get();
+
+// }
+// $data = Addmission::where($selected_college[0], Auth::user()->id)->get();
+// }
+// dd($admission);
+// return $data;
+// return $model->where('college_id',)->newQuery();
 
 
 
-        <table class="table">
-                              <tr>
-                                 <th>Label</th>
-                                 <th>Details</th>
-                              </tr>
-                              <tr>
-                                 <td>Name</td>
-                                 <td>{{$admission->user->name}}</td>
-                              </tr>
-                              <tr>
-                                 <td>Merit</td>
-                                 <td>{{$admission->merit}}</td>
-                              </tr>
-                              <tr>
-                                 <td>Course</td>
-                                 <td>{{$admission->course->name}}</td>
-                              </tr>
-                              <tr>
-                                 <td>College</td>
-                                 <td>{{$college->name}}</td>
-                              </tr>
-                              <tr>
-                                 <td>Admission Date</td>
-                                 <td>{{$admission->addmission_date}}</td>
-                              </tr>
-                              <tr>
-                                 <td>Admission Code</td>
-                                 <td>{{$admission->addmission_code}}</td>
-                              </tr>
-                           </table>
-                           <h6>- Your Merit Not Match You Selected first college. <b>If You want to Reserved Seat Press Confirm Button</b> .</h6>
-                           <h6>- If You Want To go for Next Round Press Next Button.</h6>
-                           <h6>- Tf You do not want admission Press Reject Button.</h6>
+<table class="table">
+   <tr>
+      <th>Label</th>
+      <th>Details</th>
+   </tr>
+   <tr>
+      <td>Name</td>
+      <td>{{$admission->user->name}}</td>
+   </tr>
+   <tr>
+      <td>Merit</td>
+      <td>{{$admission->merit}}</td>
+   </tr>
+   <tr>
+      <td>Course</td>
+      <td>{{$admission->course->name}}</td>
+   </tr>
+   <tr>
+      <td>College</td>
+      <td>{{$college->name}}</td>
+   </tr>
+   <tr>
+      <td>Admission Date</td>
+      <td>{{$admission->addmission_date}}</td>
+   </tr>
+   <tr>
+      <td>Admission Code</td>
+      <td>{{$admission->addmission_code}}</td>
+   </tr>
+</table>
+<h6>- Your Merit Not Match You Selected first college. <b>If You want to Reserved Seat Press Confirm Button</b> .</h6>
+<h6>- If You Want To go for Next Round Press Next Button.</h6>
+<h6>- Tf You do not want admission Press Reject Button.</h6>
 
-                           <a type="button" id="confiem" data-id="1-r" class="btn btn-success round mr-1 mb-1 confirm">Confirms</a>
-                           <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
-                           <!-- <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
+<a type="button" id="confiem" data-id="1-r" class="btn btn-success round mr-1 mb-1 confirm">Confirms</a>
+<a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
+<!-- <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
                            <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a> -->
-                           <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
+<a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
 
-                           @elseif($admission->merit <= $college_merit->merit)
-                           
-                           @else
+@elseif($admission->merit <= $college_merit->merit)
 
-
-
-                           // dd(2);
-        // $college = College::where('id', $admission->college_id[0] ?? '')->first();
-        // $college_merit = CollegeMerit::where('college_id', $admission->college_id[0])->first();
-        // $meritround = MeritRound::where('status', '1')->first();
-        // $date_now = date("Y-m-d");
-        // if ($admission) {
-        //     $merit = $admission->merit;
-        //     return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
-        // } else {
-        //     $merit = '0';
-        //     return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
-        // }
-        // return view('home');
-
-        // dd($admission);
-        // foreach ($admission['college_id'] as $result) {
-        //     $college_merit = CollegeMerit::where('college_id', $result)->select('merit')->first();
-        //     // dd($college_merit);
-        //     if ($admission) {
-        //         if ($admission->merit >= $college_merit->merit) {
-        //             // dd(1);
-        //             $merit = $admission->merit;
-        //             $college = College::where('id', $result)->first();
-        //             // dd($college);
-        //             return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
-        //         }
-        //     } else {
-        //         $merit = '0';
-        //         return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
-        //     }
-        // }
+   @else
 
 
-        // foreach ($admission['college_id'] as $result) {
-                //     $college_merit = CollegeMerit::where('college_id', $result)->select('merit')->get();
-                //     if ($admission->merit >= $college_merit->merit) {
-                //         $college = College::where('id', $result)->get();
-                //         return view('home', compact('college', 'admission'));
-                //     }
-                // }
 
-                elseif ($admission->merit <= $college_merit->merit) {
-            dd(1);
-            $data->status = "1";
-            AddmissionConfiram::updateOrCreate(
-                [
-                    'addmission_id' => $id,
-                ],
-                [
-                    'confirm_college_id' => $admission->college_id[0],
-                    'confirm_merit' => $admission->merit,
-                    'confirm_round_id' => '1',
-                    'confirmation_type' => 'R',
-                ]
-            );
-        }
+   // dd(2);
+   // $college = College::where('id', $admission->college_id[0] ?? '')->first();
+   // $college_merit = CollegeMerit::where('college_id', $admission->college_id[0])->first();
+   // $meritround = MeritRound::where('status', '1')->first();
+   // $date_now = date("Y-m-d");
+   // if ($admission) {
+   // $merit = $admission->merit;
+   // return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+   // } else {
+   // $merit = '0';
+   // return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+   // }
+   // return view('home');
 
-        // select replace(replace(SUBSTRING_INDEX(college_id,',',1),'["',''),'"','') AS first_college_id FROM `addmissions` HAVING first_college_id = 18;
-    // select replace(SUBSTRING_INDEX(college_id,',',1),'["','') AS FIRST_ELEMENT FROM `addmissions`;
-    // select preg_replace('/(["|")/','',(SUBSTRING_INDEX(college_id,',',1))) AS FIRST_ELEMENT FROM `addmissions`;
-
-    return $model->select(
-            'replace(replace(SUBSTRING_INDEX(college_id,',',1),'["',''),'"','')' AS 'first_college_id' 
-        )
-        ->newQuery();
-        // foreach ($admissions as $admission) {
-        //     // dd($admission);
-        //     $a = $admission->college_id[0];
-        //     if ($a == Auth::user()->id) {
-        //     }
-        // }
+   // dd($admission);
+   // foreach ($admission['college_id'] as $result) {
+   // $college_merit = CollegeMerit::where('college_id', $result)->select('merit')->first();
+   // // dd($college_merit);
+   // if ($admission) {
+   // if ($admission->merit >= $college_merit->merit) {
+   // // dd(1);
+   // $merit = $admission->merit;
+   // $college = College::where('id', $result)->first();
+   // // dd($college);
+   // return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+   // }
+   // } else {
+   // $merit = '0';
+   // return view('home', compact('merit', 'admission', 'meritround', 'date_now', 'college', 'college_merit'));
+   // }
+   // }
 
 
+   // foreach ($admission['college_id'] as $result) {
+   // $college_merit = CollegeMerit::where('college_id', $result)->select('merit')->get();
+   // if ($admission->merit >= $college_merit->merit) {
+   // $college = College::where('id', $result)->get();
+   // return view('home', compact('college', 'admission'));
+   // }
+   // }
+
+   elseif ($admission->merit <= $college_merit->merit) {
+      dd(1);
+      $data->status = "1";
+      AddmissionConfiram::updateOrCreate(
+      [
+      'addmission_id' => $id,
+      ],
+      [
+      'confirm_college_id' => $admission->college_id[0],
+      'confirm_merit' => $admission->merit,
+      'confirm_round_id' => '1',
+      'confirmation_type' => 'R',
+      ]
+      );
+      }
+
+      // select replace(replace(SUBSTRING_INDEX(college_id,',',1),'["',''),'"','') AS first_college_id FROM `addmissions` HAVING first_college_id = 18;
+      // select replace(SUBSTRING_INDEX(college_id,',',1),'["','') AS FIRST_ELEMENT FROM `addmissions`;
+      // select preg_replace('/(["|")/','',(SUBSTRING_INDEX(college_id,',',1))) AS FIRST_ELEMENT FROM `addmissions`;
+
+      return $model->select(
+      'replace(replace(SUBSTRING_INDEX(college_id,',',1),'["',''),'"','')' AS 'first_college_id'
+      )
+      ->newQuery();
+      // foreach ($admissions as $admission) {
+      // // dd($admission);
+      // $a = $admission->college_id[0];
+      // if ($a == Auth::user()->id) {
+      // }
+      // }
 
 
 
@@ -717,110 +715,112 @@ $(document).on('click','#deletes',function(){
 
 
 
-<!-- ============================================================================================== -->
-@extends('layouts.master')
-@section('content')
-<div class="content-overlay"></div>
-<div class="content-wrapper">
-   <!--Statistics cards Starts-->
-   <div class="row">
-      <div class="col-xl-3 col-lg-6 col-md-6 col-12">
-         <div class="card gradient-purple-love">
-            <div class="card-content">
-               <div class="card-body py-0">
-                  <div class="media pb-1">
-                     <div class="media-body white text-left">
-                        <h3 class="font-large-1 white mb-0">{{$merit}}</h3>
-                        <span>Total Merit</span>
+
+
+      <!-- ============================================================================================== -->
+      @extends('layouts.master')
+      @section('content')
+      <div class="content-overlay"></div>
+      <div class="content-wrapper">
+         <!--Statistics cards Starts-->
+         <div class="row">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+               <div class="card gradient-purple-love">
+                  <div class="card-content">
+                     <div class="card-body py-0">
+                        <div class="media pb-1">
+                           <div class="media-body white text-left">
+                              <h3 class="font-large-1 white mb-0">{{$merit}}</h3>
+                              <span>Total Merit</span>
+                           </div>
+                           <div class="media-right white text-right">
+                              <i class="fa fa-shopping-basket font-large-1"></i>
+                           </div>
+                        </div>
                      </div>
-                     <div class="media-right white text-right">
-                        <i class="fa fa-shopping-basket font-large-1"></i>
-                     </div>
-                  </div>
-               </div>
-               <div id="" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
-               </div>
-            </div>
-         </div>
-      </div>&nbsp;&nbsp;&nbsp;&nbsp;
-      @if($date_now >= $meritround->merit_result_declare_date)
-      <div class="">
-         <div class="card gradient-ibiza-sunset">
-            <div class="card-content">
-               <div class="card-body py-0">
-                  <div class="media pb-1">
-                     <div class="media-body white text-left">
-                        <h3 class="font-large-1 white mb-0">Your Admission Detail</h3></br>
-                        <span>
-                           @if($admission == NULL)
-                              <h4>No data, First add Your Mark and then fill admission form</h4>
-                           @else
-                              <table class="table">
-                                 <tr>
-                                    <th>Label</th>
-                                    <th>Details</th>
-                                 </tr>
-                                 <tr>
-                                    <td>Name</td>
-                                    <td>{{$admission->user->name}}</td>
-                                 </tr>
-                                 <tr>
-                                    <td>Merit</td>
-                                    <td>{{$admission->merit}}</td>
-                                 </tr>
-                                 <tr>
-                                    <td>Course</td>
-                                    <td>{{$admission->course->name}}</td>
-                                 </tr>
-
-                                 <tr>
-                                    <td>College</td>
-                                    <td>{{$college->name}}</td>
-                                 </tr>
-                                 <tr>
-                                    <td>Admission Date</td>
-                                    <td>{{$admission->addmission_date}}</td>
-                                 </tr>
-                                 <tr>
-                                    <td>Admission Code</td>
-                                    <td>{{$admission->addmission_code}}</td>
-                                 </tr>
-                              </table>
-                              @if($admission->merit <= $college_merit->merit)
-                                 <h6>- Your Merit Not Match You Selected first college. <b>If You want to Reserved Seat Press Confirm Button</b> .</h6>
-                              @else
-                                 <h6>- You have shortlisted on merit you are eligible for ({{$college->name}}) Please Press Confiem button.</h6>
-                              @endif
-                              <h6>- If You Want To go for Next Round Press Next Button.</h6>
-                              <h6>- Tf You do not want admission Press Reject Button.</h6>
-
-                              @if(Session::get('xyz')==1)
-                                 <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
-                              @elseif(Session::get('xyz')==4)
-                                 <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
-                              @else
-                                 <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
-                                 <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
-                                 <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
-                              @endif
-                           @endif
-                        </span>
-                     </div>
-                     <div class="media-right white text-right">
-                        <i class="fa fa-superpowers font-large-1"></i>
+                     <div id="" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
                      </div>
                   </div>
                </div>
-               <div id="" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+            @if($date_now >= $meritround->merit_result_declare_date)
+            <div class="">
+               <div class="card gradient-ibiza-sunset">
+                  <div class="card-content">
+                     <div class="card-body py-0">
+                        <div class="media pb-1">
+                           <div class="media-body white text-left">
+                              <h3 class="font-large-1 white mb-0">Your Admission Detail</h3></br>
+                              <span>
+                                 @if($admission == NULL)
+                                 <h4>No data, First add Your Mark and then fill admission form</h4>
+                                 @else
+                                 <table class="table">
+                                    <tr>
+                                       <th>Label</th>
+                                       <th>Details</th>
+                                    </tr>
+                                    <tr>
+                                       <td>Name</td>
+                                       <td>{{$admission->user->name}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Merit</td>
+                                       <td>{{$admission->merit}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Course</td>
+                                       <td>{{$admission->course->name}}</td>
+                                    </tr>
+
+                                    <tr>
+                                       <td>College</td>
+                                       <td>{{$college->name}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Admission Date</td>
+                                       <td>{{$admission->addmission_date}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Admission Code</td>
+                                       <td>{{$admission->addmission_code}}</td>
+                                    </tr>
+                                 </table>
+                                 @if($admission->merit <= $college_merit->merit)
+                                    <h6>- Your Merit Not Match You Selected first college. <b>If You want to Reserved Seat Press Confirm Button</b> .</h6>
+                                    @else
+                                    <h6>- You have shortlisted on merit you are eligible for ({{$college->name}}) Please Press Confiem button.</h6>
+                                    @endif
+                                    <h6>- If You Want To go for Next Round Press Next Button.</h6>
+                                    <h6>- Tf You do not want admission Press Reject Button.</h6>
+
+                                    @if(Session::get('xyz')==1)
+                                    <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
+                                    @elseif(Session::get('xyz')==4)
+                                    <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
+                                    @else
+                                    <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</a>
+                                    <a type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</a>
+                                    <a type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</a>
+                                    @endif
+                                    @endif
+                              </span>
+                           </div>
+                           <div class="media-right white text-right">
+                              <i class="fa fa-superpowers font-large-1"></i>
+                           </div>
+                        </div>
+                     </div>
+                     <div id="" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+                     </div>
+
+                  </div>
                </div>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;
 
-            </div>
-         </div>
-      </div>&nbsp;&nbsp;&nbsp;&nbsp;
+            @endif
 
-      @endif
-
-      <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+            <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-12">
                 <div class="card gradient-mint">
                     <div class="card-content">
                         <div class="card-body py-0">
@@ -840,74 +840,115 @@ $(document).on('click','#deletes',function(){
                     </div>
                 </div>
             </div> -->
-   </div>
-   <!--Statistics cards Ends-->
-</div>
-@endsection
-@push('js')
-<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-<script>
-   $(document).ready(function() {
-      // var id = $(this).data('id');
-   });
-
-   $(document).on('click', '.confirm', function() {
-      swal({
-            title: "Are you sure?",
-            text: "You Want To Confirm Your Addmission!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-         })
-         .then((willDelete) => {
-            if (willDelete) {
-               var id = $(this).data('id');
-               alert(id);
-               var number = $(this).attr('id', 'asd');
-               $.ajax({
-                  url: "{{route('admis_status')}}",
-                  type: 'get',
-                  data: {
-                     id: id,
-                  },
-                  dataType: "json",
-                  success: function(data) {
-                     console.log(data);
-                     if (data.status == 1) {
-                        toastr.success("Congratulations Your Admission is Confirm....");
-                     } else if (data.status == 2) {
-                        toastr.error("Your Admission Is Rejected Successfully....");
-                     } else {
-                        location.href = "{{route('admission_form')}}";
-                     }
-                  }
-               })
-               // swal("Your Status Has Ben Change Succesfully", {
-               //     icon: "success",
-               // });
-            } else {
-               swal("Your Status is safe!");
-            }
+         </div>
+         <!--Statistics cards Ends-->
+      </div>
+      @endsection
+      @push('js')
+      <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+      <script>
+         $(document).ready(function() {
+            // var id = $(this).data('id');
          });
-   });
-</script>
-@endpush
-<!-- ============================================================================================== -->
 
-@if(Session::get('xyz')==1)
-                           <button type="button" id="confiem" class="btn btn-success round mr-1 mb-1" >Your Admission is Confirm Succesfully</button>
-                           <!-- <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm" >Confirm</a> -->
-                           @elseif(Session::get('xyz')==4)
-                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
-                           @elseif(Session::get('xyz')==2)
-                           <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1">Your Admission is Rejected Succesfully</button>
-                           @else
-                           <button type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</button>
-                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
-                           <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
-                           @endif
+         $(document).on('click', '.confirm', function() {
+            swal({
+                  title: "Are you sure?",
+                  text: "You Want To Confirm Your Addmission!",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+               })
+               .then((willDelete) => {
+                  if (willDelete) {
+                     var id = $(this).data('id');
+                     alert(id);
+                     var number = $(this).attr('id', 'asd');
+                     $.ajax({
+                        url: "{{route('admis_status')}}",
+                        type: 'get',
+                        data: {
+                           id: id,
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                           console.log(data);
+                           if (data.status == 1) {
+                              toastr.success("Congratulations Your Admission is Confirm....");
+                           } else if (data.status == 2) {
+                              toastr.error("Your Admission Is Rejected Successfully....");
+                           } else {
+                              location.href = "{{route('admission_form')}}";
+                           }
+                        }
+                     })
+                     // swal("Your Status Has Ben Change Succesfully", {
+                     //     icon: "success",
+                     // });
+                  } else {
+                     swal("Your Status is safe!");
+                  }
+               });
+         });
+      </script>
+      @endpush
+      <!-- ============================================================================================== -->
+
+      @if(Session::get('xyz')==1)
+      <button type="button" id="confiem" class="btn btn-success round mr-1 mb-1">Your Admission is Confirm Succesfully</button>
+      <!-- <a type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm" >Confirm</a> -->
+      @elseif(Session::get('xyz')==4)
+      <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+      @elseif(Session::get('xyz')==2)
+      <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1">Your Admission is Rejected Succesfully</button>
+      @else
+      <button type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</button>
+      <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+      <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
+      @endif
 
 
-Hello sir,
-i have completed my project can you please check my project
+      Hello sir,
+      i have completed this project as per provided requirement
+
+      University url
+      http://192.168.0.25:8000/university/login
+      email : admin@admin.com
+      password : admin@123
+
+      College url
+      http://192.168.0.25:8000/college/login
+
+      Student url
+      http://192.168.0.25:8000
+
+      Ishani Ranpariya
+      Work Report :: 20/01/2022
+      - solve previous error
+      - manage status rejected (if student reject admission then student no continue admission project)
+      - self testing project and solve error
+      - complete project as per provided requirement
+
+      Ranpariya Ishani
+      MR :: 21/01/2022
+      Today I am Working on below point
+      - watch video how to host project on live serve
+      - make account and
+
+      Ranpariya Ishani
+      Work Report :: 21/01/2022
+      - watch video how to host project on live serve
+      - create account in aws
+      - install termius and run command and solve error
+
+      Ranpariya Ishani
+      Work Report :: 22/01/2022
+      - create new instance
+      - create new host in termius and install
+         - nginx
+         - mysql
+         - php 
+         - phpmyadmin
+         - composer
+      

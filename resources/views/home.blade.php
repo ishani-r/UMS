@@ -46,7 +46,11 @@
                            @if($admission == NULL)
                            <h4>No data, First add Your Mark and then fill admission form</h4>
                            @elseif(!isset($colleges))
-                           <h4>Merit result declate at {{$meritround->merit_result_declare_date}}</h4>
+                              @if($meritround == '0')
+                              <h4>No Avaliable Round</h4>
+                              @else
+                                 <h4>Merit result declate at {{$meritround->merit_result_declare_date}}</h4>
+                              @endif
                            @else
                            <table class="table">
                               <tr>

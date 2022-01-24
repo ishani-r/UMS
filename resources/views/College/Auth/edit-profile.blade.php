@@ -113,6 +113,8 @@
             },
             contact_no: {
                required: true,
+               maxlength: 10,
+               minlength: 10
             },
             address: {
                required: true,
@@ -121,7 +123,11 @@
          messages: {
             name: 'Please Enter College Name!',
             email: 'Please Enter Your Email Address!',
-            contact_no: 'Please Enter College Contact Number!',
+            contact_no: {
+               required : 'Please Enter Your Mobile Number.',
+               maxlength : 'Please enter only 10 digits.',
+               minlength : 'Please enter at least 10 digits.'
+            },
             address: 'Please Enter College Address!',
          },
       });
