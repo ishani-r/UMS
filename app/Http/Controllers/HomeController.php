@@ -30,8 +30,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(1);
         $admission = Addmission::with('user')->with('course')->where('user_id', Auth::user()->id)->first();
         $meritround = MeritRound::where('status', 1)->first();
+        // dd($meritround);
+        if($meritround == NULL){
+            $meritround = 0;
+            return view('home', compact('admission', 'meritround'));
+        }
         $date_now = date("Y-m-d");
         if ($admission) {
             if ($date_now >= $meritround->merit_result_declare_date) {

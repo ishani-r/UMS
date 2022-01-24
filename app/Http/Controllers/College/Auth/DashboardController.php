@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\College;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\College\EditProfileRequest;
+use App\Http\Requests\College\ProfileRequest;
 use App\Models\AddmissionConfiram;
 use App\Models\CollegeMerit;
 
@@ -26,7 +26,7 @@ class DashboardController extends Controller
         return view('College.Auth.edit-profile', compact('college'));
     }
 
-    public function editProfile(Request $request,$id)
+    public function editProfile(ProfileRequest $request,$id)
     {
         $data = College::find($id);
         $data->name = $request->name;
@@ -46,12 +46,12 @@ class DashboardController extends Controller
     public function changePassword(Request $request) {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password.");
+            return redirect()->back()->with("error", "Your current password does not matches with the password.");
         }
 
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+        if (strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
             // Current password and new password same
-            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+            return redirect()->back()->with("error", "New Password cannot be same as your current password.");
         }
 
         $validatedData = $request->validate([
@@ -61,7 +61,8 @@ class DashboardController extends Controller
         ]);
 
         //Change Password
-        $college = Auth::user()->id;
+
+        $college = College::where('id', Auth::user()->id)->first();
         $college->password = Hash::make($request->get('new-password'));
         $college->save();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Addmission;
+use App\Models\MeritRound;
 use App\Models\StudentMark;
 use App\Models\Subject;
 use App\Repositories\StudentMarksRepository;
@@ -26,6 +27,12 @@ class StudentMarksController extends Controller
 
     public function index()
     {
+        $meritround = MeritRound::where('status', 1)->first();
+        if ($meritround == NULL) {
+            Session::flash('error', 'No Avaliable Round !!');
+            return redirect()->route('home');
+        }
+
         $admission = Addmission::where('user_id', Auth::user()->id)->first();
         if ($admission == Null) {
             $subjects = Subject::all();

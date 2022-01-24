@@ -58,7 +58,7 @@ class DashboardController extends Controller
         ]);
 
         //Change Password
-        $university = Auth::user()->id;
+        $university = University::where('id', Auth::user()->id)->first();
         $university->password = Hash::make($request->get('new-password'));
         $university->save();
 

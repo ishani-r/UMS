@@ -29,6 +29,11 @@ class AdminssionController extends Controller
     }
     public function showAdmissionForm()
     {
+        $meritround = MeritRound::where('status', 1)->first();
+        if ($meritround == NULL) {
+            Session::flash('error', 'No Avaliable Round !!');
+            return redirect()->route('home');
+        }
         $count = StudentMark::where('user_id', Auth::user()->id)->count();
         if ($count == 0) {
             Session::flash('error', 'First Insert Your Marks !!');
