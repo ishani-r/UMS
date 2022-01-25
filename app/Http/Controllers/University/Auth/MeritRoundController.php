@@ -46,7 +46,7 @@ class MeritRoundController extends Controller
         $data = $this->Merit->edit($id);
         $course = $data[0];
         $merit = $data[1];
-        return view('university.Merit-Round.edit', compact('course', 'merit'));
+        return view('University.Merit-Round.edit', compact('course', 'merit'));
     }
 
     public function update(EditMeritRound $request, $id)
