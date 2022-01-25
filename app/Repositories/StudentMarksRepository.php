@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Interfaces\StudentMarksInterface;
 use App\Models\Addmission;
-use App\Models\CommonSetting;
 use App\Models\StudentMark;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -57,7 +56,6 @@ class StudentMarksRepository implements StudentMarksInterface
       } catch (Exception $e) {
          DB::rollBack();
          Log::info($e);
-         dd(1);
       }
    }
 }

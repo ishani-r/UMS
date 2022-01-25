@@ -105,10 +105,10 @@
                            @elseif($admission->status == 1)
                            <button type="button" id="confiem" class="btn btn-success round mr-1 mb-1">Your Admission is Confirm Succesfully</button>
                            @elseif($admission->status == 0)
-                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next Round</button>
                            @else
                            <button type="button" id="confiem" data-id="1" class="btn btn-success round mr-1 mb-1 confirm">Confirm</button>
-                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next</button>
+                           <button type="button" id="next" data-id="4" class="btn btn-info round mr-1 mb-1 confirm">Next Round</button>
                            <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
                            @endif
                            @endif
@@ -201,12 +201,13 @@
                      console.log(data);
                      if (data.status == 1) {
                         toastr.success("Congratulations Your Admission is Confirm....");
+                        location.reload();
                      } else if (data.status == 2) {
                         toastr.error("Your Admission Is Rejected Successfully....");
+                        location.reload();
                      } else {
                         location.href = "{{route('admission_form')}}";
                      }
-                     location.reload();
                   }
                })
                // swal("Your Status Has Ben Change Succesfully", {
