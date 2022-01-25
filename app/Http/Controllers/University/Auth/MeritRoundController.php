@@ -20,6 +20,7 @@ class MeritRoundController extends Controller
 
     public function index(MeritRoundDatatable $MeritRoundDatatable)
     {
+        dd(1);
         return $MeritRoundDatatable->render('University.Merit-Round.index');
     }
 

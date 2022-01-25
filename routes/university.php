@@ -41,6 +41,6 @@ Route::group(['middleware' => 'auth:university'], function () {
     Route::get('meritround-status',         'Auth\MeritRoundController@status')->name('meritround_status');
     
     // student
-    Route::resource('student',            Auth\StudentAdmissionController::class);
-    Route::get('student-status',          'Auth\StudentAdmissionController@studentStatus')->name('student_status');
+    Route::resource('student',               Auth\StudentAdmissionController::class);
+    Route::get('student-status',            'Auth\StudentAdmissionController@studentStatus')->name('student_status');
 });
