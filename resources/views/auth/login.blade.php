@@ -10,7 +10,9 @@
                     <p style="color: red;">{{ Session::get('error') }}</p>
                 </div>
                 @endif
-                <div class="card-header"><h1>Student Login</h1></div>
+                <div class="card-header">
+                    <h1>Student Login</h1>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -21,7 +23,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
-
+                                
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

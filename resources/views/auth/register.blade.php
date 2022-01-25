@@ -1,167 +1,270 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-@section('content')
-<div class="container">
-   <div class="row justify-content-center">
-      <div class="col-md-8">
-         <div class="card">
-            <div class="card-header"><h1>Student Register</h1></div>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            <div class="card-body">
-               <form method="POST" action="{{ route('register') }}" id="register" enctype="multipart/form-data">
-                  @csrf
+   <title>Welcome Student Portal</title>
 
-                  <div class="row mb-3">
-                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-                  <div class="row mb-3">
-                     <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
+   <!-- Styles -->
+   <style>
+      body {
+         background: url("https://png.pngtree.com/background/20210709/original/pngtree-school-season-student-start-school-supplies-discount-picture-image_954651.jpg");
+         background-attachment: fixed;
+         background-repeat: no-repeat;
+         background-size: 100%;
+         /* background-color: rgb(228, 229, 247); */
+      }
 
-                     <div class="col-md-6">
-                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+      .social-login img {
+         width: 24px;
+      }
 
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      a {
+         text-decoration: none;
+      }
 
-                  <div class="row mb-3">
-                     <label for="contact_no" class="col-md-4 col-form-label text-md-end">{{ __('Contact No') }}</label>
-                     <div class="col-md-6">
-                        <input id="contact_no" type="number" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" value="{{ old('contact_no') }}" autocomplete="contact_no">
-                        @error('contact_no')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      .card {
+         font-family: sans-serif;
+         width: 440px;
+         margin-left: auto;
+         margin-right: auto;
+         margin-top: 3em;
+         margin-bottom: 3em;
+         border-radius: 10px;
+         background-color: #ffff;
+         padding: 1.8rem;
+         box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+      }
 
-                  <div class="row mb-3">
-                     <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
-                     <div class="col-md-6">
-                        <input type="radio" name="gender" value="M"> Male<br>
-                        <input type="radio" name="gender" value="F"> Female<br>
-                     </div>
-                     @error('gender')
-                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                     </span>
-                     @enderror
-                  </div>
+      .title {
+         text-align: center;
+         font-weight: bold;
+         margin: 0;
+      }
 
-                  <div class="row mb-3">
-                     <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
-                     <div class="col-md-6">
-                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address">
-                        @error('address')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      .subtitle {
+         text-align: center;
+         font-weight: bold;
+      }
 
-                  <div class="row mb-3">
-                     <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('dob') }}</label>
-                     <div class="col-md-6">
-                        {{Form::date('dob','',['class'=>'form-control txtDate'])}}
-                        @error('dob')
-                        <span role="alert">
-                           <strong style="color:red;">{{$message}}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      .btn-text {
+         margin: 0;
+      }
 
-                  <div class="row mb-3">
-                     <label for="adhaar_card_no" class="col-md-4 col-form-label text-md-end">{{ __('Adhaar Card No') }}</label>
-                     <div class="col-md-6">
-                        <input autocomplete='off' type='text' class="form-control card-number @error('adhaar_card_no') is-invalid @enderror" maxlength="19" id="adhaar_card_no" name="adhaar_card_no" size='20' value="{{ old('adhaar_card_no') }}">
+      .social-login {
+         display: flex;
+         justify-content: center;
+         gap: 5px;
+      }
 
-                        <!-- <input id="adhaar_card_no" type="adhaar_card_no" class="form-control @error('adhaar_card_no') is-invalid @enderror" name="adhaar_card_no" value="{{ old('adhaar_card_no') }}" autocomplete="adhaar_card_no"> -->
-                        @error('adhaar_card_no')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      .google-btn {
+         background: #fff;
+         border: solid 2px rgb(245 239 239);
+         border-radius: 8px;
+         font-weight: bold;
+         display: flex;
+         padding: 10px 10px;
+         flex: auto;
+         align-items: center;
+         gap: 5px;
+         justify-content: center;
+      }
 
-                  <div class="row mb-3">
-                     <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Profile') }}</label>
-                     <div class="col-md-6">
-                        <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autocomplete="image">
-                        @error('image')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      .fb-btn {
+         background: #fff;
+         border: solid 2px rgb(69, 69, 185);
+         border-radius: 8px;
+         padding: 10px;
+         display: flex;
+         align-items: center;
+      }
 
-                  <div class="row mb-3">
-                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+      .or {
+         text-align: center;
+         font-weight: bold;
+         border-bottom: 2px solid rgb(245 239 239);
+         line-height: 0.1em;
+         margin: 25px 0;
+      }
 
-                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+      .or span {
+         background: #fff;
+         padding: 0 10px;
+      }
 
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                     </div>
-                  </div>
+      .email-login {
+         display: flex;
+         flex-direction: column;
+      }
 
-                  <div class="row mb-3">
-                     <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+      .email-login label {
+         color: #2C3E50;
+      }
 
-                     <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
-                     </div>
-                  </div>
+      input[type="text"],
+      input[type="password"] {
+         padding: 10px 20px;
+         margin-top: 8px;
+         margin-bottom: 10px;
+         border: 1px solid #ccc;
+         border-radius: 8px;
+         box-sizing: border-box;
+      }
 
-                  <div class="row mb-0">
-                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                           {{ __('Register') }}
-                        </button>
-                     </div>
-                  </div>
-               </form>
+      .cta-btn {
+         background-color: rgb(69, 69, 185);
+         color: white;
+         padding: 18px 20px;
+         margin-top: 10px;
+         margin-bottom: 20px;
+         width: 100%;
+         border-radius: 10px;
+         border: none;
+      }
+
+      .forget-pass {
+         text-align: center;
+         display: block;
+      }
+      .error {
+      color: red;
+   }
+   </style>
+
+</head>
+
+<body class="antialiased">
+   <div class="card">
+      <!-- <form"> -->
+      <h2 class="title" style="color:#C70039"> Register In Student Panel</h2>
+      <p class="subtitle">You have an account? <a href="{{ route('welcome') }}"> sign In</a></p>
+
+      <!-- <p class="or"><span>or</span></p> -->
+      <br>
+      <form method="POST" action="{{ route('register') }}" id="register" enctype="multipart/form-data">
+         @csrf
+         <div class="email-login">
+            <!-- Name -->
+            <label for="name"> <b>Name</b></label>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" placeholder="Enter Name" autofocus>
+            @error('name')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <!-- Email -->
+            <label for="email"> <b>Email</b></label>
+            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Enter email" autofocus>
+            @error('email')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <!-- Contact No -->
+            <label for="contact_no"> <b>Contact No</b></label>
+            <input id="contact_no" type="text" class="form-control @error('contact_no') is-invalid @enderror" name="contact_no" value="{{ old('contact_no') }}" autocomplete="contact_no" placeholder="Enter Contact No" autofocus>
+            @error('contact_no')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <!-- Gender -->
+            <label for="contact_no"> <b>Gender</b></label>
+            <div class="col-md-6">
+               <input type="radio" name="gender" value="M">Male
+               <input type="radio" name="gender" value="F">Female
             </div>
+            @error('gender')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+            <br>
+            <!-- Address -->
+            <label for="address"> <b>Address</b></label>
+            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address" placeholder="Enter Address" autofocus>
+            @error('address')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <!-- DOB -->
+            <label for="dob"> <b>DOB</b></label>
+            {{Form::date('dob','',['class'=>'txtDate'])}}
+            @error('dob')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <br>
+            <!-- Adhaar Card No -->
+            <label for="adhaar_card_no"> <b>Adhaar Card No</b></label>
+            <input autocomplete='off' type='text' class="card-number @error('adhaar_card_no') is-invalid @enderror" maxlength="19" id="adhaar_card_no" name="adhaar_card_no" size='20' value="{{ old('adhaar_card_no') }}" placeholder="Enter Adhaar Card No">
+            @error('adhaar_card_no')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <!-- Image -->
+            <label for="image"> <b>Profile</b></label>
+            <input id="image" type="file" class="@error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autocomplete="image">
+            @error('image')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+            <br>
+            <!-- Password -->
+            <label for="password"><b>Password</b></label>
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password" autocomplete="current-password">
+            @error('password')
+            <span role="alert">
+               <strong style="color:red;">{{$message}}</strong>
+            </span>
+            @enderror
+
+            <!-- Password -->
+            <label for="password-confirm"><b>Confirm Password</b></label>
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Enter Confirm Password">
          </div>
-      </div>
+         <!-- <button type="submit" class="cta-btn">Log In</button> -->
+         <button type="submit" class="cta-btn">
+            {{ __('Register') }}
+         </button>
+         <!-- </form> -->
+         <!-- <a class="forget-pass" href="#">Forgot password?</a> -->
+      </form>
    </div>
-</div>
-@endsection
-@push('js')
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
 <script>
-    $(function() {
-            var dtToday = new Date();
-            var month = dtToday.getMonth() + 1;
-            var day = dtToday.getDate();
-            var year = dtToday.getFullYear();
-            if (month < 10)
-                month = '0' + month.toString();
-            if (day < 10)
-                day = '0' + day.toString();
-            var maxDate = year + '-' + month + '-' + day;
-            $('.txtDate').attr('max', maxDate);
-        });
+   $(function() {
+      var dtToday = new Date();
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+      if (month < 10)
+         month = '0' + month.toString();
+      if (day < 10)
+         day = '0' + day.toString();
+      var maxDate = year + '-' + month + '-' + day;
+      $('.txtDate').attr('max', maxDate);
+   });
    $('input[name=adhaar_card_no]').keypress(function() {
       var rawNumbers = $(this).val().replace(/ /g, '');
       var cardLength = rawNumbers.length;
@@ -239,4 +342,3 @@
       },
    });
 </script>
-@endpush
