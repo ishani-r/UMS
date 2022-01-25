@@ -32,8 +32,7 @@ class StudentMarksController extends Controller
             Session::flash('error', 'No Avaliable Round !!');
             return redirect()->route('home');
         }
-
-        $admission = Addmission::where('user_id', Auth::user()->id)->first();
+        $admission = Addmission::where('user_id', Auth::user()->id)->first();   
         if ($admission == Null) {
             $subjects = Subject::all();
             $studentmarks = StudentMark::with('subject')->where('user_id', Auth::user()->id)->get();
