@@ -10,13 +10,18 @@ use App\Models\University;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\University\EditProfileRequest;
+use App\Models\Addmission;
+use App\Models\Course;
+
 class DashboardController extends Controller
 {
     public function index()
     {
         $university = College::all()->count();
         $subject = Subject::all()->count();
-        return view('University.layouts.content',compact('university','subject'));
+        $course = Course::all()->count();
+        $admission = Addmission::where('college_id', '!=', 'NULL')->count();
+        return view('University.layouts.content',compact('university','subject','course','admission'));
     }
 
     public function showEditProfile()

@@ -908,7 +908,6 @@ return $data1;
       <button type="button" id="rejected" data-id="2" class="btn btn-dark round mr-1 mb-1 confirm">Rejected</button>
       @endif
 
-
       Hello sir,
       i have completed this project as per provided requirement
 
@@ -946,9 +945,25 @@ return $data1;
       Work Report :: 22/01/2022
       - create new instance
       - create new host in termius and install
-         - nginx
-         - mysql
-         - php 
-         - phpmyadmin
-         - composer
-      
+      - nginx
+      - mysql
+      - php
+      - phpmyadmin
+      - composer
+
+      University url
+      http://65.0.102.75/university/login
+      email : admin@admin.com
+      password : admin@123
+
+      College url
+      http://65.0.102.75/college/login
+
+      Student url
+      http://65.0.102.75/
+
+      Ranpariya Ishani
+      Work Report :: 24/01/2022
+      - clone project run migration and seeder
+      - testing project and solve error
+      - Project Upload on server with error free 

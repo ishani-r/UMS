@@ -23,7 +23,7 @@
                   <div class="media pb-1">
                      <div class="media-body white text-left">
                         <h3 class="font-large-1 white mb-0">{{$admission->merit ?? '0'}}</h3>
-                        <span>Total Merit</span>
+                        <span>Your Total Merit</span>
                      </div>
                      <div class="media-right white text-right">
                         <i class="fa fa-shopping-basket font-large-1"></i>
