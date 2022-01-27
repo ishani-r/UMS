@@ -21,7 +21,7 @@ class StudentMarksController extends Controller
     public function store(Request $request)
     {
         $result = $this->Data->store($request->all());
-        Session::flash('success', 'Marks Add Successfully !!');
+        Session::flash('success', 'Marks Added Successfully !!');
         return redirect()->route('show_marks', compact('result'));
     }
 

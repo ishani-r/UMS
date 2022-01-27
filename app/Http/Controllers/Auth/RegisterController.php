@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'gender' => ['required'],
             'address' => ['required'],
             'dob' => ['required'],
-            'adhaar_card_no' => ['required', 'min:16'],
+            'adhaar_card_no' => ['required'],
             // 'image' => ['required', 'mimes:jpeg,jpg,png'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
