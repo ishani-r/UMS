@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('adhaar_card_no')->nullable();
             $table->string('image')->nullable();
+            $table->string('social_login_id')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

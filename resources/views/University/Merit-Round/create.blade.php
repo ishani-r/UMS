@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="round_no">{{ Form::label('round_no','Round No')}}</label>
-                              {{Form::number('round_no','',['class'=>'form-control','placeholder'=>'Enter Round No'])}}
+                              {{Form::number('round_no','',['class'=>'form-control','placeholder'=>'Enter Round No','min'=>'1'])}}
                               @error('round_no')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -53,7 +53,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="start_date">{{ Form::label('start_date','Start Date')}}</label>
-                              {{Form::date('start_date','',['class'=>'form-control txtDate'])}}
+                              {{Form::text('start_date','',['class'=>'form-control start_date','placeholder'=>'Select Start Date'])}}
                               @error('start_date')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="end_date">{{ Form::label('end_date','End Date')}}</label>
-                              {{Form::date('end_date','',['class'=>'form-control txtDate'])}}
+                              {{Form::text('end_date','',['class'=>'form-control end_date','placeholder'=>'Select End Date'])}}
                               @error('end_date')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -77,7 +77,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="merit_result_declare_date">{{ Form::label('merit_result_declare_date','Merit Result Declare Date')}}</label>
-                              {{Form::date('merit_result_declare_date','',['class'=>'form-control txtDate'])}}
+                              {{Form::text('merit_result_declare_date','',['class'=>'form-control merit_result_declare_date','placeholder'=>'Select Merit Result Declare Date'])}}
                               @error('merit_result_declare_date')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -96,28 +96,53 @@
    </section>
    @endsection
    @push('js')
-
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
    <script>
-      $(function() {
-         var dtToday = new Date();
-
-         var month = dtToday.getMonth() + 1;
-         var day = dtToday.getDate();
-         var year = dtToday.getFullYear();
-         if (month < 10)
-            month = '0' + month.toString();
-         if (day < 10)
-            day = '0' + day.toString();
-
-         var minDate = year + '-' + month + '-' + day;
-
-         $('.txtDate').attr('min', minDate);
+      $(".start_date").datepicker({
+         minDate: 0,
+         dateFormat: 'yy-mm-dd',
+         onSelect: function(selected) {
+            var dt = new Date(selected);
+            dt.setDate(dt.getDate() + 1);
+            $(".end_date").datepicker("option", "minDate", dt);
+         }
       });
+      $(".end_date").datepicker({
+         dateFormat: 'yy-mm-dd',
+         onSelect: function(selected) {
+            var dt = new Date(selected);
+            dt.setDate(dt.getDate() + 1);
+            $(".merit_result_declare_date").datepicker("option", "minDate", dt);
+         }
+      });
+      $('.merit_result_declare_date').datepicker({
+         dateFormat: "yy-mm-dd",
+      });
+
+      // $(function() {
+      //    var dtToday = new Date();
+
+      //    var month = dtToday.getMonth() + 1;
+      //    var day = dtToday.getDate();
+      //    var year = dtToday.getFullYear();
+      //    if (month < 10)
+      //       month = '0' + month.toString();
+      //    if (day < 10)
+      //       day = '0' + day.toString();
+
+      //    var minDate = year + '-' + month + '-' + day;
+
+      //    $('.txtDate').attr('min', minDate);
+      // });
 
       $('#merit_form').validate({
          rules: {
             round_no: {
                required: true,
+               minlength: 1
             },
             course_id: {
                required: true,
@@ -133,7 +158,9 @@
             },
          },
          messages: {
-            round_no: 'Please Enter Round Number!',
+            round_no: {
+               required: 'Please Enter Round Number!',
+            },
             course_id: 'Please Select Course!',
             start_date: 'Please Select Start Date!',
             end_date: 'Please Select End Date!',

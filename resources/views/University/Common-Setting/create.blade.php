@@ -33,10 +33,10 @@
                                  @if(count($common_setting)==0)
                                  @foreach($subject as $subjects)
                                  <label for="marks">{{ Form::label('marks', $subjects->name)}}</label>
-                                 <input type="number" name="marks[{{$subjects->id}}]" class="form-control" id="marks" placeholder="Enter Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" required>
+                                 <input type="number" name="marks[{{$subjects->id}}]" class="form-control" id="marks" placeholder="Enter Percentage" onKeyPress="if(this.value.length==3) return false;" min="0" max="100">
                                  @error('marks')
-                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                 <span role="alert">
+                                    <strong style="color:red;">{{$message}}</strong>
                                  </span>
                                  @enderror
                                  @endforeach
@@ -44,6 +44,11 @@
                                  @foreach($common_setting as $common_settings)
                                  <label for="marks">{{ Form::label('marks', $common_settings->subject->name)}}</label>
                                  <input type="number" name="marks[{{$common_settings->id}}]" class="form-control" onKeyPress="if(this.value.length==3) return false;" min="0" max="100" id="marks" value="{{$common_settings->marks}}" required>
+                                 @error('marks')
+                                 <span role="alert">
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
+                                 @enderror
                                  @endforeach
                                  @endif
                               </div>
@@ -63,6 +68,6 @@
    @endsection
    @push('js')
    <script>
-      
+     
    </script>
    @endpush

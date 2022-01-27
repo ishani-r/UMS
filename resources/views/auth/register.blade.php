@@ -131,9 +131,10 @@
          text-align: center;
          display: block;
       }
+
       .error {
-      color: red;
-   }
+         color: red;
+      }
    </style>
 
 </head>
@@ -151,7 +152,7 @@
          <div class="email-login">
             <!-- Name -->
             <label for="name"> <b>Name</b></label>
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" placeholder="Enter Name" autofocus>
+            <input name="name" id="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autocomplete="name" placeholder="Enter Name" autofocus>
             @error('name')
             <span role="alert">
                <strong style="color:red;">{{$message}}</strong>
@@ -160,7 +161,7 @@
 
             <!-- Email -->
             <label for="email"> <b>Email</b></label>
-            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Enter email" autofocus>
+            <input name="email" id="email" type="text" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" autocomplete="email" placeholder="Enter email" autofocus>
             @error('email')
             <span role="alert">
                <strong style="color:red;">{{$message}}</strong>
@@ -209,7 +210,7 @@
             <br>
             <!-- Adhaar Card No -->
             <label for="adhaar_card_no"> <b>Adhaar Card No</b></label>
-            <input autocomplete='off' type='text' class="card-number @error('adhaar_card_no') is-invalid @enderror" maxlength="19" id="adhaar_card_no" name="adhaar_card_no" size='20' value="{{ old('adhaar_card_no') }}" placeholder="Enter Adhaar Card No">
+            <input autocomplete='off' type='text' class="card-number @error('adhaar_card_no') is-invalid @enderror" maxlength="14" id="adhaar_card_no" name="adhaar_card_no" size='20' value="{{ old('adhaar_card_no') }}" placeholder="Enter Adhaar Card No">
             @error('adhaar_card_no')
             <span role="alert">
                <strong style="color:red;">{{$message}}</strong>
@@ -247,11 +248,10 @@
       </form>
    </div>
 </body>
-
 </html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-
 <script>
    $(function() {
       var dtToday = new Date();
@@ -268,77 +268,80 @@
    $('input[name=adhaar_card_no]').keypress(function() {
       var rawNumbers = $(this).val().replace(/ /g, '');
       var cardLength = rawNumbers.length;
-      if (cardLength !== 0 && cardLength <= 12 && cardLength % 4 == 0) {
+      if (cardLength !== 0 && cardLength <= 8 && cardLength % 4 == 0) {
          $(this).val($(this).val() + ' ');
       }
    });
-   $('#register').validate({
-      rules: {
-         name: {
-            required: true,
+
+   $(document).ready(function() {
+      $('#register').validate({
+         rules: {
+            name: {
+               required: true,
+            },
+            email: {
+               required: true,
+            },
+            contact_no: {
+               required: true,
+               maxlength: 10,
+               minlength: 10
+            },
+            gender: {
+               required: true,
+            },
+            address: {
+               required: true,
+            },
+            dob: {
+               required: true,
+            },
+            adhaar_card_no: {
+               required: true,
+            },
+            image: {
+               required: true,
+            },
+            password: {
+               required: true,
+               minlength: 8
+            },
+            password_confirmation: {
+               required: true,
+               equalTo: "#password"
+            },
          },
-         email: {
-            required: true,
+         errorElement: 'span',
+         messages: {
+            name: 'Please Enter Your Name.',
+            email: 'Please Enter Your Email Address.',
+            contact_no: {
+               required: 'Please Enter Your Mobile Number.',
+               maxlength: 'Please enter only 10 digits.',
+               minlength: 'Please enter at least 10 digits.'
+            },
+            gender: 'Please Select Your Address.',
+            address: 'Please Enter Your Address.',
+            dob: 'Please Select Your Birth Date.',
+            adhaar_card_no: 'Please Enter Your Adhaar Card Number.',
+            image: 'Please Select Your Profile Image.',
+            password: {
+               required: 'Please Enter Your Password.',
+               minlength: 'Please Enter at least 8 characters.'
+            },
+            password_confirmation: {
+               required: 'Please Enter Confirmation.',
+               equalTo: 'Please Enter Confirm Password Same as a Password.'
+            }
          },
-         contact_no: {
-            required: true,
-            maxlength: 10,
-            minlength: 10
+         highlight: function(element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+            $(element).parents("div.form-control").addClass(errorClass).removeClass(validClass);
          },
-         gender: {
-            required: true,
+         unhighlight: function(element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+            $(element).parents(".error").removeClass(errorClass).addClass(validClass);
          },
-         address: {
-            required: true,
-         },
-         dob: {
-            required: true,
-         },
-         adhaar_card_no: {
-            required: true,
-         },
-         image: {
-            required: true,
-         },
-         password: {
-            required: true,
-            minlength: 8
-         },
-         password_confirmation: {
-            required: true,
-            equalTo: "#password"
-         },
-      },
-      errorElement: 'span',
-      messages: {
-         name: 'Please Enter Your Name.',
-         email: 'Please Enter Your Email Address.',
-         contact_no: {
-            required: 'Please Enter Your Mobile Number.',
-            maxlength: 'Please enter only 10 digits.',
-            minlength: 'Please enter at least 10 digits.'
-         },
-         gender: 'Please Select Your Address.',
-         address: 'Please Enter Your Address.',
-         dob: 'Please Select Your Birth Date.',
-         adhaar_card_no: 'Please Enter Your Adhaar Card Number.',
-         image: 'Please Select Your Profile Image.',
-         password: {
-            required: 'Please Enter Your Password.',
-            minlength: 'Please Enter at least 8 characters.'
-         },
-         password_confirmation: {
-            required: 'Please Enter Confirmation.',
-            equalTo: 'Please Enter Confirm Password Same as a Password.'
-         }
-      },
-      highlight: function(element, errorClass, validClass) {
-         $(element).addClass('is-invalid');
-         $(element).parents("div.form-control").addClass(errorClass).removeClass(validClass);
-      },
-      unhighlight: function(element, errorClass, validClass) {
-         $(element).removeClass('is-invalid');
-         $(element).parents(".error").removeClass(errorClass).addClass(validClass);
-      },
+      });
    });
 </script>

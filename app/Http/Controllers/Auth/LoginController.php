@@ -11,6 +11,7 @@ use App\Models\MeritRound;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -34,70 +35,34 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest:web')->except('logout');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $this->validateLogin($request);
-    //     $meritround = MeritRound::where('status', '1')->first();
-    //     $date_now = date("Y-m-d"); // this format is string comparable
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
 
-    //     if ($date_now >= $meritround->merit_result_declare_date) {
-    //         dd(1);
-    //         // $user = User::where('email', $request->email)->first();
-    //         // $admission = Addmission::where('user_id', $user->id)->first();
-    //         // $merit = $admission->merit;
-    //         // $first_sel_college = $admission->college_id[0];
-    //         // $college_merit = CollegeMerit::where('college_id', $first_sel_college)->first();
-    //         // if ($merit >= $college_merit->merit) {
-    //         //     dd(1);
-    //         if (
-    //             method_exists($this, 'hasTooManyLoginAttempts') &&
-    //             $this->hasTooManyLoginAttempts($request)
-    //         ) {
-    //             $this->fireLockoutEvent($request);
-    //             return $this->sendLockoutResponse($request);
-    //         }
-
-    //         if ($this->attemptLogin($request)) {
-    //             if ($request->hasSession()) {
-    //                 $request->session()->put('auth.password_confirmed_at', time());
-    //             }
-    //             return $this->sendLoginResponse($request);
-    //         }
-    //         $this->incrementLoginAttempts($request);
-    //         return $this->sendFailedLoginResponse($request);
-    //         // } else {
-    //         //     dd(3);
-    //         // }
-    //     } else if ($date_now > $meritround->end_date) {
-    //         // dd(2);
-    //         return redirect()->back()->with('error', 'You Can not Login Beacuse Admission Date is Expired Please Wait will Merit Declaration Date....');
-    //     } else {
-    //         // dd(3);
-    //         if (
-    //             method_exists($this, 'hasTooManyLoginAttempts') &&
-    //             $this->hasTooManyLoginAttempts($request)
-    //         ) {
-    //             $this->fireLockoutEvent($request);
-    //             return $this->sendLockoutResponse($request);
-    //         }
-
-    //         if ($this->attemptLogin($request)) {
-    //             if ($request->hasSession()) {
-    //                 $request->session()->put('auth.password_confirmed_at', time());
-    //             }
-    //             return $this->sendLoginResponse($request);
-    //         }
-    //         $this->incrementLoginAttempts($request);
-    //     }
-    // }
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        // dd($user);
+        // Find User
+        $authUser = User::where('email', $user->email)->first();
+        if ($authUser) {
+            Auth::guard('web')->login($authUser);
+            return redirect()->route('home');
+        } else {
+            $newUser = new User();
+            $newUser->name = $user->name;
+            $newUser->email = $user->email;
+            $newUser->social_login_id = $user->id;
+            $newUser->password = uniqid(); // we dont need password for login
+            $newUser->save();
+            Auth::guard('web')->login($newUser);
+            return redirect()->route('home');
+        }
+    }
 }

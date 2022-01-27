@@ -22,18 +22,14 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
         foreach ($guards as $guard) {
             if ($guard == 'university') {
-
                 if (Auth::guard($guard)->check()) {
                     return redirect(RouteServiceProvider::UNIVERSITY);
                 }
-            }
-            elseif($guard == 'college')
-            {
+            } elseif ($guard == 'college') {
                 if (Auth::guard($guard)->check()) {
                     return redirect(RouteServiceProvider::COLLEGE);
                 }
-            }
-            else {
+            } else {
                 if (Auth::guard($guard)->check()) {
                     return redirect(RouteServiceProvider::HOME);
                 }

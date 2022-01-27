@@ -24,6 +24,9 @@ Route::get('demo', function () {
     return view('demo');
 });
 
+// Social Login
+Route::get('google', 'Auth\LoginController@redirectToProvider')->name('google');
+Route::get('google/callback', 'Auth\LoginController@handleProviderCallback');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
