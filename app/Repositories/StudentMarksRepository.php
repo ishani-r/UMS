@@ -54,6 +54,7 @@ class StudentMarksRepository implements StudentMarksInterface
          DB::commit();
          return $result;
       } catch (Exception $e) {
+         dd($e);
          DB::rollBack();
          Log::info($e);
       }
