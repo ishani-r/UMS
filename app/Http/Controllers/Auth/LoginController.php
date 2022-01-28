@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\CollegeMerit;
-use App\Models\Addmission;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
-use App\Models\MeritRound;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;

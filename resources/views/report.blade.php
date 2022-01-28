@@ -1832,45 +1832,78 @@ return $data1;
       // }
       // }
 
+1. How many functions are available to store and update data in Laravel ?
 1. save()
-   -> only data store karse database ma
+   -> data store karse database ma
       $data->save();
+      ex.   insert()
+            $data = new ModalName();
+            $data->name = $request->name;
+            $data->save();
 
-3. create()
+            update()
+            $data = ModalName::find($id);
+            $data->name = $request->name;
+            $data->save();
+
+2. create()
    -> data store karse database ma and database ni create_at column ma pan entry padse
-      ModalName::create([
-         'column_name' -> $request->column_name
-      ]);
+      ex.   ModalName::create([
+               'column_name' -> $request->column_name
+            ]);
 
-2. insert()
-   -> only data insert karse database ma
-      $insertData = [
-         'column_name' -> $request->column_name
-      ];
-      $result = ModalName::insert($insertData);
+3. insert()
+   -> multipal data insert karse database ma
+      ex.   $data = [
+               [
+                  'name' => 'Vivekanand College',
+                  'email' => 'vvk@gmail.com',
+               ],
+               [
+                  'name' => 'Government Polytechnic For Girls',
+                  'email' => 'gpg@gmail.com',
+               ],
+            ];
+            ModalName::insert($data);
 
-3. update()
+            $insertData = [
+               'column_name' -> $request->column_name
+            ];
+            $result = ModalName::insert($insertData);
+
+4. update()
    -> only data update karse database ma
-      $insertData = [
-         'column_name' -> $request->column_name
-      ];
-      $result->update($insertData);
+      ex.   $insertData = [
+               'column_name' -> $request->column_name
+            ];
+            $result->update($insertData);
 
-4. updateOrCreate()
+5. updateOrCreate()
    -> aa function databse ma enter nay hoy to data insert karse and entry hase to data update karse
-      $data = ModalName::updateOrCreate(
-      [
-         'column_name' -> $request->column_name
-         // add here you want condition
-         // like where condition
-      ],
-      [
-         'column_name' -> $request->column_name
-      ]
-      );
+      ex.   $data = ModalName::updateOrCreate(
+            [
+               'column_name' -> $request->column_name
+               // add here you want condition
+               // like where condition
+            ],
+            [
+               'column_name' -> $request->column_name
+            ]
+            );
 
+2. difference between insert() and create()
+   
+   insert()
+      - multipal data insert karse database ma
+      - create_at and update_at ma null data padse 
+      - model ma fillable variable lakhvo jaruri nathi 
+   create()
+      - only one record insert karse database ma 
+      - create_at and update_at ma entry padse 
+      - model ma fillable variable lakhvo jaruri che 
 
    insert()
+   
    $data = new ModalName();
    $data->name = $request->name;
    $data->save();
@@ -1879,3 +1912,12 @@ return $data1;
    $data = ModalName::find($id);
    $data->name = $request->name;
    $data->save();
+
+   variable controller me se pass horaha he to 
+   {{$variable_name}}
+   
+   @php 
+      $data = 'data';
+   @endphp
+
+   {{$data}}
