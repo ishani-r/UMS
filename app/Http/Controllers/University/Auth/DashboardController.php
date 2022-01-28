@@ -30,14 +30,13 @@ class DashboardController extends Controller
         return view('University.Auth.edit-profile', compact('university'));
     }
 
-    public function editProfile(EditProfileRequest $request,$id)
+    public function editProfile(EditProfileRequest $request,University $university)
     {
-        $data = University::find($id);
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->contact_no = $request->contact_no;
-        $data->address = $request->address;
-        $data->save();
+        $university->name = $request->name;
+        $university->email = $request->email;
+        $university->contact_no = $request->contact_no;
+        $university->address = $request->address;
+        $university->save();
         return redirect()->route('university.show_edit_profile');
     }
 

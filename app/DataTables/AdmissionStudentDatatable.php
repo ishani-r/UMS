@@ -34,14 +34,13 @@ class AdmissionStudentDatatable extends DataTable
                     return '<button type="button" data-id="' . $data->id . '" class="btn btn-danger round mr-1 mb-1">Rejected</button>';
                 }
             })
+
             ->editColumn('user_id', function ($data) {
-                $data = User::where('id', $data->user_id)->first();
-                return $data->name ?? '-';
+                return $data->user->name ?? '-';
             })
 
             ->editColumn('course_id', function ($data) {
-                $data = Course::where('id', $data->course_id)->first();
-                return $data->name ?? '-';
+                return $data->course->name ?? '-';
             })
 
             ->editColumn('college_id', function ($data) {

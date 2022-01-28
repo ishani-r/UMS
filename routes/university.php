@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth:university'], function () {
     // Dashboard
     Route::get('dashboard',                 'Auth\DashboardController@index')->name('main');
     Route::get('show-edit-profile',         'Auth\DashboardController@showEditProfile')->name('show_edit_profile');
-    Route::put('update-profile/{id}',       'Auth\DashboardController@editProfile')->name('update_profile');
+    Route::put('update-profile/{university}',       'Auth\DashboardController@editProfile')->name('update_profile');
     Route::get('change-password-show',      'Auth\DashboardController@showChangePassword')->name('show_change_password');
     Route::post('change-password',          'Auth\DashboardController@changePassword')->name('change_password');
 
