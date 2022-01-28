@@ -35,6 +35,7 @@ class CollegeRepository implements CollegeInterface
          DB::commit();
          return $college;
       } catch (Exception $e) {
+         dd($e);
          DB::rollBack();
          Log::info($e);
       }

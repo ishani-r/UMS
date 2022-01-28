@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="round_no">{{ Form::label('round_no','Round No')}}</label>
-                              {{Form::number('round_no','',['class'=>'form-control','placeholder'=>'Enter Round No','min'=>'1'])}}
+                              {{Form::number('round_no','',['class'=>'form-control','placeholder'=>'Enter Round No','max'=>'5'])}}
                               @error('round_no')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
