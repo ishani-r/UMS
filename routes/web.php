@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminssionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MailerController;
 use App\Http\Controllers\StudentMarksController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,10 @@ Route::get('/', function () {
 Route::get('demo', function () {
     return view('demo');
 });
+
+// send mail
+Route::get("email", [MailerController::class, "email"])->name("email");
+Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
 
 // Social Login
 Route::get('google', 'Auth\LoginController@redirectToProvider')->name('google');
