@@ -107,7 +107,7 @@
                            <div class="form-group">
                               <div class="controls">
                                  <label for="adhaar_card_no">{{ Form::label('adhaar_card_no', 'Adhaar Card No')}}</label>
-                                 {{Form::text('adhaar_card_no',null,['class'=>'form-control','row'=>2])}}
+                                 <input autocomplete='off' type='text' class="form-control card-number @error('adhaar_card_no') is-invalid @enderror" maxlength="14" id="adhaar_card_no" name="adhaar_card_no" size='20' value="{{ $student->adhaar_card_no }}" placeholder="Enter Adhaar Card No">
                                  @error('adhaar_card_no')
                                  <span role="alert">
                                     <strong style="color:red;">{{$message}}</strong>
@@ -121,7 +121,7 @@
                               <div class="controls">
                                  <label for="image">{{ Form::label('image', 'Image')}}</label>
                                  {{Form::file('image',['class'=>'form-control'])}}<br>
-                                 <img class="img" src="{{asset('storage/student/'.$student->image)}}" width="50px" />
+                                 <img class="img" src="{{asset('storage/student/'.$student->image)}}" width="50px"/>
                                  @error('image')
                                  <span role="alert">
                                     <strong style="color:red;">{{$message}}</strong>
@@ -146,6 +146,13 @@
 @endsection
 @push('js')
 <script>
+   $('input[name=adhaar_card_no]').keypress(function() {
+      var rawNumbers = $(this).val().replace(/ /g, '');
+      var cardLength = rawNumbers.length;
+      if (cardLength !== 0 && cardLength <= 8 && cardLength % 4 == 0) {
+         $(this).val($(this).val() + ' ');
+      }
+   });
    $(document).ready(function() {
       $('#user_form').validate({
          rules: {
