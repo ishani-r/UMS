@@ -149,24 +149,36 @@
    $(document).ready(function() {
       $('#user_form').validate({
          rules: {
-            // name: {
-            //    required: true,
-            // },
-            // email: {
-            //    required: true,
-            // },
-            // contact_no: {
-            //    required: true,
-            // },
-            // address: {
-            //    required: true,
-            // },
+            name: {
+               required: true,
+            },
+            email: {
+               required: true,
+            },
+            contact_no: {
+               required: true,
+            },
+            address: {
+               required: true,
+            },
+            gender: {
+               required: true,
+            },
+            dob: {
+               required: true,
+            },
+            adhaar_card_no: {
+               required: true,
+            },
          },
          messages: {
             name: 'Please Enter College Name!',
             email: 'Please Enter Your Email Address!',
             contact_no: 'Please Enter College Contact Number!',
             address: 'Please Enter College Address!',
+            gender: 'Please Select Your Gender!',
+            dob: 'Please Select Your Birth Date!',
+            adhaar_card_no: 'Please Enter Your Adhaar Card Number!',
          },
       });
    })
