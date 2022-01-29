@@ -75,6 +75,37 @@
                         <div class="col-12 col-md-6">
                            <div class="form-group">
                               <div class="controls">
+                                 <label for="gender">{{ Form::label('gender', 'Gender')}}</label>
+                                 <div>
+                                    {{Form::radio('gender', 'F', true)}} Female
+                                    {{Form::radio('gender', 'M', true)}} Male
+                                 </div>
+                                 @error('gender')
+                                 <span role="alert">
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
+                                 @enderror
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                           <div class="form-group">
+                              <div class="controls">
+                                 <label for="dob">{{ Form::label('dob', 'DOB')}}</label>
+                                 {{Form::date('dob',null,['class'=>'form-control'])}}
+                                 @error('dob')
+                                 <span role="alert">
+                                    <strong style="color:red;">{{$message}}</strong>
+                                 </span>
+                                 @enderror
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <div class="form-group">
+                              <div class="controls">
                                  <label for="adhaar_card_no">{{ Form::label('adhaar_card_no', 'Adhaar Card No')}}</label>
                                  {{Form::text('adhaar_card_no',null,['class'=>'form-control','row'=>2])}}
                                  @error('adhaar_card_no')

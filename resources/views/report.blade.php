@@ -1921,3 +1921,21 @@ return $data1;
    @endphp
 
    {{$data}}
+
+Admin Panel
+----------------------
+URL : http://65.0.102.75/university/login
+Username : admin@admin.com
+Password : admin@123
+
+Collage Panel
+-------------------
+URL : http://65.0.102.75/college/login
+Username : gpgs@gmail.com
+Password : password 
+
+Student Panel
+---------------
+URL : http://65.0.102.75/
+Username : ishani@gmail.com
+Password : 11111111

@@ -41,6 +41,8 @@ class DashboardController extends Controller
         $data->email = $request->email;
         $data->contact_no = $request->contact_no;
         $data->address = $request->address;
+        $data->gender = $request->gender;
+        $data->dob = $request->dob;
         $data->adhaar_card_no = $request->adhaar_card_no;
         $image = uploadFile($request['image'], 'student');
         $data->image = $image;
