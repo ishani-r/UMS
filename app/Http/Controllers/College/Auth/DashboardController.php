@@ -33,9 +33,12 @@ class DashboardController extends Controller
         $data->email = $request->email;
         $data->contact_no = $request->contact_no;
         $data->address = $request->address;
-        $logo = uploadFile($request->logo, 'college');
-        $data->logo = $logo;
         $data->save();
+        if($request->logo != null){
+            $logo = uploadFile($request->logo, 'college');
+            $data->logo = $logo;
+            $data->save();
+        }
         return redirect()->route('college.show_edit_profile');
     }
 
