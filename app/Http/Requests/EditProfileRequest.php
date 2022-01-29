@@ -24,6 +24,7 @@ class EditProfileRequest extends FormRequest
     public function rules()
     {
         $id = $this->id;
+        dd($id);
         
         return [
             'name' => 'required',
