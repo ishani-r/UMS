@@ -39,7 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Dashboard
 Route::get('dashboard',                         [DashboardController::class, 'indexs'])->name('main');
 Route::get('show-edit-profile',                 [DashboardController::class, 'showEditProfile'])->name('show_edit_profile');
-Route::put('update-profile/{user}',               [DashboardController::class, 'editProfile'])->name('update_profile');
+Route::put('update-profile/{id}',               [DashboardController::class, 'editProfile'])->name('update_profile');
 Route::get('change-password-show',              [DashboardController::class, 'showChangePassword'])->name('show_change_password');
 Route::post('change-password',                  [DashboardController::class, 'changePassword'])->name('change_password');
 Route::get('admis-status',                      [DashboardController::class, 'status'])->name('admis_status');

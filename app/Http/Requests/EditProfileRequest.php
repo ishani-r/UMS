@@ -23,14 +23,12 @@ class EditProfileRequest extends FormRequest
      */
     public function rules()
     {
-        // $id = $this->id;
+        $id = $this->id;
         
         return [
             'name' => 'required',
-            'email' => 'required|email',
-            // 'email' => 'required|email|unique:users,email,'.$id,
-            'contact_no' => 'required|max:10|min:10',
-            // 'contact_no' => 'required|max:10|min:10|unique:users,contact_no,'.$id,
+            'email' => 'required|email|unique:users,email,'.$id,
+            'contact_no' => 'required|max:10|min:10|unique:users,contact_no,'.$id,
             'address' => 'required',
             'adhaar_card_no' => 'required',
         ];
