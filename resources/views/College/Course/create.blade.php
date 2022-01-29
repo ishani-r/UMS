@@ -40,7 +40,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="seat_no">{{ Form::label('seat_no','Total Seat')}}</label>
-                              {{Form::number('seat_no','',['class'=>'form-control','placeholder'=>'Enter Total Seat'])}}
+                              {{Form::number('seat_no','',['class'=>'form-control','placeholder'=>'Enter Total Seat','min' => '1'])}}
                               @error('seat_no')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -53,7 +53,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="reserved_seat">{{ Form::label('reserved_seat','Reserved Seat')}}</label>
-                              {{Form::number('reserved_seat','',['class'=>'form-control','placeholder'=>'Enter Reserved Seat'])}}
+                              {{Form::number('reserved_seat','',['class'=>'form-control','placeholder'=>'Enter Reserved Seat','min' => '1'])}}
                               @error('reserved_seat')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="merit_seat">{{ Form::label('merit_seat','Merit Seat')}}</label>
-                              {{Form::number('merit_seat','',['class'=>'form-control','placeholder'=>'Enter Merit Seat'])}}
+                              {{Form::number('merit_seat','',['class'=>'form-control','placeholder'=>'Enter Merit Seat','min' => '1'])}}
                               @error('merit_seat')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -91,9 +91,11 @@
             },
             seat_no: {
                required: true,
+               minlength: 1
             },
             reserved_seat: {
                required: true,
+               minlength: 1
             },
             merit_seat: {
                required: true,
@@ -101,9 +103,15 @@
          },
          messages: {
             course_id: 'Please Select Course!',
-            seat_no: 'Please Enter Total Seat!',
-            reserved_seat: 'Please Enter Reserved Seat!',
-            merit_seat: 'Please Enter Merit Seat!',
+            seat_no: {
+               required: 'Please Enter Total Seat!',
+            },
+            reserved_seat: {
+               required: 'Please Enter Reserved Seat!',
+            },
+            merit_seat: {
+               required: 'Please Enter Merit Seat!',
+            }
          },
          highlight: function(element, errorClass, validClass) {
             $(element).addClass("is-invalid").removeClass("is-valid");

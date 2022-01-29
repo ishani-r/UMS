@@ -55,7 +55,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="merit">{{ Form::label('merit','Merit')}}</label>
-                              {{Form::number('merit','',['class'=>'form-control','placeholder'=>'Enter Reserved Seat'])}}
+                              {{Form::number('merit','',['class'=>'form-control','placeholder'=>'Enter Reserved Seat','min' => '1'])}}
                               @error('merit')
                               <span role="alert">
                                  <strong style="color:red;">{{$message}}</strong>
@@ -90,7 +90,9 @@
          messages: {
             course_id: 'Please Select Coure!',
             round_no: 'Please Select Round!',
-            merit: 'Please Enter Merit!',
+            merit: {
+               required: 'Please Enter Merit!',
+            }
          },
          highlight: function(element, errorClass, validClass) {
             $(element).addClass("is-invalid").removeClass("is-valid");
