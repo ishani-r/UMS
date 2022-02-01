@@ -112,7 +112,7 @@
 
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
-
+        <script src="{{ asset('js/app.js')}}"></script>
     <script src="{{ asset('student-assets/app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- ---------------------------------------------datatable------------------------------ -->
     <script src="{{ asset('student-assets/app-assets/vendors/js/switchery.min.js') }}"></script>
@@ -134,7 +134,7 @@
     </script>  -->
     <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap4.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

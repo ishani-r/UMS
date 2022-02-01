@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\College\ProfileRequest;
 use App\Models\AddmissionConfiram;
 use App\Models\CollegeMerit;
+use App\Models\Subject;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        // $course = Subject::all()->where('code','041');
+        // $course = Subject::where('code','041')->get();
+        // dd($course);
         $admission_c = AddmissionConfiram::where('confirm_college_id',Auth::user()->id)->count();
         $college_merit = CollegeMerit::where('college_id',Auth::user()->id)->select('merit')->first();
         return view('College.layouts.content', compact('admission_c','college_merit'));

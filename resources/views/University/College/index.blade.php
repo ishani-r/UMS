@@ -43,74 +43,10 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+<script src="{{asset('admins/js/university/college.js')}}"></script>
 {!! $dataTable->scripts() !!}
 <script>
-   // Status
-   $(document).on('click', '.status', function() {
-      swal({
-            title: "Are you sure?",
-            text: "You Want To Change The Status!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-         })
-         .then((willDelete) => {
-            if (willDelete) {
-               var id = $(this).data('id');
-               var number = $(this).attr('id', 'asd');
-               $.ajax({
-                  url: "{{route('university.college_status')}}",
-                  type: 'get',
-                  data: {
-                     id: id,
-                  },
-                  dataType: "json",
-                  success: function(data) {
-                     $('#collegedatatable-table').DataTable().ajax.reload();
-                  }
-               })
-               swal("Your Status Has Ben Change Succesfully", {
-                  icon: "success",
-               });
-            } else {
-               swal("Your Status is safe!");
-            }
-         });
-   });
-
-   // Delete
-   $(document).on('click', '.delete', function() {
-      swal({
-            title: "Are you sure?",
-            text: "You Want To Delete The College!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-         })
-         .then((willDelete) => {
-            if (willDelete) {
-               var delet = $(this).data('id');
-               var url = '{{route("university.college.destroy", ":queryId")}}';
-               url = url.replace(':queryId', delet);
-               $.ajax({
-                  url: url,
-                  type: "DELETE",
-                  data: {
-                     id: delet,
-                     _token: '{{ csrf_token() }}'
-                  },
-                  dataType: "json",
-                  success: function(data) {
-                     $('#collegedatatable-table').DataTable().ajax.reload();
-                  }
-               });
-               swal("Your Store has been deleted!", {
-                  icon: "success",
-               });
-            } else {
-               swal("Your College is safe!");
-            }
-         });
-   });
+   let url_status = "{{route('university.college_status')}}"
+   let url_destroy = '{{route("university.college.destroy", ":queryId")}}'
 </script>
 @endpush

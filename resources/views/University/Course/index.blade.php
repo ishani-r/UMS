@@ -9,7 +9,7 @@
       </div>
       <div class="text-right">
          <div class="mb-2">
-            <!-- <a href="{{ route('university.course.create')}}" class="btn gradient-pomegranate big-shadow">Add Course</a> -->
+            <a href="{{ route('university.course.create')}}" class="btn gradient-pomegranate big-shadow">Add Course</a>
          </div>
       </div>
    </div>

@@ -101,30 +101,7 @@
 </div>
 @endsection
 @push('js')
+<script src="{{asset('admins/js/university/college.js')}}"></script>
 <script>
-   $(document).ready(function() {
-      $('#college_edit').validate({
-         rules: {
-            name: {
-               required: true,
-            },
-            email: {
-               required: true,
-            },
-            contact_no: {
-               required: true,
-            },
-            address: {
-               required: true,
-            },
-         },
-         messages: {
-            name: 'Please Enter College Name!',
-            email: 'Please Enter Your Email Address!',
-            contact_no: 'Please Enter College Contact Number!',
-            address: 'Please Enter College Address!',
-         },
-      });
-   })
 </script>
 @endpush

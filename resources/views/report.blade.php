@@ -1939,3 +1939,5 @@ Student Panel
 URL : http://65.0.102.75/
 Username : ishani@gmail.com
 Password : 11111111
+
+// if(($stime['start_time'] <= $request->start_time && $request->end_time <= $etime['end_time'])|| ($stime['start_time'] >= $request->start_time && $request->end_time >= $etime['end_time']))

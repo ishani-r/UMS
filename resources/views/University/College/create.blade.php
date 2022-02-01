@@ -115,60 +115,7 @@
    </section>
    @endsection
    @push('js')
+   <script src="{{asset('admins/js/university/college.js')}}"></script>
    <script>
-      $('#college_form').validate({
-         rules: {
-            name: {
-               required: true,
-            },
-            email: {
-               required: true,
-            },
-            contact_no: {
-               required: true,
-            },
-            address: {
-               required: true,
-            },
-            logo: {
-               required: true,
-            },
-            password: {
-               required: true,
-               minlength: 8
-            },
-            confirm_password: {
-               required: true,
-               equalTo: "#password"
-            },
-         },
-         messages: {
-            name: 'Please Enter College Name!',
-            email: 'Please Enter Your Email Address!',
-            contact_no: 'Please Enter College Contact Number!',
-            address: 'Please Enter College Address!',
-            logo: 'Please Select Logo!!',
-            password: {
-               required: 'Please Enter Your Password.',
-               minlength: 'Please Enter at least 8 characters.'
-            },
-            confirm_password: {
-               required: 'Please Enter Confirmation.',
-               equalTo: 'Please Enter Confirm Password Same as a Password.'
-            }
-         },
-         // highlight: function(element, errorClass, validClass) {
-         //    $(element).addClass("is-invalid").removeClass("is-valid");
-         // },
-         // unhighlight: function(element, errorClass, validClass) {
-         //    $(element).addClass("is-valid").removeClass("is-invalid");
-         // },
-         // errorPlacement: function(error, element) {
-         //    error.insertAfter(element.parent());
-         // },
-         submitHandler: function(form) {
-            form.submit();
-         }
-      });
    </script>
    @endpush
