@@ -13,7 +13,8 @@
    <!-- Styles -->
    <style>
       body {
-         background: url("https://png.pngtree.com/background/20210709/original/pngtree-school-season-student-start-school-supplies-discount-picture-image_954651.jpg");
+         /* background: url("https://png.pngtree.com/background/20210709/original/pngtree-school-season-student-start-school-supplies-discount-picture-image_954651.jpg"); */
+         background-image: url("{{asset('student-assets/login-background.jpg')}}");
          background-attachment: fixed;
          background-repeat: no-repeat;
          background-size: 100%;

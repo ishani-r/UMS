@@ -1,3 +1,5 @@
+- how to push one file in git 
+
 Ishani Ranpariya
 Work Report :: 19/01/2022
 - user merit not match selected college show message wait will send mail college
@@ -1941,3 +1943,126 @@ Username : ishani@gmail.com
 Password : 11111111
 
 // if(($stime['start_time'] <= $request->start_time && $request->end_time <= $etime['end_time'])|| ($stime['start_time'] >= $request->start_time && $request->end_time >= $etime['end_time']))
+
+** SmallCircle
+
+1. Clients and followers
+   - customer_id
+   - clerk
+   - assigned_clerk
+   - punch
+   - points
+   - CRM_synced
+   ---- Loyalty transcation
+        - clerk_id
+        - customer_id
+        - transcation date/time
+        - punch
+        - points_earned
+        ---- 
+
+2. Business channel Wallet
+
+* channel customer transaction history
+   - user 
+   - date/time 
+   - order_type
+   - paid_via(image[bank logo])
+   - paid_amount
+               - transaction detail 
+               - data/time 
+               - payment_method
+               - entry_method
+               - verification method 
+               - type 
+               - ammount
+               - receipt issued
+               - transcation reference
+   <!-- - description -->
+   <!-- - receipts -->
+
+* channel
+  - TOSFile
+
+* clienteling tool
+  - form name 
+  - total_customers
+  - total_scans
+  - total_submitted
+  - clerk_tools
+  - public_event_qr_scan
+  - create_date
+  - end_date
+
+* SKU Collection
+  (categorys)
+  - title
+  - image  
+  - description
+  - no_of_items
+    (subcategorys)
+    - name 
+    - description
+
+* sales opration 
+  - client
+  - lead type
+  - lead_add_date
+  - lead_expiry_date
+  - lead value
+
+
+
+<!-- Users Edit in does not provied validation -->
+- Not a single filed has been given validation in the user edit
+- boost profile plans table is not proper view and not working search
+- country -> Category wise not serching
+- ethnicity -> Ethnicity Category wise not serching
+- Report user -> From user/To user wise not serching
+- blog -> Blog Category wise not serching
+
+
+Introduction :
+My name is Ishani. And I'm a software developer in the PHP department. I have completed 6 months of training and I am currently a junior developer
+
+My purpose for making SOP is to achieve the goal by the end of 2022, what should be its implementation and process.
+
+
+- React js 
+- Improve coding skills
+- create smart code (less code and more logic)
+- Also Improve English and communication skills
+- start learning about react js
+
+- Learn laravel all concepts and with proper understanding
+- Gain server and hosting knowledge
+- Improve coding skills ,read and and learn more about coding
+- Improve english and communication skills also
+- Start deep learning about node js and there concepts
+- Do more practice with mongodb and node and there concepts
+- Once have grip on node and mongodb start learning about react js
+- Learn and practice node mongodb and react
+- Stay updated new concept and keep reading and learning
+
+Respected Authorities,
+
+Department : Web Development
+Date :: 09/02/2022
+
+Purpose :
+My purpose for making SOP is to achieve the goal by the end of 2022, what should be its implementation and process.
+
+Goal :
+ - React js
+ - Becoming a full stack developer
+ - I can do any live project by my own self
+
+Procedure :
+
+- Improve coding skills
+- create smart code (less code and more logic)
+- Learn laravel all concepts with proper understanding
+- Also Improve English and communication skills
+- start learning about react js
+
+192.168.0.25

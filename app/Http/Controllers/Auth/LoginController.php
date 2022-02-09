@@ -37,15 +37,19 @@ class LoginController extends Controller
         $this->middleware('guest:web')->except('logout');
     }
 
-    public function redirectToProvider()
+    public function redirectToProvider($type)
     {
-        return Socialite::driver('google')->redirect();
+        if($type == 'google'){
+            return Socialite::driver($type)->redirect();
+        } else if($type == 'twitter'){
+            return Socialite::driver($type)->redirect();
+        }
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback($type)
     {
-        $user = Socialite::driver('google')->user();
-        
+        dd($type);
+        $user = Socialite::driver($type)->user();
         // Find User
         $authUser = User::where('email', $user->email)->first();
         if ($authUser) {

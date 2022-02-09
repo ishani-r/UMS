@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title','Dashboard')
 @section('content')
 <div class="content-overlay"></div>
 <div class="content-wrapper">

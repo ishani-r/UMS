@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 Route::get('demo', function () {
-    return view('demo');
+    return view('auth.multi-step-register');
 });
 
 // send mail
@@ -30,8 +30,8 @@ Route::get("email", [MailerController::class, "email"])->name("email");
 Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
 
 // Social Login
-Route::get('google', 'Auth\LoginController@redirectToProvider')->name('google');
-Route::get('google/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('{type}', 'Auth\LoginController@redirectToProvider')->name('social_login');
+Route::get('{type}/callback', 'Auth\LoginController@handleProviderCallback');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

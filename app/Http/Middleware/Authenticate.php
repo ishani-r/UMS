@@ -17,11 +17,11 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
             if ($request->routeIs('university.*')) {
                 return route('university.login');
-            }
-            if ($request->routeIs('college.*')) {
+            } else if ($request->routeIs('college.*')) {
                 return route('college.login');
+            } else {
+                return route('login');
             }
-            return route('login');
         }
     }
 }
