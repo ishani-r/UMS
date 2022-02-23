@@ -33,14 +33,6 @@ class CollegeCourseRepository implements CollegeCourseInterface
             DB::rollBack();
             Log::info($e);
         }
-        // $data = new CollegeCourse();
-        // $data->college_id = Auth::user()->id;
-        // $data->course_id = $array['course_id'];
-        // $data->seat_no = $array['seat_no'];
-        // $data->reserved_seat = $array['reserved_seat'];
-        // $data->merit_seat = $array['merit_seat'];
-        // $data->save();
-        // return $data;
     }
 
     public function update(array $array, $id)

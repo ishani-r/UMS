@@ -25,40 +25,54 @@
                         </li>
                     </ul>
                 </li> -->
+            @can('view-college')
             <li class="{{ request()->is('*college*') ? 'active' : '' }}">
                <a href="{{ route('university.college.index')}}" class="text-decoration-none">
                   <i class='fas fa-school' style='font-size:17px'></i>
                   <span class="menu-title" data-i18n="Email">College</span>
                </a>
             </li>
+            @endcan
+            @can('view-course')
             <li class="{{ request()->is('*course*') ? 'active' : '' }}">
                <a href="{{ route('university.course.index')}}" class="text-decoration-none">
                   <i class='fas fa-book-reader' style='font-size:24px'></i>
                   <span class="menu-title" data-i18n="Email">Course</span>
                </a>
             </li>
+            @endcan
+            @can('view-subject')
             <li class="{{ request()->is('*list-subject*') ? 'active' : '' }}">
                <a href="{{ route('university.list_subject')}}" class="text-decoration-none">
                   <i class="fa fa-list" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Subject</span>
                </a>
             </li>
+            @endcan
             <li class="{{ request()->is('*common-setting*') ? 'active' : '' }}">
                <a href="{{ route('university.common_setting')}}" class="text-decoration-none">
                   <i class="fa fa-tasks" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Common Setting</span>
                </a>
             </li>
+            @can('view-meritround')
             <li class="{{ request()->is('*meritround*') ? 'active' : '' }}">
                <a href="{{ route('university.meritround.index')}}" class="text-decoration-none">
                   <i class="fa fa-tasks" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Marite Round</span>
                </a>
             </li>
+            @endcan
             <li class="{{ request()->is('*student*') ? 'active' : '' }}">
                <a href="{{ route('university.student.index')}}" class="text-decoration-none">
                   <i class="fa fa-tasks" aria-hidden="true"></i>
                   <span class="menu-title" data-i18n="Email">Student Admission</span>
+               </a>
+            </li>
+            <li class="{{ request()->is('*student*') ? 'active' : '' }}">
+               <a href="{{ route('university.student.index')}}" class="text-decoration-none">
+                  <i class="fa fa-tasks" aria-hidden="true"></i>
+                  <span class="menu-title" data-i18n="Email">Admin</span>
                </a>
             </li>
             <!-- <li>

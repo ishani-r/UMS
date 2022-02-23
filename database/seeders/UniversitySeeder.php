@@ -16,9 +16,7 @@ class UniversitySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('universities')->truncate();
-
-        University::insert([
+        $university = University::create([
             'name' => 'GTU',
             'email' => 'admin@admin.com',
             'address' => 'Gujarat Technological University
@@ -26,6 +24,8 @@ class UniversitySeeder extends Seeder
             Chandkheda, Ahmedabad - 382424 - Gujarat',
             'contact_no' => '079 2326 7521',
             'password' => Hash::make('admin@123'),
-        ]);
+        ],
+        );
+        $university->assignRole('Administration');
     }
 }

@@ -1,4 +1,4 @@
-- how to push one file in git 
+- how to push one file in git
 
 Ishani Ranpariya
 Work Report :: 19/01/2022
@@ -1834,235 +1834,220 @@ return $data1;
       // }
       // }
 
-1. How many functions are available to store and update data in Laravel ?
-1. save()
-   -> data store karse database ma
+      1. How many functions are available to store and update data in Laravel ?
+      1. save()
+      -> data store karse database ma
       $data->save();
-      ex.   insert()
-            $data = new ModalName();
-            $data->name = $request->name;
-            $data->save();
+      ex. insert()
+      $data = new ModalName();
+      $data->name = $request->name;
+      $data->save();
 
-            update()
-            $data = ModalName::find($id);
-            $data->name = $request->name;
-            $data->save();
+      update()
+      $data = ModalName::find($id);
+      $data->name = $request->name;
+      $data->save();
 
-2. create()
-   -> data store karse database ma and database ni create_at column ma pan entry padse
-      ex.   ModalName::create([
-               'column_name' -> $request->column_name
-            ]);
+      2. create()
+      -> data store karse database ma and database ni create_at column ma pan entry padse
+      ex. ModalName::create([
+      'column_name' -> $request->column_name
+      ]);
 
-3. insert()
-   -> multipal data insert karse database ma
-      ex.   $data = [
-               [
-                  'name' => 'Vivekanand College',
-                  'email' => 'vvk@gmail.com',
-               ],
-               [
-                  'name' => 'Government Polytechnic For Girls',
-                  'email' => 'gpg@gmail.com',
-               ],
-            ];
-            ModalName::insert($data);
+      3. insert()
+      -> multipal data insert karse database ma
+      ex. $data = [
+      [
+      'name' => 'Vivekanand College',
+      'email' => 'vvk@gmail.com',
+      ],
+      [
+      'name' => 'Government Polytechnic For Girls',
+      'email' => 'gpg@gmail.com',
+      ],
+      ];
+      ModalName::insert($data);
 
-            $insertData = [
-               'column_name' -> $request->column_name
-            ];
-            $result = ModalName::insert($insertData);
+      $insertData = [
+      'column_name' -> $request->column_name
+      ];
+      $result = ModalName::insert($insertData);
 
-4. update()
-   -> only data update karse database ma
-      ex.   $insertData = [
-               'column_name' -> $request->column_name
-            ];
-            $result->update($insertData);
+      4. update()
+      -> only data update karse database ma
+      ex. $insertData = [
+      'column_name' -> $request->column_name
+      ];
+      $result->update($insertData);
 
-5. updateOrCreate()
-   -> aa function databse ma enter nay hoy to data insert karse and entry hase to data update karse
-      ex.   $data = ModalName::updateOrCreate(
-            [
-               'column_name' -> $request->column_name
-               // add here you want condition
-               // like where condition
-            ],
-            [
-               'column_name' -> $request->column_name
-            ]
-            );
+      5. updateOrCreate()
+      -> aa function databse ma enter nay hoy to data insert karse and entry hase to data update karse
+      ex. $data = ModalName::updateOrCreate(
+      [
+      'column_name' -> $request->column_name
+      // add here you want condition
+      // like where condition
+      ],
+      [
+      'column_name' -> $request->column_name
+      ]
+      );
 
-2. difference between insert() and create()
-   
-   insert()
+      2. difference between insert() and create()
+
+      insert()
       - multipal data insert karse database ma
-      - create_at and update_at ma null data padse 
-      - model ma fillable variable lakhvo jaruri nathi 
-   create()
-      - only one record insert karse database ma 
-      - create_at and update_at ma entry padse 
-      - model ma fillable variable lakhvo jaruri che 
+      - create_at and update_at ma null data padse
+      - model ma fillable variable lakhvo jaruri nathi
+      create()
+      - only one record insert karse database ma
+      - create_at and update_at ma entry padse
+      - model ma fillable variable lakhvo jaruri che
 
-   insert()
-   
-   $data = new ModalName();
-   $data->name = $request->name;
-   $data->save();
+      insert()
 
-   update()
-   $data = ModalName::find($id);
-   $data->name = $request->name;
-   $data->save();
+      $data = new ModalName();
+      $data->name = $request->name;
+      $data->save();
 
-   variable controller me se pass horaha he to 
-   {{$variable_name}}
-   
-   @php 
+      update()
+      $data = ModalName::find($id);
+      $data->name = $request->name;
+      $data->save();
+
+      variable controller me se pass horaha he to
+      {{$variable_name}}
+
+      @php
       $data = 'data';
-   @endphp
+      @endphp
 
-   {{$data}}
+      {{$data}}
 
-Admin Panel
-----------------------
-URL : http://65.0.102.75/university/login
-Username : admin@admin.com
-Password : admin@123
+      Admin Panel
+      ----------------------
+      URL : http://65.0.102.75/university/login
+      Username : admin@admin.com
+      Password : admin@123
 
-Collage Panel
--------------------
-URL : http://65.0.102.75/college/login
-Username : gpgs@gmail.com
-Password : password 
+      Collage Panel
+      -------------------
+      URL : http://65.0.102.75/college/login
+      Username : gpgs@gmail.com
+      Password : password
 
-Student Panel
----------------
-URL : http://65.0.102.75/
-Username : ishani@gmail.com
-Password : 11111111
+      Student Panel
+      ---------------
+      URL : http://65.0.102.75/
+      Username : ishani@gmail.com
+      Password : 11111111
 
-// if(($stime['start_time'] <= $request->start_time && $request->end_time <= $etime['end_time'])|| ($stime['start_time'] >= $request->start_time && $request->end_time >= $etime['end_time']))
+      // if(($stime['start_time'] <= $request->start_time && $request->end_time <= $etime['end_time'])|| ($stime['start_time']>= $request->start_time && $request->end_time >= $etime['end_time']))
 
-** SmallCircle
+            ** SmallCircle
 
-1. Clients and followers
-   - customer_id
-   - clerk
-   - assigned_clerk
-   - punch
-   - points
-   - CRM_synced
-   ---- Loyalty transcation
-        - clerk_id
-        - customer_id
-        - transcation date/time
-        - punch
-        - points_earned
-        ---- 
+            1. Clients and followers
+            - customer_id
+            - clerk
+            - assigned_clerk
+            - punch
+            - points
+            - CRM_synced
+            ---- Loyalty transcation
+            - clerk_id
+            - customer_id
+            - transcation date/time
+            - punch
+            - points_earned
+            ----
 
-2. Business channel Wallet
+            2. Business channel Wallet
 
-* channel customer transaction history
-   - user 
-   - date/time 
-   - order_type
-   - paid_via(image[bank logo])
-   - paid_amount
-               - transaction detail 
-               - data/time 
-               - payment_method
-               - entry_method
-               - verification method 
-               - type 
-               - ammount
-               - receipt issued
-               - transcation reference
-   <!-- - description -->
-   <!-- - receipts -->
+            * channel customer transaction history
+            - user
+            - date/time
+            - order_type
+            - paid_via(image[bank logo])
+            - paid_amount
+            - transaction detail
+            - data/time
+            - payment_method
+            - entry_method
+            - verification method
+            - type
+            - ammount
+            - receipt issued
+            - transcation reference
+            <!-- - description -->
+            <!-- - receipts -->
 
-* channel
-  - TOSFile
+            * channel
+            - TOSFile
 
-* clienteling tool
-  - form name 
-  - total_customers
-  - total_scans
-  - total_submitted
-  - clerk_tools
-  - public_event_qr_scan
-  - create_date
-  - end_date
+            * clienteling tool
+            - form name
+            - total_customers
+            - total_scans
+            - total_submitted
+            - clerk_tools
+            - public_event_qr_scan
+            - create_date
+            - end_date
 
-* SKU Collection
-  (categorys)
-  - title
-  - image  
-  - description
-  - no_of_items
-    (subcategorys)
-    - name 
-    - description
+            * SKU Collection
+            (categorys)
+            - title
+            - image
+            - description
+            - no_of_items
+            (subcategorys)
+            - name
+            - description
 
-* sales opration 
-  - client
-  - lead type
-  - lead_add_date
-  - lead_expiry_date
-  - lead value
-
-
-
-<!-- Users Edit in does not provied validation -->
-- Not a single filed has been given validation in the user edit
-- boost profile plans table is not proper view and not working search
-- country -> Category wise not serching
-- ethnicity -> Ethnicity Category wise not serching
-- Report user -> From user/To user wise not serching
-- blog -> Blog Category wise not serching
+            * sales opration
+            - client
+            - lead type
+            - lead_add_date
+            - lead_expiry_date
+            - lead value
 
 
-Introduction :
-My name is Ishani. And I'm a software developer in the PHP department. I have completed 6 months of training and I am currently a junior developer
 
-My purpose for making SOP is to achieve the goal by the end of 2022, what should be its implementation and process.
+There is 3 transaction states
+   1. DB::beginTransaction(); -> will only begin a transaction, while for DB::transaction() you must pass a Closure function that will be executed inside a transaction.
+   2. DB::commit(); -> query me koi error nahi hogi to data ko aage jane dega
+   3. DB::rollBack(); -> query me koi error hogi to use database me entry nahi hogi or use rollback kar dega
+
+      Ex. 
+      DB::beginTransaction();
+      try {
+         DB::insert(...);
+         DB::insert(...);
+         DB::insert(...);
+
+         DB::commit();
+         // all good
+      } catch (\Exception $e) {
+         DB::rollback();
+         // something went wrong
+      }
 
 
-- React js 
-- Improve coding skills
-- create smart code (less code and more logic)
-- Also Improve English and communication skills
-- start learning about react js
+      @Ishani56752148
+      @Ishani56752148
 
-- Learn laravel all concepts and with proper understanding
-- Gain server and hosting knowledge
-- Improve coding skills ,read and and learn more about coding
-- Improve english and communication skills also
-- Start deep learning about node js and there concepts
-- Do more practice with mongodb and node and there concepts
-- Once have grip on node and mongodb start learning about react js
-- Learn and practice node mongodb and react
-- Stay updated new concept and keep reading and learning
+      use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 
-Respected Authorities,
+class Role extends Model
+{
+    use HasFactory;
 
-Department : Web Development
-Date :: 09/02/2022
-
-Purpose :
-My purpose for making SOP is to achieve the goal by the end of 2022, what should be its implementation and process.
-
-Goal :
- - React js
- - Becoming a full stack developer
- - I can do any live project by my own self
-
-Procedure :
-
-- Improve coding skills
-- create smart code (less code and more logic)
-- Learn laravel all concepts with proper understanding
-- Also Improve English and communication skills
-- start learning about react js
-
-192.168.0.25
+    protected $table = 'roles';
+    protected $fillable = [
+        'id',
+        'name',
+        'guard_name'
+    ];
+    protected $guard='university';
+}
