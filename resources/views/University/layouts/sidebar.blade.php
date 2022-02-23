@@ -69,22 +69,6 @@
                   <span class="menu-title" data-i18n="Email">Student Admission</span>
                </a>
             </li>
-            <li class="{{ request()->is('*student*') ? 'active' : '' }}">
-               <a href="{{ route('university.student.index')}}" class="text-decoration-none">
-                  <i class="fa fa-tasks" aria-hidden="true"></i>
-                  <span class="menu-title" data-i18n="Email">Admin</span>
-               </a>
-            </li>
-            <!-- <li>
-               <a href="#" class="text-decoration-none"><i class="fa fa-window-restore"></i><span class="menu-title" data-i18n="Chat">Category</span>
-               </a>
-            </li>
-            <li>
-               <a href="#" class="text-decoration-none">
-                  <i class="fa fa-th-list"></i>
-                  <span class="menu-title" data-i18n="Chat">Product</span>
-               </a>
-            </li> -->
          </ul>
       </div>
    </div>
