@@ -85,9 +85,9 @@
 
         <!-- main menu-->
         <!--.main-menu(class="#{menuColor} #{menuOpenType}", class=(menuShadow == true ? 'menu-shadow' : ''))-->
-        
+
         @include('University.layouts.sidebar')
-        
+
 
         <div class="main-panel">
             <!-- BEGIN : Main Content-->
@@ -147,7 +147,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-    
+
     @stack('js')
     <!-- END: Custom CSS-->
 </body>

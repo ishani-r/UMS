@@ -25,7 +25,7 @@
                         </li>
                     </ul>
                 </li> -->
-            @can('view-college')
+               @can('view-college')
             <li class="{{ request()->is('*college*') ? 'active' : '' }}">
                <a href="{{ route('university.college.index')}}" class="text-decoration-none">
                   <i class='fas fa-school' style='font-size:17px'></i>
