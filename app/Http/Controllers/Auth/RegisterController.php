@@ -70,9 +70,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data['dob']);
         $image = uploadFile($data['image'], 'student');
-        User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'contact_no' => $data['contact_no'],

@@ -24,14 +24,17 @@ Route::get('/', function () {
 Route::get('demo', function () {
     return view('auth.multi-step-register');
 });
+Route::get('register', function(){
+    return view('auth.register');
+})->name('register');
 
 // send mail
 Route::get("email", [MailerController::class, "email"])->name("email");
 Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
 
 // Social Login
-Route::get('{type}', 'Auth\LoginController@redirectToProvider')->name('social_login');
-Route::get('{type}/callback', 'Auth\LoginController@handleProviderCallback');
+// Route::get('{type}', 'Auth\LoginController@redirectToProvider')->name('social_login');
+// Route::get('{type}/callback', 'Auth\LoginController@handleProviderCallback');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

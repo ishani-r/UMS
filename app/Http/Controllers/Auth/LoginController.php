@@ -37,32 +37,32 @@ class LoginController extends Controller
         $this->middleware('guest:web')->except('logout');
     }
 
-    public function redirectToProvider($type)
-    {
-        if($type == 'google'){
-            return Socialite::driver($type)->redirect();
-        } else if($type == 'twitter'){
-            return Socialite::driver($type)->redirect();
-        }
-    }
+    // public function redirectToProvider($type)
+    // {
+    //     if($type == 'google'){
+    //         return Socialite::driver($type)->redirect();
+    //     } else if($type == 'twitter'){
+    //         return Socialite::driver($type)->redirect();
+    //     }
+    // }
 
-    public function handleProviderCallback($type)
-    {
-        $user = Socialite::driver($type)->user();
-        // Find User
-        $authUser = User::where('email', $user->email)->first();
-        if ($authUser) {
-            Auth::guard('web')->login($authUser);
-            return redirect()->route('home');
-        } else {
-            $newUser = new User();
-            $newUser->name = $user->name;
-            $newUser->email = $user->email;
-            $newUser->social_login_id = $user->id;
-            $newUser->password = uniqid(); // we dont need password for login
-            $newUser->save();
-            Auth::guard('web')->login($newUser);
-            return redirect()->route('home');
-        }
-    }
+    // public function handleProviderCallback($type)
+    // {
+    //     $user = Socialite::driver($type)->user();
+    //     // Find User
+    //     $authUser = User::where('email', $user->email)->first();
+    //     if ($authUser) {
+    //         Auth::guard('web')->login($authUser);
+    //         return redirect()->route('home');
+    //     } else {
+    //         $newUser = new User();
+    //         $newUser->name = $user->name;
+    //         $newUser->email = $user->email;
+    //         $newUser->social_login_id = $user->id;
+    //         $newUser->password = uniqid(); // we dont need password for login
+    //         $newUser->save();
+    //         Auth::guard('web')->login($newUser);
+    //         return redirect()->route('home');
+    //     }
+    // }
 }

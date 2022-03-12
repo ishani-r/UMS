@@ -16,6 +16,9 @@ class UniversitySeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('universities')->truncate();
+
         $university = University::create([
             'name' => 'GTU',
             'email' => 'admin@admin.com',

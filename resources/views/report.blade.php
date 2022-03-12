@@ -2051,3 +2051,31 @@ class Role extends Model
     ];
     protected $guard='university';
 }
+
+- fixer transaction on show total_payable and Total_paid amount
+- set currency in all amount 
+- payment sccess and send notification click on pay amount button 
+- send mail for email/password when create employee and genrate new password
+- merge employee tab in access
+- hide check button if job amount is paid
+- add permission for fixer transaction
+
+- contact-us page on set reCAPTCHA verification completed
+- 
+
+
+
+
+
+                                    <!-- <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                       <label class="col-md-4 control-label">Captcha</label>
+                                       <div class="col-md-6">
+                                          {!! NoCaptcha::renderJs() !!}
+                                          {!! NoCaptcha::display() !!}
+                                       </div>
+                                       @if ($errors->has('g-recaptcha-response'))
+                                       <span class="help-block">
+                                          <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                       </span>
+                                       @endif
+                                    </div> -->
