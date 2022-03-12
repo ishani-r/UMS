@@ -165,8 +165,8 @@
             </div>
           </li>
           <form id="logout-form" action="{{ route('university.logout') }}" method="POST" class="d-none">
-                  @csrf
-               </form>
+            @csrf
+          </form>
           <li class="nav-item d-none d-lg-block mr-2 mt-1">
             <!-- <a class="nav-link notification-sidebar-toggle" href="javascript:;"><i class="ft-align-right font-medium-3"></i></a></li> -->
         </ul>
